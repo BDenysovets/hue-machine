@@ -87,7 +87,7 @@ export default function Home() {
                     onSubmit={handleSubmit}
                   >
                     <div className='field'>
-                      <label className='label'>Name</label>
+                      <label className='label'>Subdomain</label>
                       <div className='control'>
                         <input
                           className='input'
