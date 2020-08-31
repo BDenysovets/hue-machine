@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import MUIDataTable from "mui-datatables"
 import Box from '@material-ui/core/Box'
+import AddIcon from '@material-ui/icons/Add'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
@@ -16,6 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import { MainLayout } from '../../components/mainLayout'
+import { Fab } from '@material-ui/core'
 
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -117,15 +119,6 @@ export default function Partners(props: PartnerProps) {
             options: {
                 filter: false,
                 sort: false,
-                customHeadLabelRender: () => {
-                    return (
-                        <Link href={"/partners/[partner]"} as={`/partners/new`}>
-                            <IconButton>
-                                <AddCircleOutlineIcon/>
-                            </IconButton>
-                        </Link>
-                    )
-                },
                 customBodyRender: (value: string) => {
                     return (
                         <Link href={"/partners/[partner]"} as={`/partners/${value}`}>
@@ -164,6 +157,20 @@ export default function Partners(props: PartnerProps) {
 
     return (
         <MainLayout>
+            <style jsx>{`
+                .floatPanel {
+                    position: fixed;
+                    bottom: 30px;
+                    right: 30px;
+                }
+            `}</style>
+            <div className="floatPanel">
+                <Link href={"/partners/[partner]"} as={`/partners/new`}>
+                    <Fab color="primary" aria-label="add">
+                        <AddIcon />
+                    </Fab>
+                </Link>
+            </div>
             <Dialog
                 open={!!removePartner}
                 onClose={removePartnerClose}

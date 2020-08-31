@@ -133,7 +133,7 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
         <style jsx>{`
           .floatPanel {
             position: fixed;
-            top: 60px;
+            bottom: 30px;
             right: 30px;
           }
         `}</style>

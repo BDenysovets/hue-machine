@@ -3,12 +3,13 @@ import Container from '@material-ui/core/Container'
 import { Paper, Tab, Tabs } from '@material-ui/core'
 
 export function MainLayout({ children }) {
+    const selectedTab = false
     return (
         <>
             <nav>
             <Paper>
             <Tabs
-                value="false"
+                value={selectedTab}
                 indicatorColor="primary"
                 textColor="primary"
                 centered
