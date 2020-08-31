@@ -5,12 +5,23 @@ import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../theme'
-import BlockUi from 'react-block-ui'
-import 'react-block-ui/style.css'
+import Backdrop from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }),
+)
 
 function MyApp({ Component, pageProps }) {
+  const classes = useStyles()
 
-  const [blocking, setBlock] = useState(false);
+  const [blocking, setBlock] = useState(false)
 
   Router.events.on('routeChangeStart', () => setBlock(true))
   Router.events.on('routeChangeComplete', () => setBlock(false))
@@ -33,9 +44,11 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <BlockUi tag="div" blocking={blocking}>
           <Component {...pageProps} />
-        </BlockUi>
+
+        <Backdrop className={classes.backdrop} open={blocking}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
       </ThemeProvider>
     </Fragment>
   )
