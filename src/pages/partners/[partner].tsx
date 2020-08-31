@@ -73,14 +73,6 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
 
   const formSchema: JSONSchema7 = JSON.parse(JSON.stringify(formSchemaJson))
 
-  const uiSchema = {
-    "hair_colors": {
-        "items":{
-            "ui:widget": "checkboxes"
-        }
-      }
-  }
-
   const handleChange = ({formData}) => {
     setPartner(formData)
   }
@@ -189,7 +181,6 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
             {partnerProp ? partnerProp.name : "New Partner"}
             </Typography>
             <Form schema={formSchema}
-                uiSchema={uiSchema}
                 formData={partner}
                 onChange={handleChange}
                 onSubmit={handleSubmit}

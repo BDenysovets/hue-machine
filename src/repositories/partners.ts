@@ -32,14 +32,12 @@ export async function getCustomRecord (target: string) {
 }
 
 export async function createCustomRecord (customObj: CustomRecord) {
-    console.log(customObj)
     let customDoc = new Customization(customObj)
 
     await customDoc.save()
 }
 
 export async function updateCustomRecord (partnerName: string, partner: CustomRecord) {
-    console.log(partner)
     return await Customization.updateOne({ target: partnerName }, partner)
 }
 
