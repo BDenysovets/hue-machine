@@ -13,7 +13,11 @@ const customizationSchema = new mongoose.Schema(
     glasses: { type: Array, required: true },
     css: { type: String, default: '' },
     config: { type: Object, required: true },
-    animation_shapes: { type: Array, required: true }
+    animation_shapes: { type: Array, required: true },
+    style_shapes: {
+      female: { type: Object, required: true },
+      male: { type: Object, required: true }
+    }
   },
   {
     timestamps: true

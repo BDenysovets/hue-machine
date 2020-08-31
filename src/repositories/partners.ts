@@ -23,16 +23,26 @@ export async function updateAuthRecord (partnerName: string, partner: AuthRecord
     return await Authentication.updateOne({ partner: partnerName }, partner)
 }
 
+export async function deleteAuthRecord (partner: string) {
+    return await Authentication.deleteOne({ partner })
+}
+
 export async function getCustomRecord (target: string) {
     return await Customization.findOne({ target }).lean()
 }
 
 export async function createCustomRecord (customObj: CustomRecord) {
+    console.log(customObj)
     let customDoc = new Customization(customObj)
 
     await customDoc.save()
 }
 
 export async function updateCustomRecord (partnerName: string, partner: CustomRecord) {
+    console.log(partner)
     return await Customization.updateOne({ target: partnerName }, partner)
+}
+
+export async function deleteCustomRecord (target: string) {
+    return await Customization.deleteOne({ target })
 }

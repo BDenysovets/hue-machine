@@ -9,7 +9,6 @@ import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Fab from '@material-ui/core/Fab'
 import ImportExportIcon from '@material-ui/icons/ImportExport'
@@ -19,6 +18,7 @@ import partnerConfig from './partner_config.json'
 import formSchemaJson from './form_schema.json'
 import { NextPageContext } from 'next'
 import { Partner } from '../../utils/interfaces'
+import { MainLayout } from '../../components/mainLayout'
 
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -136,65 +136,67 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
   }
 
   return (
-    <Container maxWidth="sm">
-      <style jsx>{`
-        .floatPanel {
-          position: fixed;
-          top: 30px;
-          right: 30px;
-        }
-      `}</style>
-      <div className="floatPanel">
-        <Fab variant="extended" onClick={openImportExportDialog}>
-          <ImportExportIcon />
-          Import/Export
-        </Fab>
-      </div>
-    
-      <Dialog open={importExportDialog.open} maxWidth="xl" fullWidth
-        onClose={closemportExportDialog} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Import/Export</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="content"
-            name="content"
-            label="JSON"
-            type="text"
-            value={importExportDialog.content}
-            onChange={handleImportExportDialogChange}
-            fullWidth
-            multiline
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closemportExportDialog} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={applyJSON} color="primary">
-            Apply
-          </Button>
-        </DialogActions>
-      </Dialog>
+    <MainLayout>
+      <Container maxWidth="sm">
+        <style jsx>{`
+          .floatPanel {
+            position: fixed;
+            top: 60px;
+            right: 30px;
+          }
+        `}</style>
+        <div className="floatPanel">
+          <Fab variant="extended" onClick={openImportExportDialog}>
+            <ImportExportIcon />
+            Import/Export
+          </Fab>
+        </div>
+      
+        <Dialog open={importExportDialog.open} maxWidth="xl" fullWidth
+          onClose={closemportExportDialog} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Import/Export</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="content"
+              name="content"
+              label="JSON"
+              type="text"
+              value={importExportDialog.content}
+              onChange={handleImportExportDialogChange}
+              fullWidth
+              multiline
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={closemportExportDialog} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={applyJSON} color="primary">
+              Apply
+            </Button>
+          </DialogActions>
+        </Dialog>
 
-      <Snackbar open={response.open} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-          <Alert onClose={handleCloseSnackbar} severity={response.type as 'success'|'error'}>
-          {response.message}
-          </Alert>
-      </Snackbar>
-      <Box my={4}>
-          <Typography variant="h4" component="h1" gutterBottom>
-          {partnerProp ? partnerProp.name : "New Partner"}
-          </Typography>
-          <Form schema={formSchema}
-              uiSchema={uiSchema}
-              formData={partner}
-              onChange={handleChange}
-              onSubmit={handleSubmit}
-          />
-      </Box>
-    </Container>
+        <Snackbar open={response.open} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+            <Alert onClose={handleCloseSnackbar} severity={response.type as 'success'|'error'}>
+            {response.message}
+            </Alert>
+        </Snackbar>
+        <Box my={4}>
+            <Typography variant="h4" component="h1" gutterBottom>
+            {partnerProp ? partnerProp.name : "New Partner"}
+            </Typography>
+            <Form schema={formSchema}
+                uiSchema={uiSchema}
+                formData={partner}
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+            />
+        </Box>
+      </Container>
+    </MainLayout>
   )
 }
 

@@ -1,12 +1,25 @@
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Link from 'next/link'
 import MUIDataTable from "mui-datatables"
-import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import EditIcon from '@material-ui/icons/Edit'
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import DeleteIcon from '@material-ui/icons/Delete'
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import { NextPageContext } from 'next'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
+import { MainLayout } from '../../components/mainLayout'
+
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 interface Partner {
     partner: string,
@@ -18,7 +31,68 @@ interface PartnerProps {
 }
 
 export default function Partners(props: PartnerProps) {
-    const router = useRouter()
+    const [partners, setPartners] = useState(props.partners)
+
+    const [response, setResponse] = useState({
+        type: '',
+        message: '',
+        open: false
+    })
+
+    const [removePartner, setRemovePartner] = useState("")
+
+    const removePartnerOpen = (partner: string) => {
+        setRemovePartner(partner)
+    };
+
+    const removePartnerClose = () => {
+        setRemovePartner("")
+    };
+
+    const removePartnerConfirm = async () => {
+        try{
+            const res = await fetch(`/api/partners/${removePartner}`, {
+                method: 'DELETE'
+            })
+            
+            const json = await res.json()
+
+            if (json.success) {
+                setPartners(partners.filter((item) => item.partner !== removePartner))
+
+                setResponse({
+                    type: 'success',
+                    message: `Partner ${removePartner} was removed successfully.`,
+                    open: true
+                })
+            } else {
+                setResponse({
+                    type: 'error',
+                    message: json.message,
+                    open: true
+                })
+            }
+        } catch (e) {
+          console.log('An error occurred', e);
+          setResponse({
+            type: 'error',
+            message: 'An error occured while submitting the form',
+            open: true
+          })
+        }
+
+        setRemovePartner("")
+    };
+
+    const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') return
+    
+        setResponse({
+            type: '',
+            message: '',
+            open: false
+          })
+    }
 
     const columns = [
         {
@@ -46,14 +120,18 @@ export default function Partners(props: PartnerProps) {
                 customHeadLabelRender: () => {
                     return (
                         <Link href={"/partners/[partner]"} as={`/partners/new`}>
-                            <AddCircleOutlineIcon/>
+                            <IconButton>
+                                <AddCircleOutlineIcon/>
+                            </IconButton>
                         </Link>
                     )
                 },
                 customBodyRender: (value: string) => {
                     return (
                         <Link href={"/partners/[partner]"} as={`/partners/${value}`}>
-                            <EditIcon/>
+                            <IconButton>
+                                <EditIcon/>
+                            </IconButton>
                         </Link>
                     )
                 }
@@ -67,14 +145,14 @@ export default function Partners(props: PartnerProps) {
                 sort: false,
                 customBodyRender: (value: string) => {
                     return (
-                        <DeleteForeverIcon/>
+                        <IconButton aria-label="delete" onClick={() => removePartnerOpen(value)}>
+                            <DeleteIcon />
+                        </IconButton>
                     )
                 }
             }
         }
     ]
-
-    const data = props.partners
 
     const options = {
         selectableRows: "none",
@@ -85,16 +163,42 @@ export default function Partners(props: PartnerProps) {
     };
 
     return (
-        <Container>
+        <MainLayout>
+            <Dialog
+                open={!!removePartner}
+                onClose={removePartnerClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    You are about to remove the "{removePartner}" partner. Please confirm this action.
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={removePartnerClose} color="primary">
+                    No
+                </Button>
+                <Button onClick={removePartnerConfirm} color="primary" autoFocus>
+                    Yes
+                </Button>
+                </DialogActions>
+            </Dialog>
             <Box my={4}>
                 <MUIDataTable
                     title={"Partners"}
-                    data={data}
+                    data={partners}
                     columns={columns}
                     options={options}
                 />
             </Box>
-        </Container>
+            <Snackbar open={response.open} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+                <Alert onClose={handleCloseSnackbar} severity={response.type as 'success'|'error'}>
+                {response.message}
+                </Alert>
+            </Snackbar>
+        </MainLayout>
     )
 }
 

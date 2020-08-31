@@ -5,7 +5,7 @@ import { Partner } from "../../../utils/interfaces";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { method, body } = req
-    let data: any;
+    let data: any
 
     switch (method) {
       case 'GET':
@@ -15,7 +15,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         await updatePartner(req.query.partner as string, body)
         break
       case 'DELETE':
-          break;
+        await deletePartner(req.query.partner as string)
+        break
       default:
         res.statusCode = 404
         res.json({ success: false })
@@ -35,13 +36,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
 async function getPartner (partner: string) {
 
-    const authData = await repository.getAuthRecord(partner)
+    const authData: {[key: string]: any} = await repository.getAuthRecord(partner)
 
     if (!authData) {
         throw new Error(`Partner "${partner}" is not found`)
     }
 
-    const customData = await repository.getCustomRecord(partner)
+    const customData: {[key: string]: any} = await repository.getCustomRecord(partner)
 
     delete customData._id, customData.target
 
@@ -73,4 +74,9 @@ async function updatePartner (partnerName: string, partnerObj: Partner) {
 
     await repository.updateAuthRecord(partnerName, { partner: newTarget, key: absynthKey})
     await repository.updateCustomRecord(partnerName, { target: newTarget, ...customizations})
+}
+
+async function deletePartner (partner: string) {
+    await repository.deleteAuthRecord(partner)
+    await repository.deleteCustomRecord(partner)
 }
