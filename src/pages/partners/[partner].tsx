@@ -113,8 +113,8 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
   )
 }
 
-PartnerPage.getInitialProps = async ({ req, query }: NextPageContext) => {
-  let partnerProp: any;
+export const getServerSideProps = async ({ req, query }: NextPageContext) => {
+  let partnerProp: any = null;
 
   if (query.partner !== "new"){
     const res = await fetch(`http://${req.headers.host}/api/partners/${query.partner}`)
@@ -123,6 +123,6 @@ PartnerPage.getInitialProps = async ({ req, query }: NextPageContext) => {
   }
 
   return { 
-    partnerProp
+    props: { partnerProp }
   }
 }

@@ -45,14 +45,14 @@ export default function Partners(props: PartnerProps) {
                 sort: false,
                 customHeadLabelRender: () => {
                     return (
-                        <Link href="/partners/[id]" as={`/partners/new`}>
+                        <Link href={"/partners/[partner]"} as={`/partners/new`}>
                             <AddCircleOutlineIcon/>
                         </Link>
                     )
                 },
                 customBodyRender: (value: string) => {
                     return (
-                        <Link href="/partners/[id]" as={`/partners/${value}`}>
+                        <Link href={"/partners/[partner]"} as={`/partners/${value}`}>
                             <EditIcon/>
                         </Link>
                     )
