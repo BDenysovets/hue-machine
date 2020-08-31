@@ -16,7 +16,7 @@ function Alert(props: AlertProps) {
 }
 
 
-export default function PartnerPage({ partnerProp }: { partnerProp: Partner}) {
+export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
 
   const [partner, setPartner] = useState({
     name: partnerProp ? partnerProp.name : '',
