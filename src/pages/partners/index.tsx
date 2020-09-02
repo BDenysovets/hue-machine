@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box'
 import AddIcon from '@material-ui/icons/Add'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import { NextPageContext } from 'next'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
@@ -14,14 +13,9 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import Snackbar from '@material-ui/core/Snackbar'
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import { MainLayout } from '../../components/mainLayout'
 import { Fab } from '@material-ui/core'
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import { MessageBar } from '../../components/messageBar'
 
 interface Partner {
     partner: string,
@@ -36,9 +30,8 @@ export default function Partners(props: PartnerProps) {
     const [partners, setPartners] = useState(props.partners)
 
     const [response, setResponse] = useState({
-        type: '',
-        message: '',
-        open: false
+        type: 'success',
+        message: ''
     })
 
     const [removePartner, setRemovePartner] = useState("")
@@ -64,37 +57,24 @@ export default function Partners(props: PartnerProps) {
 
                 setResponse({
                     type: 'success',
-                    message: `Partner ${removePartner} was removed successfully.`,
-                    open: true
+                    message: `Partner ${removePartner} was removed successfully.`
                 })
             } else {
                 setResponse({
                     type: 'error',
-                    message: json.message,
-                    open: true
+                    message: json.message
                 })
             }
         } catch (e) {
           console.log('An error occurred', e);
           setResponse({
             type: 'error',
-            message: 'An error occured while submitting the form',
-            open: true
+            message: 'An error occured while submitting the form'
           })
         }
 
         setRemovePartner("")
     };
-
-    const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
-        if (reason === 'clickaway') return
-    
-        setResponse({
-            type: '',
-            message: '',
-            open: false
-          })
-    }
 
     const columns = [
         {
@@ -200,11 +180,8 @@ export default function Partners(props: PartnerProps) {
                     options={options}
                 />
             </Box>
-            <Snackbar open={response.open} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-                <Alert onClose={handleCloseSnackbar} severity={response.type as 'success'|'error'}>
-                {response.message}
-                </Alert>
-            </Snackbar>
+
+            <MessageBar type={response.type as 'success'|'error'} message={response.message}></MessageBar>
         </MainLayout>
     )
 }

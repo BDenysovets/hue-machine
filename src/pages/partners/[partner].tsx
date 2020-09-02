@@ -3,7 +3,6 @@ import Form from "@rjsf/material-ui"
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
-import Snackbar from '@material-ui/core/Snackbar'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
@@ -12,17 +11,13 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Fab from '@material-ui/core/Fab'
 import ImportExportIcon from '@material-ui/icons/ImportExport'
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import { JSONSchema7 } from "json-schema"
 import partnerConfig from './partner_config.json'
 import formSchemaJson from './form_schema.json'
 import { NextPageContext } from 'next'
 import { Partner } from '../../utils/interfaces'
 import { MainLayout } from '../../components/mainLayout'
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import { MessageBar } from '../../components/messageBar'
 
 
 export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
@@ -34,9 +29,8 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
   })
 
   const [response, setResponse] = useState({
-    type: '',
-    message: '',
-    open: false
+    type: 'success',
+    message: ''
   })
 
   const [importExportDialog, setImportExportDialog] = useState({
@@ -65,8 +59,7 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
     }catch(e){
       setResponse({
         type: 'error',
-        message: "JSON can't be recognized",
-        open: true
+        message: "JSON can't be recognized"
       })
     }
   }
@@ -97,34 +90,21 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
       if (json.success) {
         setResponse({
           type: 'success',
-          message: `Partner ${formData.name} was ${partnerProp ? 'updated' : 'added'} successfully.`,
-          open: true
+          message: `Partner ${formData.name} was ${partnerProp ? 'updated' : 'added'} successfully.`
         })
       } else {
         setResponse({
           type: 'error',
-          message: json.message,
-          open: true
+          message: json.message
         })
       }
     } catch (e) {
       console.log('An error occurred', e);
       setResponse({
         type: 'error',
-        message: 'An error occured while submitting the form',
-        open: true
+        message: 'An error occured while submitting the form'
       })
     }
-  }
-
-  const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') return
-
-    setResponse({
-        type: '',
-        message: '',
-        open: false
-      })
   }
 
   return (
@@ -171,11 +151,8 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
           </DialogActions>
         </Dialog>
 
-        <Snackbar open={response.open} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-            <Alert onClose={handleCloseSnackbar} severity={response.type as 'success'|'error'}>
-            {response.message}
-            </Alert>
-        </Snackbar>
+        <MessageBar type={response.type as 'success'|'error'} message={response.message}></MessageBar>
+
         <Box my={4}>
             <Typography variant="h4" component="h1" gutterBottom>
             {partnerProp ? partnerProp.name : "New Partner"}
