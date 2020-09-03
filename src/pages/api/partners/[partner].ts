@@ -44,7 +44,8 @@ async function getPartner (partner: string) {
 
     const customData: {[key: string]: any} = await repository.getCustomRecord(partner)
 
-    delete customData._id, customData.target
+    delete customData._id
+    delete customData.target
 
     return {
         name: partner,
