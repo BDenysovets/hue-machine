@@ -191,6 +191,9 @@
                     "items": {
                         "type": "string",
                         "enum": [
+                            "MeetingVR_white",
+                            "MeetingVR_cyan",
+                            "MeetingVR_purple",
                             "white", 
                             "black", 
                             "blue", 
@@ -270,7 +273,10 @@
                             "viseme_E", 
                             "viseme_I", 
                             "viseme_O", 
-                            "viseme_U"
+                            "viseme_U",
+                            "mouthSmile",
+                            "eyeBlinkLeft",
+                            "eyeBlinkRight"
                         ]
                     },
                     "uniqueItems": true
@@ -340,6 +346,9 @@
                             "type": "object",
                             "title": "Male",
                             "properties": {
+                                "Bobblehead" : {
+                                    "type": "number"
+                                },
                                 "pupil_big" : {
                                     "type": "number"
                                 },
