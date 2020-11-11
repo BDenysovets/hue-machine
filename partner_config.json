@@ -112,6 +112,46 @@
             "name" : "hair_19",
             "mask" : "no_mask",
             "mesh" : true
+        },
+        {
+            "name": "hair_20",
+            "mask": "mask_1",
+            "mesh": true
+        },
+        {
+            "name": "hair_21",
+            "mask": "no_mask",
+            "mesh": true
+        },
+        {
+            "name": "hair_22",
+            "mask": "no_mask",
+            "mesh": true
+        },
+        {
+            "name": "hair_23",
+            "mask": "no_mask",
+            "mesh": true
+        },
+        {
+            "name": "hair_24",
+            "mask": "no_mask",
+            "mesh": true
+        },
+        {
+            "name": "hair_25",
+            "mask": "mask_9",
+            "mesh": true
+        },
+        {
+            "name": "hair_26",
+            "mask": "mask_8",
+            "mesh": true
+        },
+        {
+            "name": "hair_27",
+            "mask": "no_mask",
+            "mesh": true
         }
     ],
     "beard_styles" : [ 
