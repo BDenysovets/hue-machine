@@ -19,7 +19,8 @@ async function getAssetsByType ( asset_type ) {
         },
       },
     },
-  });
+  },
+  { allPages: true });
 }
 
 async function assignPartnerToAssets ( partnerId, asset_type ) {
