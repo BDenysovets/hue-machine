@@ -8,6 +8,8 @@ import theme from '../theme'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,6 +51,7 @@ function MyApp({ Component, pageProps }) {
         <Backdrop className={classes.backdrop} open={blocking}>
           <CircularProgress color="inherit" />
         </Backdrop>
+        <ToastContainer position="top-center" />
       </ThemeProvider>
     </Fragment>
   )
