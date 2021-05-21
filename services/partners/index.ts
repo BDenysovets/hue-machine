@@ -7,7 +7,8 @@ const client = new SiteClient(
 interface Partner {
   name: string,
   absynthKey: string,
-  bodyType: 'halfbody' | 'fullbody'
+  bodyType: 'halfbody' | 'fullbody',
+  exclude: boolean
 }
 
 export const Partner = {

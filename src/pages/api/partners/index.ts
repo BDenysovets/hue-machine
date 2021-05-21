@@ -37,7 +37,7 @@ async function getPartners(){
 
 async function submitPartner (req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { subdomain, bodyType } = req.body
+    const { subdomain, bodyType, excludeFromPartnersList } = req.body
 
     if (!subdomain || !bodyType) {
       throw new Error('subdomain and bodyType are required parameters')
@@ -55,7 +55,7 @@ async function submitPartner (req: NextApiRequest, res: NextApiResponse) {
       throw new Error(absynth.message)
     }
 
-    const newPartner = await Partner.createNewPartner({ name: subdomain, absynthKey: absynth.authKey, bodyType})
+    const newPartner = await Partner.createNewPartner({ name: subdomain, absynthKey: absynth.authKey, exclude: excludeFromPartnersList, bodyType})
 
     res.json({success: true, partner: newPartner})
 
