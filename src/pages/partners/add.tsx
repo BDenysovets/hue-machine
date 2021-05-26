@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 export default function PartnerAddPage() {
   const [subdomain, setSubdomain] = useState('')
   const [bodyType, setBodyType] = useState('fullbody')
+  const [excludeFromPartnersList, setExcludeFromPartnersList] = useState(false)
   const [loading, setLoading] = useState(false)
 
   function onSubdomainChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -24,7 +25,8 @@ export default function PartnerAddPage() {
         method: 'POST',
         body: JSON.stringify({
           subdomain,
-          bodyType
+          bodyType,
+          excludeFromPartnersList
         }),
         headers: { 'Content-Type': 'application/json' }
       })
