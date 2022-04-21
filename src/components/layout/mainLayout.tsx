@@ -3,7 +3,8 @@ import Container from '@material-ui/core/Container'
 import { Paper, Tab, Tabs } from '@material-ui/core'
 
 export function MainLayout({ children }) {
-    const selectedTab = false
+    let selectedTab = false
+
     return (
         <>
             <nav>
@@ -14,6 +15,7 @@ export function MainLayout({ children }) {
                 textColor="primary"
                 centered
             >
+                <Link href={"/campaigns"}><Tab label="Campaigns" /></Link>
                 <Link href={"/partners"}><Tab label="Partners" /></Link>
                 <Tab label="Assets" />
             </Tabs>
