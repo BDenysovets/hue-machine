@@ -1,55 +1,41 @@
-import { Component } from 'react'
-import Snackbar from '@material-ui/core/Snackbar'
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
+import {FC, useEffect, useState} from 'react'
+import { AlertProps, Alert as MuiAlert, Snackbar } from '@mui/material'
 
 function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
+    return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
+type MessageType = 'success' | 'error'
 
-interface MessageProps {
-    type: 'success' | 'error'
+type MessageT = {
+    type: MessageType
     message?: string
 }
 
-interface MessageState extends MessageProps {
-    open: boolean
-}
+const MessageBar: FC<MessageT> = (props) => {
+    const [open, setOpen] = useState(false)
+    const [type, setType] = useState<MessageType>("success")
+    const [message, setMessage] = useState('')
 
-const initialState: MessageState = {
-    open: false,
-    type: 'success',
-    message: ''
-}
-
-export class MessageBar extends Component<MessageProps> {
-    state = initialState
-
-    constructor(props: MessageProps) {
-        super(props)
-        this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this)
-    }
-    
-    handleCloseSnackbar = () => {
-        this.setState({open: false})
+    function handleClose() {
+        setOpen(false)
     }
 
-    componentDidUpdate() {
-        if (this.props.message !== this.state.message || this.props.type !== this.state.type) {
-            this.setState({
-                open: true,
-                type: this.props.type,
-                message: this.props.message
-            })
+    useEffect(() => {
+        if (props.type !== message || props.type !== type) {
+            setOpen(true)
+            setMessage(props.message)
+            setType(props.type)
         }
-    }
+    }, [message, type])
 
-    render() {
-        return (
-        <Snackbar open={this.state.open} autoHideDuration={6000} onClose={this.handleCloseSnackbar}>
-            <Alert onClose={this.handleCloseSnackbar} severity={this.state.type}>
-            {this.state.message}
+    return (
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity={type}>
+                {message}
             </Alert>
         </Snackbar>
-    )}
+    )
 }
+
+export { MessageBar }

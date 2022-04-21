@@ -1,16 +1,7 @@
-import { useState } from 'react'
+import {FC, useState} from 'react'
 import Form from "@rjsf/material-ui"
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import Fab from '@material-ui/core/Fab'
-import ImportExportIcon from '@material-ui/icons/ImportExport'
+import { Fab, DialogTitle, DialogContent, DialogActions, Dialog, TextField, Button, Typography, Box, Container } from '@mui/material'
+import { ImportExport } from '@mui/icons-material'
 import { JSONSchema7 } from "json-schema"
 import partnerConfig from './partner_config.json'
 import formSchemaJson from './form_schema.json'
@@ -19,8 +10,11 @@ import { Partner } from '../../utils/interfaces'
 import { MainLayout } from '../../components/layout/mainLayout'
 import { MessageBar } from '../../components/notification/messageBar'
 
+type PartnerPageT = {
+  partnerProp?: Partner
+}
 
-export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
+const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
 
   const [partner, setPartner] = useState({
     name: partnerProp ? partnerProp.name : '',
@@ -119,7 +113,7 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
         `}</style>
         <div className="floatPanel">
           <Fab variant="extended" onClick={openImportExportDialog}>
-            <ImportExportIcon />
+            <ImportExport />
             Import/Export
           </Fab>
         </div>
@@ -167,6 +161,8 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
     </MainLayout>
   )
 }
+
+export { PartnerPage as default }
 
 export const getServerSideProps = async ({ req, query }: NextPageContext) => {
   let partnerProp: any = null;

@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import TextField from '@material-ui/core/TextField'
-import { Button, Container, FormControlLabel, Radio, RadioGroup } from '@material-ui/core'
+import React, {FC, useState} from 'react'
+import { Button, Container, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material'
 import { toast } from 'react-toastify'
 
-export default function PartnerAddPage() {
+const PartnerAddPage: FC = () => {
   const [subdomain, setSubdomain] = useState('')
   const [bodyType, setBodyType] = useState('fullbody')
   const [excludeFromPartnersList, setExcludeFromPartnersList] = useState(false)
@@ -48,18 +47,16 @@ export default function PartnerAddPage() {
   }
 
   return (
-    <>
-      <Container className="mt-10" maxWidth="sm">
-        <h1>New partner</h1>
-        <TextField required id="subdomain" label="Subdomain" value={subdomain} onChange={onSubdomainChange} />
-        <RadioGroup aria-label="gender" name="bodyType" value={bodyType} onChange={onBodytypeChange}>
-          <FormControlLabel value="fullbody" control={<Radio />} label="Full-body" />
-          <FormControlLabel value="halfbody" control={<Radio />} label="Half-body" />
-        </RadioGroup>
-        {loading ? 'Processing...' : <Button variant="outlined" onClick={onFormSubmit}>Submit</Button>}
-      </Container>
-    </>
+    <Container className="mt-10" maxWidth="sm">
+      <h1>New partner</h1>
+      <TextField required id="subdomain" label="Subdomain" value={subdomain} onChange={onSubdomainChange} />
+      <RadioGroup aria-label="gender" name="bodyType" value={bodyType} onChange={onBodytypeChange}>
+        <FormControlLabel value="fullbody" control={<Radio />} label="Full-body" />
+        <FormControlLabel value="halfbody" control={<Radio />} label="Half-body" />
+      </RadioGroup>
+      {loading ? 'Processing...' : <Button variant="outlined" onClick={onFormSubmit}>Submit</Button>}
+    </Container>
   )
-
-
 }
+
+export { PartnerAddPage as default }

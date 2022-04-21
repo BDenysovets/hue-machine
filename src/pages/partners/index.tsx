@@ -1,20 +1,10 @@
-import { useState } from 'react'
+import {FC, useState} from 'react'
 import Link from 'next/link'
 import MUIDataTable from "mui-datatables"
-import Box from '@material-ui/core/Box'
-import AddIcon from '@material-ui/icons/Add'
-import EditIcon from '@material-ui/icons/Edit'
-import DeleteIcon from '@material-ui/icons/Delete'
 import { NextPageContext } from 'next'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
 import { MainLayout } from '../../components/layout/mainLayout'
-import { Fab } from '@material-ui/core'
+import { Fab, DialogTitle, DialogContentText, DialogContent, DialogActions, Dialog, IconButton, Button, Box } from '@mui/material'
+import { Add, Edit, Delete } from "@mui/icons-material"
 import { MessageBar } from '../../components/notification/messageBar'
 
 interface Partner {
@@ -26,7 +16,7 @@ interface PartnerProps {
     partners: Partner[]
 }
 
-export default function Partners(props: PartnerProps) {
+const Partners: FC<PartnerProps> = (props) => {
     const [partners, setPartners] = useState(props.partners)
 
     const [response, setResponse] = useState({
@@ -103,7 +93,7 @@ export default function Partners(props: PartnerProps) {
                     return (
                         <Link href={"/partners/[partner]"} as={`/partners/${value}`}>
                             <IconButton>
-                                <EditIcon/>
+                                <Edit />
                             </IconButton>
                         </Link>
                     )
@@ -119,7 +109,7 @@ export default function Partners(props: PartnerProps) {
                 customBodyRender: (value: string) => {
                     return (
                         <IconButton aria-label="delete" onClick={() => removePartnerOpen(value)}>
-                            <DeleteIcon />
+                            <Delete />
                         </IconButton>
                     )
                 }
@@ -147,7 +137,7 @@ export default function Partners(props: PartnerProps) {
             <div className="floatPanel">
                 <Link href={"/partners/[partner]"} as={`/partners/new`}>
                     <Fab color="primary" aria-label="add">
-                        <AddIcon />
+                        <Add />
                     </Fab>
                 </Link>
             </div>
@@ -159,17 +149,17 @@ export default function Partners(props: PartnerProps) {
             >
                 <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
                 <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    You are about to remove the "{removePartner}" partner. Please confirm this action.
-                </DialogContentText>
+                    <DialogContentText id="alert-dialog-description">
+                        You are about to remove the "{removePartner}" partner. Please confirm this action.
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={removePartnerClose} color="primary">
-                    No
-                </Button>
-                <Button onClick={removePartnerConfirm} color="primary" autoFocus>
-                    Yes
-                </Button>
+                    <Button onClick={removePartnerClose} color="primary">
+                        No
+                    </Button>
+                    <Button onClick={removePartnerConfirm} color="primary" autoFocus>
+                        Yes
+                    </Button>
                 </DialogActions>
             </Dialog>
             <Box my={4}>
@@ -181,10 +171,12 @@ export default function Partners(props: PartnerProps) {
                 />
             </Box>
 
-            <MessageBar type={response.type as 'success'|'error'} message={response.message}></MessageBar>
+            <MessageBar type={response.type as 'success'|'error'} message={response.message} />
         </MainLayout>
     )
 }
+
+export { Partners as default }
 
 export async function getServerSideProps ({ req }: NextPageContext) {
     const res = await fetch(`http://${req.headers.host}/api/partners`)

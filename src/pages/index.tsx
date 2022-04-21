@@ -1,15 +1,13 @@
-import Link from 'next/link'
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
-import { MainLayout } from '../components/layout/mainLayout';
+import { Box } from '@mui/material'
+import { MainLayout } from '../components/layout/mainLayout'
+import {FC} from "react"
 
-export default function Home() {
+const Home: FC = () => (
+  <MainLayout>
+    <Box my={4}>
+      Home
+    </Box>
+  </MainLayout>
+)
 
-  return (
-    <MainLayout>
-            <Box my={4}>
-              
-            </Box>
-    </MainLayout>
-  );
-}
+export { Home as default }
