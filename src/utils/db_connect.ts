@@ -13,9 +13,9 @@ export default async function DatabaseConnect() {
   console.log('Connecting to MongoDB Atlas...')
 
   try {
-    const conn = await mongoose.connect(ATLAS_URI as string, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-    connection = conn.connections[0].readyState
-    console.log(connection ? 'Connected to MongoDB Atlas!' : 'Connection failed')
+    mongoose.connect(ATLAS_URI as string)
+      .then(() => console.log('Connected to MongoDB Atlas!'))
+      .catch(() => console.log('Connection failed'))
   } catch {
     console.log('Unable to rune mongoose connect')
   }
