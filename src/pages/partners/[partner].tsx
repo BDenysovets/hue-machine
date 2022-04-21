@@ -16,8 +16,8 @@ import partnerConfig from './partner_config.json'
 import formSchemaJson from './form_schema.json'
 import { NextPageContext } from 'next'
 import { Partner } from '../../utils/interfaces'
-import { MainLayout } from '../../components/mainLayout'
-import { MessageBar } from '../../components/messageBar'
+import { MainLayout } from '../../components/layout/mainLayout'
+import { MessageBar } from '../../components/notification/messageBar'
 
 
 export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
@@ -151,7 +151,7 @@ export default function PartnerPage({ partnerProp }: { partnerProp?: Partner}) {
           </DialogActions>
         </Dialog>
 
-        <MessageBar type={response.type as 'success'|'error'} message={response.message}></MessageBar>
+        <MessageBar type={response.type as 'success'|'error'} message={response.message} />
 
         <Box my={4}>
             <Typography variant="h4" component="h1" gutterBottom>

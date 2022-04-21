@@ -13,9 +13,9 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { MainLayout } from '../../components/mainLayout'
+import { MainLayout } from '../../components/layout/mainLayout'
 import { Fab } from '@material-ui/core'
-import { MessageBar } from '../../components/messageBar'
+import { MessageBar } from '../../components/notification/messageBar'
 
 interface Partner {
     partner: string,

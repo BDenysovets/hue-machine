@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
-import { MainLayout } from '../components/mainLayout';
+import { MainLayout } from '../components/layout/mainLayout';
 
 export default function Home() {
 
