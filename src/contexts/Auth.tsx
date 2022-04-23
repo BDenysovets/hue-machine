@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useContext, useState } from 'react'
+import {createContext, FC, useContext, useEffect, useState} from 'react'
 
 type TokenT = string | null | undefined
 
@@ -14,32 +14,33 @@ type UserT = {
 type UserContextProps = {
   token: TokenT
   user: { data: UserT | null, setUser: (data: UserT) => void }
+  authenticated: boolean
   setToken: (token: string) => void
 }
 
 const defaultValue: UserContextProps = {
   token: null,
   user: { data: null, setUser: () => undefined },
+  authenticated: false,
   setToken: () => undefined,
 }
 
 const UserContext = createContext<UserContextProps>(defaultValue)
 
-// TODO check Fc on children prop
-const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const UserProvider: FC = ({ children }) => {
   const [token, setToken] = useState<TokenT>()
   const [user, setUser] = useState<UserT>()
+  const [authenticated, setAuthenticated] = useState(false)
+
+  useEffect(() => setAuthenticated(!!token && !!user), [user, token])
 
   return (
-    <UserContext.Provider value={{ token, setToken, user: { data: user, setUser } }}>
+    <UserContext.Provider value={{ token, setToken, authenticated, user: { data: user, setUser } }}>
       {children}
     </UserContext.Provider>
   )
 }
 
-/**
- * Hook provides access to user entity (if authorized), token header value and login method (if unauthorized)
- */
 export const useAuth: () => UserContextProps = () => useContext<UserContextProps>(UserContext)
 
 export { UserProvider }

@@ -1,4 +1,4 @@
-import{ FC } from 'react'
+import {FC} from 'react'
 import { MainLayout } from '../../components/layout/mainLayout'
 import {useAuth} from "../../contexts/Auth";
 import {Login} from "./Login";
@@ -6,11 +6,13 @@ import {List} from "./List";
 
 
 const Campaigns: FC = () => {
-  const { token } = useAuth()
+  const { authenticated } = useAuth()
+
+  console.log(authenticated)
 
   return (
     <MainLayout>
-      {token ? <List /> : <Login />}
+      {authenticated ? <List /> : <Login />}
     </MainLayout>
   )
 }

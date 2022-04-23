@@ -5,6 +5,7 @@ import theme from '../theme'
 import { Backdrop, CircularProgress, CssBaseline, ThemeProvider, useTheme } from '@mui/material'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
+import {UserProvider} from "../contexts/Auth";
 
 
 function MyApp({ Component, pageProps }) {
@@ -29,12 +30,14 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-        <Backdrop style={{ color: '#fff', zIndex: useTheme().zIndex.drawer + 1 }} open={open}>
-          <CircularProgress color="inherit" />
-        </Backdrop>
-        <ToastContainer position="top-center" />
+        <UserProvider>
+          <CssBaseline />
+          <Component {...pageProps} />
+          <Backdrop style={{ color: '#fff', zIndex: useTheme().zIndex.drawer + 1 }} open={open}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+          <ToastContainer position="top-center" />
+        </UserProvider>
       </ThemeProvider>
     </Fragment>
   )
