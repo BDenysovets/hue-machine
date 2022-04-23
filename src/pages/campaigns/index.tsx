@@ -8,8 +8,6 @@ import {List} from "./List";
 const Campaigns: FC = () => {
   const { authenticated } = useAuth()
 
-  console.log(authenticated)
-
   return (
     <MainLayout>
       {authenticated ? <List /> : <Login />}
