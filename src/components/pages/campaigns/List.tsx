@@ -2,7 +2,7 @@ import {FC, useState} from "react";
 import {Stack, Button, Typography} from "@mui/material";
 import {Add} from "@mui/icons-material";
 import {AddForm} from "./Form";
-import {Modal} from "../../components/modal";
+import {Modal} from "../../modal";
 
 const List: FC = () => {
   const [addModal, setAddModal] = useState(false)

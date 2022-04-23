@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import {useAuth} from "../../contexts/Auth";
-import {Login} from "./Login";
-import {List} from "./List";
+import {Login} from "../../components/pages/campaigns/Login";
+import {List} from "../../components/pages/campaigns/List";
 import {CampaignsLayout} from "../../components/layout/campaignsLayout";
 import {MainLayout} from "../../components/layout/mainLayout";
 

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { GoogleLoginResponse, GoogleLogin } from 'react-google-login';
-import {useAuth} from "../../contexts/Auth";
+import {useAuth} from "../../../contexts/Auth";
 import {Stack, Typography} from "@mui/material";
 
 const Login: FC = () => {
