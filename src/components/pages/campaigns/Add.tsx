@@ -1,23 +1,24 @@
 import {Box} from "@mui/material";
 import {FC, useState} from "react";
-import Form from "@rjsf/material-ui"
+import { MuiForm } from "@rjsf/material-ui"
 import { JSONSchema7 } from "json-schema"
 import formSchemaJson from './formSchema.json'
+import {CampaignT} from "./List";
 
+type AddT = {
+  onSubmit: (data: CampaignT) => void
+}
 
-const AddForm: FC = () => {
+const Add: FC<AddT> = ({ onSubmit }) => {
   const [data, setData] = useState()
   const formSchema: JSONSchema7 = JSON.parse(JSON.stringify(formSchemaJson))
 
   const handleChange = ({formData}) => setData(formData)
-
-  const handleSubmit = ({formData}) => {
-    console.log('submit', formData)
-  }
+  const handleSubmit = ({ formData}) => onSubmit(formData)
 
   return (
     <Box>
-      <Form
+      <MuiForm
         schema={formSchema}
         formData={data}
         onChange={handleChange}
@@ -27,4 +28,4 @@ const AddForm: FC = () => {
   )
 }
 
-export { AddForm }
+export { Add }

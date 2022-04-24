@@ -1,9 +1,31 @@
-import {FC} from "react";
+import {FC, useState} from "react";
+import {CampaignT} from "./List";
+import {JSONSchema7} from "json-schema";
+import formSchemaJson from "./formSchema.json";
+import {Box} from "@mui/material";
+import {MuiForm} from "@rjsf/material-ui";
 
-const Edit: FC = () => {
+type EditT = {
+  onSubmit: (data: CampaignT) => void
+  campaign: CampaignT
+}
+
+const Edit: FC<EditT> = ({ onSubmit, campaign }) => {
+  const [data, setData] = useState<CampaignT>(campaign)
+  const formSchema: JSONSchema7 = JSON.parse(JSON.stringify(formSchemaJson))
+
+  const handleChange = ({formData}) => setData(formData)
+  const handleSubmit = ({ formData}) => onSubmit(formData)
 
   return (
-    <div><h2>campaign item edit modal content should be there</h2></div>
+    <Box>
+      <MuiForm
+        schema={formSchema}
+        formData={data}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      />
+    </Box>
   )
 }
 
