@@ -6,9 +6,10 @@ import { Backdrop, CircularProgress, CssBaseline, ThemeProvider, useTheme } from
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 import {UserProvider} from "../contexts/Auth";
+import {Layout} from "../components/layout";
 
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [open, setOpen] = useState(false)
 
   Router.events.on('routeChangeStart', () => setOpen(true))
@@ -32,7 +33,9 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <UserProvider>
           <CssBaseline />
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
           <Backdrop style={{ color: '#fff', zIndex: useTheme().zIndex.drawer + 1 }} open={open}>
             <CircularProgress color="inherit" />
           </Backdrop>

@@ -9,13 +9,20 @@ import {
   Tooltip,
   MenuItem,
   IconButton,
-  Link
+  Stack, Divider
 } from '@mui/material';
 import React, {FC, useState} from "react";
-import {useAuth} from "../../../contexts/Auth";
-import {Logo} from "../../logo";
+import {useAuth} from "../../contexts/Auth";
+import {Logo} from "../logo";
+import Link from 'next/link'
 
-const Header: FC = () => {
+const menu = {
+  '/campaigns': 'Campaigns',
+  '/partners': 'Partners',
+  '/assets': 'Assets',
+}
+
+const  Header: FC = () => {
   const { user, logout } = useAuth()
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -36,6 +43,21 @@ const Header: FC = () => {
             sx={{ flexGrow: 1 }}
           >
             <Logo />
+          </Box>
+          <Box sx={{ flexGrow: 1 }}>
+            <Stack
+                direction="row"
+                divider={<Divider orientation="vertical" flexItem />}
+                spacing={2}
+            >
+              {Object.entries(menu).map(([key, value], index) => (
+                  <Link key={index} href={key}>
+                    <Typography variant={'h6'} sx={{ cursor: 'pointer' }} color={'#fff'}>
+                      {value}
+                    </Typography>
+                  </Link>
+              ))}
+            </Stack>
           </Box>
           <Box>
             {user.data && (
