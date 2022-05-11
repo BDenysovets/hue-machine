@@ -1,8 +1,7 @@
-import {FC, useState} from 'react'
+import {FC, useState, Fragment} from 'react'
 import Link from 'next/link'
 import MUIDataTable from "mui-datatables"
 import { NextPageContext } from 'next'
-import { MainLayout } from '../../components/layout/mainLayout'
 import { Fab, DialogTitle, DialogContentText, DialogContent, DialogActions, Dialog, IconButton, Button, Box } from '@mui/material'
 import { Add, Edit, Delete } from "@mui/icons-material"
 import { MessageBar } from '../../components/notification/messageBar'
@@ -126,7 +125,7 @@ const Partners: FC<PartnerProps> = (props) => {
     };
 
     return (
-        <MainLayout>
+        <Fragment>
             <style jsx>{`
                 .floatPanel {
                     position: fixed;
@@ -172,7 +171,7 @@ const Partners: FC<PartnerProps> = (props) => {
             </Box>
 
             <MessageBar type={response.type as 'success'|'error'} message={response.message} />
-        </MainLayout>
+        </Fragment>
     )
 }
 

@@ -7,7 +7,6 @@ import partnerConfig from './partner_config.json'
 import formSchemaJson from './form_schema.json'
 import { NextPageContext } from 'next'
 import { Partner } from '../../utils/interfaces'
-import { MainLayout } from '../../components/layout/mainLayout'
 import { MessageBar } from '../../components/notification/messageBar'
 
 type PartnerPageT = {
@@ -102,7 +101,6 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
   }
 
   return (
-    <MainLayout>
       <Container maxWidth="sm">
         <style jsx>{`
           .floatPanel {
@@ -158,7 +156,6 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
             />
         </Box>
       </Container>
-    </MainLayout>
   )
 }
 
