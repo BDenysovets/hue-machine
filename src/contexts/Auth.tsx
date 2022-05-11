@@ -1,4 +1,4 @@
-import {createContext, FC, useContext, useEffect, useState} from 'react'
+import {createContext, FC, useContext, useState} from 'react'
 
 type TokenT = string | null | undefined
 
@@ -14,7 +14,7 @@ type UserT = {
 type UserContextProps = {
   token: TokenT
   user: { data: UserT | null, setUser: (data: UserT) => void }
-  authenticated: boolean
+  isAuthenticated: () => boolean
   setToken: (token: string) => void
   logout: () => void
 }
@@ -22,7 +22,7 @@ type UserContextProps = {
 const defaultValue: UserContextProps = {
   token: null,
   user: { data: null, setUser: () => undefined },
-  authenticated: false,
+  isAuthenticated: () => false,
   setToken: () => undefined,
   logout: () => undefined
 }
@@ -32,17 +32,18 @@ const UserContext = createContext<UserContextProps>(defaultValue)
 const UserProvider: FC = ({ children }) => {
   const [token, setToken] = useState<TokenT>()
   const [user, setUser] = useState<UserT>()
-  const [authenticated, setAuthenticated] = useState(false)
 
   function logout() {
     setUser(null)
     setToken(null)
   }
 
-  useEffect(() => setAuthenticated(!!token && !!user), [user, token])
+  function isAuthenticated() {
+    return !!token && !!user
+  }
 
   return (
-    <UserContext.Provider value={{ token, setToken, authenticated, logout, user: { data: user, setUser } }}>
+    <UserContext.Provider value={{ token, setToken, isAuthenticated, logout, user: { data: user, setUser } }}>
       {children}
     </UserContext.Provider>
   )
