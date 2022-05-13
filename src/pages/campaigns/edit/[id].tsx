@@ -3,7 +3,7 @@ import {JSONSchema7} from "json-schema";
 import {Box, Container} from "@mui/material";
 import {MuiForm} from "@rjsf/material-ui";
 import {NextPageContext} from "next";
-import {datoCmsApiToken, request} from "../../../lib/datocms";
+import {cmsApiToken, request} from "../../../lib/datocms";
 import {QueryListenerOptions, useQuerySubscription} from "react-datocms";
 import {concatFormFields, defaultFormFields} from "../add";
 
@@ -69,7 +69,7 @@ export async function getStaticProps({ preview, params }: EditPageT) {
                 ? {
                     ...graphqlRequest,
                     initialData: await request(graphqlRequest),
-                    token: datoCmsApiToken
+                    token: cmsApiToken
                 }
                 : {
                     enabled: false,
