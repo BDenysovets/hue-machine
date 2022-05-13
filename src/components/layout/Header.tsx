@@ -9,21 +9,22 @@ import {
   Tooltip,
   MenuItem,
   IconButton,
-  Stack, Divider
+  Stack,
+  Divider
 } from '@mui/material';
-import React, {FC, useState} from "react";
-import {useAuth} from "../../contexts/Auth";
-import {Logo} from "../logo";
-import Link from 'next/link'
+import React, { FC, useState } from 'react';
+import { useAuth } from '../../contexts/Auth';
+import { Logo } from '../logo';
+import Link from 'next/link';
 
 const menu = {
   '/campaigns': 'Campaigns',
   '/partners': 'Partners',
-  '/assets': 'Assets',
-}
+  '/assets': 'Assets'
+};
 
-const  Header: FC = () => {
-  const { user, logout } = useAuth()
+const Header: FC = () => {
+  const { user, logout } = useAuth();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -35,33 +36,26 @@ const  Header: FC = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position='static'>
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <Box
-            component="div"
-            sx={{ flexGrow: 1 }}
-          >
+          <Box component='div' sx={{ flexGrow: 1 }}>
             <Logo />
           </Box>
           <Box sx={{ flexGrow: 1 }}>
-            <Stack
-                direction="row"
-                divider={<Divider orientation="vertical" flexItem />}
-                spacing={2}
-            >
+            <Stack direction='row' divider={<Divider orientation='vertical' flexItem />} spacing={2}>
               {Object.entries(menu).map(([key, value], index) => (
-                  <Link key={index} href={key}>
-                    <Typography variant={'h6'} sx={{ cursor: 'pointer' }} color={'#fff'}>
-                      {value}
-                    </Typography>
-                  </Link>
+                <Link key={index} href={key}>
+                  <Typography variant={'h6'} sx={{ cursor: 'pointer' }} color={'#fff'}>
+                    {value}
+                  </Typography>
+                </Link>
               ))}
             </Stack>
           </Box>
           <Box>
             {user.data && (
-              <Tooltip title="Open settings">
+              <Tooltip title='Open settings'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt={user.data.name ?? user.data.givenName} src={user.data.imageUrl} />
                 </IconButton>
@@ -69,27 +63,27 @@ const  Header: FC = () => {
             )}
             <Menu
               sx={{ mt: '45px' }}
-              id="menu-appbar"
+              id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'right'
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'right'
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               <MenuItem>
                 <Link href={'/profile'}>
-                  <Typography textAlign="center">Profile</Typography>
+                  <Typography textAlign='center'>Profile</Typography>
                 </Link>
               </MenuItem>
               <MenuItem onClick={logout}>
-                <Typography textAlign="center">Logout</Typography>
+                <Typography textAlign='center'>Logout</Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -99,4 +93,4 @@ const  Header: FC = () => {
   );
 };
 
-export { Header }
+export { Header };

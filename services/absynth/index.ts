@@ -7,23 +7,21 @@ export const Absynth = {
           clientName,
           avatarQuota
         }),
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'auth-key': process.env.ABSYNTH_KEY
         }
-      })
+      });
 
-      const json = await res.json()
+      const json = await res.json();
 
       if (!json.authKey) {
-        throw new Error("Absynth can't register the new partner")
-      } 
+        throw new Error("Absynth can't register the new partner");
+      }
 
-      return { success: true, authKey: json.authKey}
-
+      return { success: true, authKey: json.authKey };
     } catch (error) {
-      return { success: false, message: error.message }
+      return { success: false, message: error.message };
     }
   }
-
-}
+};

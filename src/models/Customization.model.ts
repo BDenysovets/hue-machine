@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const customizationSchema = new mongoose.Schema(
   {
@@ -22,6 +22,6 @@ const customizationSchema = new mongoose.Schema(
   {
     timestamps: true
   }
-)
+);
 
-export default mongoose?.models?.Customization || mongoose.model('Customization', customizationSchema)
+export default mongoose?.models?.Customization || mongoose.model('Customization', customizationSchema);

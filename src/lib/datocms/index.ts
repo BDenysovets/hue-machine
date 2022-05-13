@@ -1,13 +1,13 @@
 import { GraphQLClient } from 'graphql-request';
 import { SiteClient } from 'datocms-client';
 
-export const cmsApiToken = process.env.NEXT_PUBLIC_DATO_CMS_API_KEY
-export const cmsClient = new SiteClient(cmsApiToken)
+export const cmsApiToken = process.env.NEXT_PUBLIC_DATO_CMS_API_KEY;
+export const cmsClient = new SiteClient(cmsApiToken);
 
 export const modelsId = {
   campaign: '227995',
   contractTemplate: '242847'
-}
+};
 
 export function request<T = any>({
   query,

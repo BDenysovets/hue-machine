@@ -1,312 +1,300 @@
 {
-    "skin_tones" : [ 
-        "#505050", 
-        "#404040", 
-        "#303030", 
-        "#202020", 
-        "#101010", 
-        "#ffffff", 
-        "#efefef", 
-        "#dfdfdf", 
-        "#cfcfcf", 
-        "#bfbfbf", 
-        "#afafaf"
-    ],
-    "hair_styles" : [ 
-        {
-            "name" : "default",
-            "mask" : "no_mask",
-            "mesh" : false
-        }, 
-        {
-            "name" : "hair_1",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_2",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_3",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_4",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_5",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_6",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_7",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_8",
-            "mask" : "mask_4",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_9",
-            "mask" : "mask_1",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_10",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_11",
-            "mask" : "mask_3",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_12",
-            "mask" : "mask_2",
-            "mesh" : false
-        }, 
-        {
-            "name" : "hair_13",
-            "mask" : "mask_5",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_14",
-            "mask" : "mask_6",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_15",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_16",
-            "mask" : "mask_5",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_17",
-            "mask" : "mask_5",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_18",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "hair_19",
-            "mask" : "no_mask",
-            "mesh" : true
-        }
-    ],
-    "beard_styles" : [ 
-        {
-            "name" : "default",
-            "mask" : "no_mask",
-            "mesh" : false
-        }, 
-        {
-            "name" : "beard_1",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "beard_2",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "beard_3",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "beard_4",
-            "mask" : "no_mask",
-            "mesh" : true
-        }, 
-        {
-            "name" : "beard_5",
-            "mask" : "mask_2",
-            "mesh" : false
-        }, 
-        {
-            "name" : "beard_6",
-            "mask" : "no_mask",
-            "mesh" : true
-        }
-    ],
-    "hair_colors" : [ 
-        "init_color", 
-        "#2F2F2F", 
-        "#4B3329", 
-        "#583C2F", 
-        "#695038", 
-        "#80623C", 
-        "#7F6E5F", 
-        "#BB8C4B", 
-        "#D89A70", 
-        "#DAB57F", 
-        "#E7BB94", 
-        "#605A60", 
-        "#6b6A67", 
-        "#868480", 
-        "#A19b95", 
-        "#D4D4D9", 
-        "#850310", 
-        "#A12831", 
-        "#C03D2E", 
-        "#D04E2E", 
-        "#DE7545", 
-        "#DF9C68", 
-        "#E4C04C", 
-        "#B06885", 
-        "#993366", 
-        "#665877", 
-        "#539B9B", 
-        "#5F907E", 
-        "#2A6C54", 
-        "#42719F"
-    ],
-    "eye_colors" : [ 
-        {
-            "value" : "#4c423d",
-            "texture" : "eye_1"
-        }, 
-        {
-            "value" : "#5e4b43",
-            "texture" : "eye_2"
-        }, 
-        {
-            "value" : "#69686b",
-            "texture" : "eye_3"
-        }, 
-        {
-            "value" : "#4f5a58",
-            "texture" : "eye_4"
-        }, 
-        {
-            "value" : "#678c90",
-            "texture" : "eye_5"
-        }, 
-        {
-            "value" : "#5d613e",
-            "texture" : "eye_6"
-        }, 
-        {
-            "value" : "#63505f",
-            "texture" : "eye_7"
-        }, 
-        {
-            "value" : "#a6aaa9",
-            "texture" : "eye_8"
-        }
-    ],
-    "eyebrow_styles" : [ 
-        "eyebrow_id_1", 
-        "eyebrow_id_2", 
-        "eyebrow_id_3", 
-        "eyebrow_id_4", 
-        "eyebrow_id_5", 
-        "eyebrow_id_6", 
-        "eyebrow_id_7"
-    ],
-    "shirts" : [ 
-        "white", 
-        "black", 
-        "blue", 
-        "hubs", 
-        "Wolf3D", 
-        "covid"
-    ],
-    "glasses" : [ 
-        "default", 
-        "glasses_1", 
-        "glasses_2", 
-        "glasses_3"
-    ],
-    "css" : " ",
-    "config" : {
-        "social" : true,
-        "tutorial" : false,
-        "license" : true,
-        "use_hands" : true,
-        "import_head_skin" : true
+  "skin_tones": [
+    "#505050",
+    "#404040",
+    "#303030",
+    "#202020",
+    "#101010",
+    "#ffffff",
+    "#efefef",
+    "#dfdfdf",
+    "#cfcfcf",
+    "#bfbfbf",
+    "#afafaf"
+  ],
+  "hair_styles": [
+    {
+      "name": "default",
+      "mask": "no_mask",
+      "mesh": false
     },
-    "animation_shapes" : [ 
-        "mouthOpen", 
-        "viseme_sil", 
-        "viseme_PP", 
-        "viseme_FF", 
-        "viseme_TH", 
-        "viseme_DD", 
-        "viseme_kk", 
-        "viseme_CH", 
-        "viseme_SS", 
-        "viseme_nn", 
-        "viseme_RR", 
-        "viseme_aa", 
-        "viseme_E", 
-        "viseme_I", 
-        "viseme_O", 
-        "viseme_U"
-    ],
-    "style_shapes" : {
-        "female" : {
-            "pupil_big" : 1,
-            "AAA_chin" : 0.2,
-            "AAA_eyes_distance" : 0.12,
-            "AAA_eyes_downset" : 0.1,
-            "AAA_eyes_size" : 0.35,
-            "AAA_face_doll" : 0.15,
-            "AAA_neck" : 0.7,
-            "Bobblehead" : 0,
-            "FRT_lips" : 0.3,
-            "FRT_nose_2" : 0.3,
-            "FRT_eyes" : 0.253,
-            "Disney" : 0.2,
-            "Disney_lips_small" : 0.4,
-            "Disney_nose_small" : 0.3,
-            "Disney_neck_thin" : 0.145,
-            "EyesLook_L" : 0.182,
-            "smile" : 0.475
-        },
-        "male" : {
-            "pupil_big" : 0.6,
-            "FRT_cheeks_1" : 0.28,
-            "FRT_cheeks_2" : 0.24,
-            "FRT_chin_1" : 0.45,
-            "FRT_chin_2" : 0.34,
-            "FRT_eyebrows" : 0.03,
-            "FRT_eyes" : 0.21,
-            "FRT_forehead" : 0.58,
-            "FRT_jawLine" : 0.53,
-            "FRT_lips" : 0.7,
-            "FRT_nose" : 0,
-            "FRT_nose_2" : 0.6,
-            "AAA_eyes_distance" : 0.1,
-            "AAA_eyes_downset" : 0.2,
-            "AAA_eyes_size" : 0.2,
-            "Disney" : 0.13,
-            "Disney_nose_small" : 0.12,
-            "EyesLook_R" : 0.25,
-            "EyesLook_Up" : 0.2,
-            "smile_assymetrical" : 0.45
-        }
+    {
+      "name": "hair_1",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_2",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_3",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_4",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_5",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_6",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_7",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_8",
+      "mask": "mask_4",
+      "mesh": true
+    },
+    {
+      "name": "hair_9",
+      "mask": "mask_1",
+      "mesh": true
+    },
+    {
+      "name": "hair_10",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_11",
+      "mask": "mask_3",
+      "mesh": true
+    },
+    {
+      "name": "hair_12",
+      "mask": "mask_2",
+      "mesh": false
+    },
+    {
+      "name": "hair_13",
+      "mask": "mask_5",
+      "mesh": true
+    },
+    {
+      "name": "hair_14",
+      "mask": "mask_6",
+      "mesh": true
+    },
+    {
+      "name": "hair_15",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_16",
+      "mask": "mask_5",
+      "mesh": true
+    },
+    {
+      "name": "hair_17",
+      "mask": "mask_5",
+      "mesh": true
+    },
+    {
+      "name": "hair_18",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "hair_19",
+      "mask": "no_mask",
+      "mesh": true
     }
+  ],
+  "beard_styles": [
+    {
+      "name": "default",
+      "mask": "no_mask",
+      "mesh": false
+    },
+    {
+      "name": "beard_1",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "beard_2",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "beard_3",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "beard_4",
+      "mask": "no_mask",
+      "mesh": true
+    },
+    {
+      "name": "beard_5",
+      "mask": "mask_2",
+      "mesh": false
+    },
+    {
+      "name": "beard_6",
+      "mask": "no_mask",
+      "mesh": true
+    }
+  ],
+  "hair_colors": [
+    "init_color",
+    "#2F2F2F",
+    "#4B3329",
+    "#583C2F",
+    "#695038",
+    "#80623C",
+    "#7F6E5F",
+    "#BB8C4B",
+    "#D89A70",
+    "#DAB57F",
+    "#E7BB94",
+    "#605A60",
+    "#6b6A67",
+    "#868480",
+    "#A19b95",
+    "#D4D4D9",
+    "#850310",
+    "#A12831",
+    "#C03D2E",
+    "#D04E2E",
+    "#DE7545",
+    "#DF9C68",
+    "#E4C04C",
+    "#B06885",
+    "#993366",
+    "#665877",
+    "#539B9B",
+    "#5F907E",
+    "#2A6C54",
+    "#42719F"
+  ],
+  "eye_colors": [
+    {
+      "value": "#4c423d",
+      "texture": "eye_1"
+    },
+    {
+      "value": "#5e4b43",
+      "texture": "eye_2"
+    },
+    {
+      "value": "#69686b",
+      "texture": "eye_3"
+    },
+    {
+      "value": "#4f5a58",
+      "texture": "eye_4"
+    },
+    {
+      "value": "#678c90",
+      "texture": "eye_5"
+    },
+    {
+      "value": "#5d613e",
+      "texture": "eye_6"
+    },
+    {
+      "value": "#63505f",
+      "texture": "eye_7"
+    },
+    {
+      "value": "#a6aaa9",
+      "texture": "eye_8"
+    }
+  ],
+  "eyebrow_styles": [
+    "eyebrow_id_1",
+    "eyebrow_id_2",
+    "eyebrow_id_3",
+    "eyebrow_id_4",
+    "eyebrow_id_5",
+    "eyebrow_id_6",
+    "eyebrow_id_7"
+  ],
+  "shirts": ["white", "black", "blue", "hubs", "Wolf3D", "covid"],
+  "glasses": ["default", "glasses_1", "glasses_2", "glasses_3"],
+  "css": " ",
+  "config": {
+    "social": true,
+    "tutorial": false,
+    "license": true,
+    "use_hands": true,
+    "import_head_skin": true
+  },
+  "animation_shapes": [
+    "mouthOpen",
+    "viseme_sil",
+    "viseme_PP",
+    "viseme_FF",
+    "viseme_TH",
+    "viseme_DD",
+    "viseme_kk",
+    "viseme_CH",
+    "viseme_SS",
+    "viseme_nn",
+    "viseme_RR",
+    "viseme_aa",
+    "viseme_E",
+    "viseme_I",
+    "viseme_O",
+    "viseme_U"
+  ],
+  "style_shapes": {
+    "female": {
+      "pupil_big": 1,
+      "AAA_chin": 0.2,
+      "AAA_eyes_distance": 0.12,
+      "AAA_eyes_downset": 0.1,
+      "AAA_eyes_size": 0.35,
+      "AAA_face_doll": 0.15,
+      "AAA_neck": 0.7,
+      "Bobblehead": 0,
+      "FRT_lips": 0.3,
+      "FRT_nose_2": 0.3,
+      "FRT_eyes": 0.253,
+      "Disney": 0.2,
+      "Disney_lips_small": 0.4,
+      "Disney_nose_small": 0.3,
+      "Disney_neck_thin": 0.145,
+      "EyesLook_L": 0.182,
+      "smile": 0.475
+    },
+    "male": {
+      "pupil_big": 0.6,
+      "FRT_cheeks_1": 0.28,
+      "FRT_cheeks_2": 0.24,
+      "FRT_chin_1": 0.45,
+      "FRT_chin_2": 0.34,
+      "FRT_eyebrows": 0.03,
+      "FRT_eyes": 0.21,
+      "FRT_forehead": 0.58,
+      "FRT_jawLine": 0.53,
+      "FRT_lips": 0.7,
+      "FRT_nose": 0,
+      "FRT_nose_2": 0.6,
+      "AAA_eyes_distance": 0.1,
+      "AAA_eyes_downset": 0.2,
+      "AAA_eyes_size": 0.2,
+      "Disney": 0.13,
+      "Disney_nose_small": 0.12,
+      "EyesLook_R": 0.25,
+      "EyesLook_Up": 0.2,
+      "smile_assymetrical": 0.45
+    }
+  }
 }

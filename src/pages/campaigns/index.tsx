@@ -1,13 +1,12 @@
-import {FC} from 'react'
-import {Table} from "../../components/pages/campaigns/Table";
+import { FC } from 'react';
+import { Table } from '../../components/pages/campaigns/Table';
 import { QueryListenerOptions, useQuerySubscription } from 'react-datocms';
-import {datoCmsApiToken, request} from "../../lib/datocms";
+import { datoCmsApiToken, request } from '../../lib/datocms';
 import { NextPageContext } from 'next';
 
 type CampaignsPageT = {
-  preview: any
-} & NextPageContext
-
+  preview: any;
+} & NextPageContext;
 
 export async function getStaticProps({ preview }: CampaignsPageT) {
   const graphqlRequest = {
@@ -34,18 +33,18 @@ export async function getStaticProps({ preview }: CampaignsPageT) {
         }
       }
     `,
-    preview,
+    preview
   };
 
   return {
     props: {
       subscription: preview
-          ? {
+        ? {
             ...graphqlRequest,
             initialData: await request(graphqlRequest),
             token: datoCmsApiToken
           }
-          : {
+        : {
             enabled: false,
             initialData: await request(graphqlRequest)
           }
@@ -55,9 +54,11 @@ export async function getStaticProps({ preview }: CampaignsPageT) {
 }
 
 const Campaigns: FC<{ subscription: QueryListenerOptions<any, any> }> = ({ subscription }) => {
-  const { data: { allCampaigns } } = useQuerySubscription(subscription)
+  const {
+    data: { allCampaigns }
+  } = useQuerySubscription(subscription);
 
-  return <Table campaigns={allCampaigns} />
-}
+  return <Table campaigns={allCampaigns} />;
+};
 
-export { Campaigns as default }
+export { Campaigns as default };

@@ -1,427 +1,384 @@
 {
-    "type": "object",
-    "required": [
-        "name",
-        "absynthKey"
-    ],
-    "properties": {
-        "name": {
-          "type": "string", 
-          "title": "Subdomain"
+  "type": "object",
+  "required": ["name", "absynthKey"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Subdomain"
+    },
+    "absynthKey": {
+      "type": "string",
+      "title": "Absynth key"
+    },
+    "customizations": {
+      "title": "Customizations",
+      "type": "object",
+      "properties": {
+        "skin_tones": {
+          "type": "array",
+          "title": "Skin tones",
+          "items": {
+            "type": "string",
+            "format": "color"
+          }
         },
-        "absynthKey": {
-            "type": "string", 
-            "title": "Absynth key"
-        },
-        "customizations": {
-            "title": "Customizations",
+        "hair_styles": {
+          "type": "array",
+          "title": "Hair styles",
+          "items": {
             "type": "object",
             "properties": {
-                "skin_tones": {
-                    "type": "array",
-                    "title": "Skin tones",
-                    "items": {
-                        "type": "string",
-                        "format": "color"
-                    }
-                },
-                "hair_styles": {
-                    "type": "array",
-                    "title": "Hair styles",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string",
-                                "title": "Name",
-                                "default": "default",
-                                "enum": [
-                                    "default",
-                                    "hair_1",
-                                    "hair_2",
-                                    "hair_3",
-                                    "hair_4",
-                                    "hair_5",
-                                    "hair_6",
-                                    "hair_7",
-                                    "hair_8",
-                                    "hair_9",
-                                    "hair_10",
-                                    "hair_11",
-                                    "hair_12",
-                                    "hair_13",
-                                    "hair_14",
-                                    "hair_15",
-                                    "hair_16",
-                                    "hair_17",
-                                    "hair_18",
-                                    "hair_19",
-                                    "hair_20",
-                                    "hair_21",
-                                    "hair_22",
-                                    "hair_23",
-                                    "hair_24",
-                                    "hair_25",
-                                    "hair_26",
-                                    "hair_27"
-                                ]
-                            },
-                            "mask": {
-                                "type": "string",
-                                "title": "Mask",
-                                "default": "no_mask",
-                                "enum": [
-                                    "no_mask",
-                                    "mask_1",
-                                    "mask_2",
-                                    "mask_3",
-                                    "mask_4",
-                                    "mask_5",
-                                    "mask_6"
-                                ]
-                            },
-                            "mesh": {
-                                "type": "boolean",
-                                "title": "Mesh?",
-                                "default": false
-                            }
-                        }
-                    }
-                },
-                "hair_colors": {
-                    "type": "array",
-                    "title": "Hair colors",
-                    "items": [
-                        {
-                            "type": "string",
-                            "enum": [
-                                "init_color"
-                            ],
-                            "uniqueItems": true
-                        }
-                    ],
-                    "additionalItems": {
-                        "title": "Custom color",
-                        "type": "string",
-                        "format": "color"
-                    }
-                },
-                "beard_styles": {
-                    "type": "array",
-                    "title": "Beard styles",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string",
-                                "title": "Name",
-                                "default": "default",
-                                "enum": [
-                                    "default",
-                                    "beard_1",
-                                    "beard_2",
-                                    "beard_3",
-                                    "beard_4",
-                                    "beard_5",
-                                    "beard_6"
-                                ]
-                            },
-                            "mask": {
-                                "type": "string",
-                                "title": "Mask",
-                                "default": "no_mask",
-                                "enum": [
-                                    "no_mask",
-                                    "mask_1",
-                                    "mask_2",
-                                    "mask_3",
-                                    "mask_4",
-                                    "mask_5",
-                                    "mask_6"
-                                ]
-                            },
-                            "mesh": {
-                                "type": "boolean",
-                                "title": "Mesh?",
-                                "default": false
-                            }
-                        }
-                    }
-                },
-                "eye_colors": {
-                    "type": "array",
-                    "title": "Eye colors",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "value": {
-                                "title": "Value",
-                                "type": "string",
-                                "format": "color"
-                            },
-                            "texture": {
-                                "type": "string",
-                                "title": "Texture",
-                                "enum": [
-                                    "eye_1",
-                                    "eye_2",
-                                    "eye_3",
-                                    "eye_4",
-                                    "eye_5",
-                                    "eye_6",
-                                    "eye_7",
-                                    "eye_8"
-                                ]
-                            }
-                        }
-                    }
-                },
-                "eyebrow_styles": {
-                    "type": "array",
-                    "title": "Eyebow styles",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "eyebrow_id_1",
-                            "eyebrow_id_2",
-                            "eyebrow_id_3",
-                            "eyebrow_id_4",
-                            "eyebrow_id_5",
-                            "eyebrow_id_6",
-                            "eyebrow_id_7"
-                        ]
-                    },
-                    "uniqueItems": true
-                },
-                "shirts": {
-                    "type": "array",
-                    "title": "Shirts",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "MeetingVR_white",
-                            "MeetingVR_cyan",
-                            "MeetingVR_purple",
-                            "white", 
-                            "black", 
-                            "blue", 
-                            "hubs", 
-                            "Wolf3D", 
-                            "covid"
-                        ]
-                    },
-                    "uniqueItems": true
-                },
-                "glasses": {
-                    "type": "array",
-                    "title": "Glasses",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "default", 
-                            "glasses_1", 
-                            "glasses_2", 
-                            "glasses_3"
-                        ]
-                    },
-                    "uniqueItems": true
-                },
-                "css": {
-                    "type": "string", 
-                    "title": "CSS"
-                },
-                "config": {
-                    "type": "object",
-                    "properties": {
-                        "social": {
-                            "type": "boolean",
-                            "title": "Social",
-                            "default": false
-                        },
-                        "tutorial": {
-                            "type": "boolean",
-                            "title": "Tutorial",
-                            "default": false
-                        },
-                        "license": {
-                            "type": "boolean",
-                            "title": "License",
-                            "default": false
-                        },
-                        "use_hands": {
-                            "type": "boolean",
-                            "title": "Use hands",
-                            "default": false
-                        },
-                        "import_head_skin": {
-                            "type": "boolean",
-                            "title": "Import head skin",
-                            "default": false
-                        }
-                    }
-                },
-                "animation_shapes": {
-                    "type": "array",
-                    "title": "Animation shapes",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "mouthOpen", 
-                            "viseme_sil", 
-                            "viseme_PP", 
-                            "viseme_FF", 
-                            "viseme_TH", 
-                            "viseme_DD", 
-                            "viseme_kk", 
-                            "viseme_CH", 
-                            "viseme_SS", 
-                            "viseme_nn", 
-                            "viseme_RR", 
-                            "viseme_aa", 
-                            "viseme_E", 
-                            "viseme_I", 
-                            "viseme_O", 
-                            "viseme_U",
-                            "mouthSmile",
-                            "eyeBlinkLeft",
-                            "eyeBlinkRight"
-                        ]
-                    },
-                    "uniqueItems": true
-                },
-                "style_shapes": {
-                    "type": "object",
-                    "title": "Style shapes",
-                    "properties": {
-                        "female": {
-                            "type": "object",
-                            "title": "Female",
-                            "properties": {
-                                "pupil_big": {
-                                    "type": "number"
-                                },
-                                "AAA_chin" : {
-                                    "type": "number"
-                                },
-                                "AAA_eyes_distance" : {
-                                    "type": "number"
-                                },
-                                "AAA_eyes_downset" : {
-                                    "type": "number"
-                                },
-                                "AAA_eyes_size" : {
-                                    "type": "number"
-                                },
-                                "AAA_face_doll" : {
-                                    "type": "number"
-                                },
-                                "AAA_neck" : {
-                                    "type": "number"
-                                },
-                                "Bobblehead" : {
-                                    "type": "number"
-                                },
-                                "FRT_lips" : {
-                                    "type": "number"
-                                },
-                                "FRT_nose_2" : {
-                                    "type": "number"
-                                },
-                                "FRT_eyes" : {
-                                    "type": "number"
-                                },
-                                "Disney" : {
-                                    "type": "number"
-                                },
-                                "Disney_lips_small" : {
-                                    "type": "number"
-                                },
-                                "Disney_nose_small" : {
-                                    "type": "number"
-                                },
-                                "Disney_neck_thin" : {
-                                    "type": "number"
-                                },
-                                "EyesLook_L" : {
-                                    "type": "number"
-                                },
-                                "smile" : {
-                                    "type": "number"
-                                }
-                            }
-                        },
-                        "male": {
-                            "type": "object",
-                            "title": "Male",
-                            "properties": {
-                                "Bobblehead" : {
-                                    "type": "number"
-                                },
-                                "pupil_big" : {
-                                    "type": "number"
-                                },
-                                "FRT_cheeks_1" : {
-                                    "type": "number"
-                                },
-                                "FRT_cheeks_2" : {
-                                    "type": "number"
-                                },
-                                "FRT_chin_1" : {
-                                    "type": "number"
-                                },
-                                "FRT_chin_2" : {
-                                    "type": "number"
-                                },
-                                "FRT_eyebrows" : {
-                                    "type": "number"
-                                },
-                                "FRT_eyes" : {
-                                    "type": "number"
-                                },
-                                "FRT_forehead" : {
-                                    "type": "number"
-                                },
-                                "FRT_jawLine" : {
-                                    "type": "number"
-                                },
-                                "FRT_lips" : {
-                                    "type": "number"
-                                },
-                                "FRT_nose" : {
-                                    "type": "number"
-                                },
-                                "FRT_nose_2" : {
-                                    "type": "number"
-                                },
-                                "AAA_eyes_distance" : {
-                                    "type": "number"
-                                },
-                                "AAA_eyes_downset" : {
-                                    "type": "number"
-                                },
-                                "AAA_eyes_size" : {
-                                    "type": "number"
-                                },
-                                "Disney" : {
-                                    "type": "number"
-                                },
-                                "Disney_nose_small" : {
-                                    "type": "number"
-                                },
-                                "EyesLook_R" : {
-                                    "type": "number"
-                                },
-                                "EyesLook_Up" : {
-                                    "type": "number"
-                                },
-                                "smile_assymetrical" : {
-                                    "type": "number"
-                                }
-                            }
-                        }
-                    }
-                }
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "default": "default",
+                "enum": [
+                  "default",
+                  "hair_1",
+                  "hair_2",
+                  "hair_3",
+                  "hair_4",
+                  "hair_5",
+                  "hair_6",
+                  "hair_7",
+                  "hair_8",
+                  "hair_9",
+                  "hair_10",
+                  "hair_11",
+                  "hair_12",
+                  "hair_13",
+                  "hair_14",
+                  "hair_15",
+                  "hair_16",
+                  "hair_17",
+                  "hair_18",
+                  "hair_19",
+                  "hair_20",
+                  "hair_21",
+                  "hair_22",
+                  "hair_23",
+                  "hair_24",
+                  "hair_25",
+                  "hair_26",
+                  "hair_27"
+                ]
+              },
+              "mask": {
+                "type": "string",
+                "title": "Mask",
+                "default": "no_mask",
+                "enum": ["no_mask", "mask_1", "mask_2", "mask_3", "mask_4", "mask_5", "mask_6"]
+              },
+              "mesh": {
+                "type": "boolean",
+                "title": "Mesh?",
+                "default": false
+              }
             }
+          }
+        },
+        "hair_colors": {
+          "type": "array",
+          "title": "Hair colors",
+          "items": [
+            {
+              "type": "string",
+              "enum": ["init_color"],
+              "uniqueItems": true
+            }
+          ],
+          "additionalItems": {
+            "title": "Custom color",
+            "type": "string",
+            "format": "color"
+          }
+        },
+        "beard_styles": {
+          "type": "array",
+          "title": "Beard styles",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "default": "default",
+                "enum": ["default", "beard_1", "beard_2", "beard_3", "beard_4", "beard_5", "beard_6"]
+              },
+              "mask": {
+                "type": "string",
+                "title": "Mask",
+                "default": "no_mask",
+                "enum": ["no_mask", "mask_1", "mask_2", "mask_3", "mask_4", "mask_5", "mask_6"]
+              },
+              "mesh": {
+                "type": "boolean",
+                "title": "Mesh?",
+                "default": false
+              }
+            }
+          }
+        },
+        "eye_colors": {
+          "type": "array",
+          "title": "Eye colors",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string",
+                "format": "color"
+              },
+              "texture": {
+                "type": "string",
+                "title": "Texture",
+                "enum": ["eye_1", "eye_2", "eye_3", "eye_4", "eye_5", "eye_6", "eye_7", "eye_8"]
+              }
+            }
+          }
+        },
+        "eyebrow_styles": {
+          "type": "array",
+          "title": "Eyebow styles",
+          "items": {
+            "type": "string",
+            "enum": [
+              "eyebrow_id_1",
+              "eyebrow_id_2",
+              "eyebrow_id_3",
+              "eyebrow_id_4",
+              "eyebrow_id_5",
+              "eyebrow_id_6",
+              "eyebrow_id_7"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "shirts": {
+          "type": "array",
+          "title": "Shirts",
+          "items": {
+            "type": "string",
+            "enum": [
+              "MeetingVR_white",
+              "MeetingVR_cyan",
+              "MeetingVR_purple",
+              "white",
+              "black",
+              "blue",
+              "hubs",
+              "Wolf3D",
+              "covid"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "glasses": {
+          "type": "array",
+          "title": "Glasses",
+          "items": {
+            "type": "string",
+            "enum": ["default", "glasses_1", "glasses_2", "glasses_3"]
+          },
+          "uniqueItems": true
+        },
+        "css": {
+          "type": "string",
+          "title": "CSS"
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "social": {
+              "type": "boolean",
+              "title": "Social",
+              "default": false
+            },
+            "tutorial": {
+              "type": "boolean",
+              "title": "Tutorial",
+              "default": false
+            },
+            "license": {
+              "type": "boolean",
+              "title": "License",
+              "default": false
+            },
+            "use_hands": {
+              "type": "boolean",
+              "title": "Use hands",
+              "default": false
+            },
+            "import_head_skin": {
+              "type": "boolean",
+              "title": "Import head skin",
+              "default": false
+            }
+          }
+        },
+        "animation_shapes": {
+          "type": "array",
+          "title": "Animation shapes",
+          "items": {
+            "type": "string",
+            "enum": [
+              "mouthOpen",
+              "viseme_sil",
+              "viseme_PP",
+              "viseme_FF",
+              "viseme_TH",
+              "viseme_DD",
+              "viseme_kk",
+              "viseme_CH",
+              "viseme_SS",
+              "viseme_nn",
+              "viseme_RR",
+              "viseme_aa",
+              "viseme_E",
+              "viseme_I",
+              "viseme_O",
+              "viseme_U",
+              "mouthSmile",
+              "eyeBlinkLeft",
+              "eyeBlinkRight"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "style_shapes": {
+          "type": "object",
+          "title": "Style shapes",
+          "properties": {
+            "female": {
+              "type": "object",
+              "title": "Female",
+              "properties": {
+                "pupil_big": {
+                  "type": "number"
+                },
+                "AAA_chin": {
+                  "type": "number"
+                },
+                "AAA_eyes_distance": {
+                  "type": "number"
+                },
+                "AAA_eyes_downset": {
+                  "type": "number"
+                },
+                "AAA_eyes_size": {
+                  "type": "number"
+                },
+                "AAA_face_doll": {
+                  "type": "number"
+                },
+                "AAA_neck": {
+                  "type": "number"
+                },
+                "Bobblehead": {
+                  "type": "number"
+                },
+                "FRT_lips": {
+                  "type": "number"
+                },
+                "FRT_nose_2": {
+                  "type": "number"
+                },
+                "FRT_eyes": {
+                  "type": "number"
+                },
+                "Disney": {
+                  "type": "number"
+                },
+                "Disney_lips_small": {
+                  "type": "number"
+                },
+                "Disney_nose_small": {
+                  "type": "number"
+                },
+                "Disney_neck_thin": {
+                  "type": "number"
+                },
+                "EyesLook_L": {
+                  "type": "number"
+                },
+                "smile": {
+                  "type": "number"
+                }
+              }
+            },
+            "male": {
+              "type": "object",
+              "title": "Male",
+              "properties": {
+                "Bobblehead": {
+                  "type": "number"
+                },
+                "pupil_big": {
+                  "type": "number"
+                },
+                "FRT_cheeks_1": {
+                  "type": "number"
+                },
+                "FRT_cheeks_2": {
+                  "type": "number"
+                },
+                "FRT_chin_1": {
+                  "type": "number"
+                },
+                "FRT_chin_2": {
+                  "type": "number"
+                },
+                "FRT_eyebrows": {
+                  "type": "number"
+                },
+                "FRT_eyes": {
+                  "type": "number"
+                },
+                "FRT_forehead": {
+                  "type": "number"
+                },
+                "FRT_jawLine": {
+                  "type": "number"
+                },
+                "FRT_lips": {
+                  "type": "number"
+                },
+                "FRT_nose": {
+                  "type": "number"
+                },
+                "FRT_nose_2": {
+                  "type": "number"
+                },
+                "AAA_eyes_distance": {
+                  "type": "number"
+                },
+                "AAA_eyes_downset": {
+                  "type": "number"
+                },
+                "AAA_eyes_size": {
+                  "type": "number"
+                },
+                "Disney": {
+                  "type": "number"
+                },
+                "Disney_nose_small": {
+                  "type": "number"
+                },
+                "EyesLook_R": {
+                  "type": "number"
+                },
+                "EyesLook_Up": {
+                  "type": "number"
+                },
+                "smile_assymetrical": {
+                  "type": "number"
+                }
+              }
+            }
+          }
         }
+      }
     }
+  }
 }

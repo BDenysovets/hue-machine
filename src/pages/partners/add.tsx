@@ -1,23 +1,23 @@
-import React, {FC, useState} from 'react'
-import { Button, Container, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material'
-import { toast } from 'react-toastify'
+import React, { FC, useState } from 'react';
+import { Button, Container, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { toast } from 'react-toastify';
 
 const PartnerAddPage: FC = () => {
-  const [subdomain, setSubdomain] = useState('')
-  const [bodyType, setBodyType] = useState('fullbody')
-  const [excludeFromPartnersList, setExcludeFromPartnersList] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [subdomain, setSubdomain] = useState('');
+  const [bodyType, setBodyType] = useState('fullbody');
+  const [excludeFromPartnersList, setExcludeFromPartnersList] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function onSubdomainChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setSubdomain(e.target.value)
+    setSubdomain(e.target.value);
   }
 
   function onBodytypeChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setBodyType(e.target.value)
+    setBodyType(e.target.value);
   }
 
-  async function onFormSubmit(){
-    setLoading(true)
+  async function onFormSubmit() {
+    setLoading(true);
 
     try {
       const res = await fetch('/api/partners', {
@@ -28,35 +28,40 @@ const PartnerAddPage: FC = () => {
           excludeFromPartnersList
         }),
         headers: { 'Content-Type': 'application/json' }
-      })
+      });
 
-      const json = await res.json()
+      const json = await res.json();
 
       if (!json.success) {
-        throw new Error(json.message)
-      } 
+        throw new Error(json.message);
+      }
 
-      setSubdomain('')
-      return toast.success(`Partner "${json.partner.name}" was added successfully`)
-
+      setSubdomain('');
+      return toast.success(`Partner "${json.partner.name}" was added successfully`);
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
-    <Container className="mt-10" maxWidth="sm">
+    <Container className='mt-10' maxWidth='sm'>
       <h1>New partner</h1>
-      <TextField required id="subdomain" label="Subdomain" value={subdomain} onChange={onSubdomainChange} />
-      <RadioGroup aria-label="gender" name="bodyType" value={bodyType} onChange={onBodytypeChange}>
-        <FormControlLabel value="fullbody" control={<Radio />} label="Full-body" />
-        <FormControlLabel value="halfbody" control={<Radio />} label="Half-body" />
+      <TextField required id='subdomain' label='Subdomain' value={subdomain} onChange={onSubdomainChange} />
+      <RadioGroup aria-label='gender' name='bodyType' value={bodyType} onChange={onBodytypeChange}>
+        <FormControlLabel value='fullbody' control={<Radio />} label='Full-body' />
+        <FormControlLabel value='halfbody' control={<Radio />} label='Half-body' />
       </RadioGroup>
-      {loading ? 'Processing...' : <Button variant="outlined" onClick={onFormSubmit}>Submit</Button>}
+      {loading ? (
+        'Processing...'
+      ) : (
+        <Button variant='outlined' onClick={onFormSubmit}>
+          Submit
+        </Button>
+      )}
     </Container>
-  )
-}
+  );
+};
 
-export { PartnerAddPage as default }
+export { PartnerAddPage as default };
