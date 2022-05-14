@@ -5,7 +5,7 @@ import * as repository from '../../../repositories/partners';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { method, body } = req;
+    const { method } = req;
     let data: any;
 
     switch (method) {
