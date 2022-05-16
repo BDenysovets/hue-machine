@@ -3,7 +3,7 @@ import { JSONSchema7 } from 'json-schema';
 import { Box, Container } from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { NextPageContext } from 'next';
-import { findOne, find } from '../../../lib/datocms';
+import {findOne, find, update} from '../../../lib/datocms';
 import { concatFormFields, defaultFormFields } from '../add';
 import {CampaignT} from "../../../components/pages/campaigns/Table";
 
@@ -43,21 +43,20 @@ const Edit: FC<{ campaign: CampaignT, contractTemplate: any }> = ({ campaign, co
     parentContract: campaign.parentContract
   });
 
-  console.log('component data', contractTemplate)
-
-  // const [formSchema, setFormSchema] = useState<JSONSchema7>(
-  //   concatFormFields(defaultFormFields)
-  // );
+  const [formSchema, setFormSchema] = useState<JSONSchema7>(
+    concatFormFields(JSON.parse(contractTemplate.template), defaultFormFields)
+  );
 
   const handleChange = ({ formData }) => setFormData(formData);
   const handleSubmit = ({ formData }) => {
     console.log(formData);
+    update({...formData}, campaign.id);
   };
 
   return (
     <Box>
       <Container maxWidth='sm'>
-        {/*<MuiForm schema={formSchema} formData={formData} onChange={handleChange} onSubmit={handleSubmit} />*/}
+        <MuiForm schema={formSchema} formData={formData} onChange={handleChange} onSubmit={handleSubmit} />
       </Container>
     </Box>
   );
