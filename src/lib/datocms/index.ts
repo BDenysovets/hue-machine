@@ -1,5 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-import { SiteClient } from 'datocms-client';
+import {SiteClient} from 'datocms-client';
 
 export const cmsApiToken = process.env.NEXT_PUBLIC_DATO_CMS_API_KEY;
 export const cmsClient = new SiteClient(cmsApiToken);
@@ -9,26 +8,18 @@ export const modelsId = {
   contractTemplate: '242847'
 };
 
-export function request<T = any>({
-  query,
-  variables,
-  preview,
-  token = cmsApiToken
-}: {
-  query: string;
-  variables?: any;
-  preview?: boolean;
-  token?: string;
-}): Promise<T> {
-  const environment = '';
-  const endpoint = preview
-    ? `https://graphql.datocms.com/${environment}preview`
-    : `https://graphql.datocms.com/${environment}`;
-  const client = new GraphQLClient(endpoint, {
-    headers: {
-      authorization: `Bearer ${token}`
-    }
-  });
+export async function create(data: Record<any, any>, modelId: keyof typeof modelsId): Promise<any> {
+  return await cmsClient.items.create({itemType: modelsId[modelId], ...data});
+}
 
-  return client.request<T>(query, variables);
+export async function update(data: Record<any, any>, itemId: string): Promise<any> {
+  return await cmsClient.items.update(itemId, {...data});
+}
+
+export async function findOne(itemId: string) {
+  return await cmsClient.items.find(itemId, {version: 'published'});
+}
+
+export async function find(modelId: keyof typeof modelsId): Promise<any> {
+  return await cmsClient.items.all({filter: {type: modelsId[modelId]}});
 }

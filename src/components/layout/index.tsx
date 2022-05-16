@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Header } from './Header';
 import { Box, Container } from '@mui/material';
 import { useAuth } from '../../contexts/Auth';
-import { Login } from '../../pages/login';
+import Login from '../../pages/login';
 
 const Content: FC = ({ children }) => (
   <Box>
