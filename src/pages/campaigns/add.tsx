@@ -15,6 +15,7 @@ import { MuiForm } from '@rjsf/material-ui';
 import { JSONSchema7 } from 'json-schema';
 import {create, find} from '../../lib/datocms';
 import { TemplateModal } from '../../components/pages/campaigns/TemplateModal';
+import {editContract} from "../../lib/contract";
 
 
 export async function getStaticProps() {
@@ -110,10 +111,13 @@ const Add: FC<{ templates: Array<any> }> = ({ templates: templatesProps }) => {
     setContractTemplate(templates.find((it) => it.id === event.target.value));
   };
 
-  const handleSubmit = ({ formData }) =>
-    createCampaigns(formData, contractTemplate.id)
+  const handleSubmit = async ({ formData }) => {
+    const abi = btoa(editContract('string constant METADATA_URL = "https://punks.readyplayer.me/api/punks/";'))
+
+    await createCampaigns({ ...formData, abi }, contractTemplate.id)
       .then(() => console.log('loaded'))
       .catch((error) => console.log(error));
+  }
 
   useEffect(() => {
     setFormSchema(concatFormFields(contractTemplate.template, defaultFormFields));
