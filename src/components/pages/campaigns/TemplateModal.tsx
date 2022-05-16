@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import {FC, useState} from 'react';
 import { Modal } from '../../modal';
-import { cmsClient, modelsId } from '../../../lib/datocms';
-import { Button } from '@mui/material';
+import {create} from '../../../lib/datocms';
+import { Button, Input } from '@mui/material';
 
 type TemplateModalT = {
   open: boolean;
@@ -9,25 +9,20 @@ type TemplateModalT = {
   type?: 'add' | 'edit';
 };
 
-async function createContractTemplate(formData: Record<string, any>): Promise<any> {
-  const record = await cmsClient.items.create({
-    itemType: modelsId.contractTemplate,
-    slug: formData.slug,
-    template: formData.template
-  });
-
-  console.log('record template', record);
-
-  return record;
-}
-
 const TemplateModal: FC<TemplateModalT> = ({ onClose, open, type = 'add' }) => {
+  const [slug, setSlug] = useState('')
+
+  function onSubmit(formData) {
+    type === 'add'
+      ? create(formData, "contractTemplate").then(() => onClose())
+      : create(formData, "contractTemplate").then(() => onClose())
+  }
+
   return (
     <Modal open={open} width={802} onClose={onClose} title={`${type === 'add' ? 'Add' : 'Edit'} Contract Template`}>
+      <Input placeholder={'Enter Slug'} name={'Enter Slug'} value={slug} onChange={(e) => setSlug(e.target.value)} />
       <Button
-        onClick={() =>
-          createContractTemplate({ slug: 'devtest', template: JSON.stringify({ test: 'dev' }) }).then(() => onClose())
-        }
+        onClick={() => onSubmit({ slug, template: JSON.stringify({ test: 'dev refactor' }) })}
       >
         Create template
       </Button>
