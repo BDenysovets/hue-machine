@@ -15,16 +15,9 @@ import {
 import { Add as AddIcon } from '@mui/icons-material';
 import Link from 'next/link';
 import { Row } from './Row';
+import {ContractT} from "../../../lib/nft-port";
 
-export type CampaignT = {
-  id: string;
-  address: string;
-  title: string;
-  ownership: string;
-  parentTokenAddress: string;
-} & Record<string, any>;
-
-const Table: FC<{ campaigns: Array<CampaignT> }> = ({ campaigns }) => (
+const Table: FC<{ campaigns: Array<ContractT> }> = ({ campaigns }) => (
   <Stack gap={2} sx={{ height: 500 }}>
     <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={4}>
       <Typography variant={'h5'}>Campaigns list</Typography>
@@ -40,19 +33,19 @@ const Table: FC<{ campaigns: Array<CampaignT> }> = ({ campaigns }) => (
           <TableHead>
             <TableRow>
               <TableCell>
-                <b>Id</b>
+                <b>Chain</b>
               </TableCell>
               <TableCell>
-                <b>Address</b>
+                <b>Name</b>
               </TableCell>
               <TableCell>
-                <b>Ownership</b>
-              </TableCell>
-              <TableCell>
-                <b>Title</b>
+                <b>Symbol</b>
               </TableCell>
               <TableCell align='right'>
-                <b>Version</b>
+                <b>Mint Price</b>
+              </TableCell>
+              <TableCell align='right'>
+                <b>Public Mint Date</b>
               </TableCell>
               <TableCell align='right'>
                 <b>Edit</b>
@@ -60,9 +53,7 @@ const Table: FC<{ campaigns: Array<CampaignT> }> = ({ campaigns }) => (
             </TableRow>
           </TableHead>
           <TableBody>
-            {campaigns.map((item) => (
-              <Row key={item.id} {...item} />
-            ))}
+            {campaigns.map((item, index) => <Row key={index} {...item} />)}
           </TableBody>
         </MaterialTable>
       </TableContainer>

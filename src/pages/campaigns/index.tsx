@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import {CampaignT, Table} from '../../components/pages/campaigns/Table';
-import {find} from '../../lib/datocms';
+import {FC} from 'react';
+import {Table} from '../../components/pages/campaigns/Table';
+import {ContractT, getAllContracts} from '../../lib/nft-port';
 
 export async function getStaticProps() {
-  const campaigns = await find("campaign")
+  const campaigns = await getAllContracts('rinkeby')
 
   return {
     props: { data: campaigns },
@@ -11,8 +11,6 @@ export async function getStaticProps() {
   };
 }
 
-const Campaigns: FC<{ data: CampaignT[] }> = ({ data }) => {
-  return <Table campaigns={data} />;
-};
+const Campaigns: FC<{ data: Array<ContractT> }> = ({ data }) => <Table campaigns={data} />
 
 export { Campaigns as default };

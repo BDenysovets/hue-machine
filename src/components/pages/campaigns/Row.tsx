@@ -2,24 +2,20 @@ import { FC } from 'react';
 import { TableCell, TableRow, Tooltip } from '@mui/material';
 import Link from 'next/link';
 import { Edit as EditIcon } from '@mui/icons-material';
-import { CampaignT } from './Table';
+import {ContractT} from "../../../lib/nft-port";
 
-const Row: FC<CampaignT> = (props) => {
-  const version = props.versions[props.versions.length - 1].version || 'N/A';
+const Row: FC<ContractT> = (props) => {
+  const mintStartDate = new Date(props.public_mint_start).toISOString().slice(0,10)
 
   return (
     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-      <TableCell component='th' scope='row'>
-        {props.id}
-      </TableCell>
-      <TableCell component='th' scope='row'>
-        {props.address}
-      </TableCell>
-      <TableCell>{props.ownership}</TableCell>
-      <TableCell>{props.title}</TableCell>
-      <TableCell align='right'>{version}</TableCell>
+      <TableCell>{props.chain}</TableCell>
+      <TableCell>{props.name}</TableCell>
+      <TableCell>{props.symbol}</TableCell>
+      <TableCell align='right'>{`${props.mint_price} ETH`}</TableCell>
+      <TableCell align='right'>{mintStartDate}</TableCell>
       <TableCell align='right'>
-        <Link href={`/campaigns/edit/${props.id}`}>
+        <Link href={`/campaigns/edit/${props.address}`}>
           <Tooltip title='Edit' arrow>
             <EditIcon sx={{ cursor: 'pointer' }} />
           </Tooltip>

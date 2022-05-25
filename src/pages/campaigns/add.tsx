@@ -1,162 +1,145 @@
 import {
   Box,
-  Typography,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Stack,
-  Container,
-  Button
+  Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField
 } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
 import { MuiForm } from '@rjsf/material-ui';
+import { FC, useState } from 'react';
 import { JSONSchema7 } from 'json-schema';
-import {create, find} from '../../lib/datocms';
-import { TemplateModal } from '../../components/pages/campaigns/TemplateModal';
-import {editContract} from "../../lib/contract";
+import {ChainT, createContract} from '../../lib/nft-port';
+import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 
-
-export async function getStaticProps() {
-  const templates = await find("contractTemplate")
-
-  return {
-    props: { templates },
-    revalidate: 1
-  };
-}
-
-export const defaultFormFields = {
-  title: {
-    type: 'string',
-    title: 'Title'
-  },
-  address: {
-    type: 'string',
-    title: 'Address'
-  },
-  ownership: {
-    type: 'string',
-    title: 'Ownership'
-  },
-  parentContract: {
-    type: 'string',
-    title: 'Parent Contract'
+export const formSchema: JSONSchema7 = {
+  "type": "object",
+  "required": [
+    "name",
+    "symbol",
+    "max_supply",
+    "mint_price",
+    "tokens_per_mint",
+    "owner_address",
+    "treasury_address",
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Contract Name"
+    },
+    "symbol": {
+      "type": "string",
+      "title": "Symbol of the NFT contract"
+    },
+    "max_supply": {
+      "type": "number",
+      "title": "Max qty. of NFTs that can be minted"
+    },
+    "mint_price": {
+      "type": "number",
+      "title": "Minting price per NFT"
+    },
+    "tokens_per_mint": {
+      "type": "number",
+      "title": "NFTs that be can mint in a single transaction"
+    },
+    "owner_address": {
+      "type": "string",
+      "title": "The contract owner address"
+    },
+    "treasury_address": {
+      "type": "string",
+      "title": "Address of the balance of paid minting"
+    },
+    "base_uri": {
+      "type": "string",
+      "title": "Metadata base URI for tokens"
+    },
+    "prereveal_token_uri": {
+      "type": "string",
+      "title": "Pre-reveal token URI for placeholder metadata"
+    },
+    "presale_whitelisted_addresses": {
+      "type": "string",
+      "title": "List of addresses whitelisted for the presale"
+    },
+    "royalties_share": {
+      "type": "number",
+      "title": "Secondary market royalty rate in basis points",
+      "minimum": 0,
+      "maximum": 10000,
+    },
+    "royalties_address": {
+      "type": "string",
+      "title": "Address that will have access to the balance of royalties paid",
+    },
   }
-};
-
-async function createCampaigns(formData: Record<string, any>, templateId) {
-  create({
-    title: formData.title,
-    parent_contract: formData.parentContract,
-    address: formData.address,
-    pricing: [
-      {
-        quantity: 500,
-        currency: 'USD'
-      }
-    ],
-    metadata: [
-      {
-        value: 'som desc value',
-        key: 'desc'
-      }
-    ],
-    versions: [
-      {
-        url: 'https://version.1.0.0',
-        date: '2022-05-23T22:00:00',
-        version: '1.0.0'
-      }
-    ],
-    abi: JSON.stringify(formData),
-    contract_template: templateId
-  }, 'campaign').then(data => console.log(data))
-
 }
 
-export function concatFormFields(template: Record<string, any>, additionalFields: Record<string, any>): JSONSchema7 {
-  return {
-    ...template,
-    properties: {
-      ...additionalFields,
-      ...template.properties
-    }
-  };
-}
-
-const Add: FC<{ templates: Array<any> }> = ({ templates: templatesProps }) => {
-  const [data, setData] = useState();
-  const [templates, setTemplates] = useState(templatesProps)
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [contractTemplate, setContractTemplate] = useState(templates[0]);
-  const [formsSchema, setFormSchema] = useState<JSONSchema7>(contractTemplate.template);
-
-  useEffect(() => {
-    console.log(templates, contractTemplate)
-  }, [templates, contractTemplate])
-
-  useEffect( () => {
-    async function updateTemplates() {
-      const newContractTemplates = await find("contractTemplate")
-
-      setTemplates(newContractTemplates)
-    }
-
-    updateTemplates()
-  }, [isModalOpen, find])
-
-  const handleSelectChange = (event: SelectChangeEvent) => {
-    setContractTemplate(templates.find((it) => it.id === event.target.value));
-  };
+const Add: FC = () => {
+  const [contract, setContract] = useState()
+  const [isCampaignCreated, setIsCampaignCreated] = useState(false)
+  const [chain, setChain] = useState<ChainT>('rinkeby')
+  const [mintDate, setMintDate] = useState<Date>(new Date());
+  const [presaleDate, setPresaleDate] = useState<Date>();
 
   const handleSubmit = async ({ formData }) => {
-    const abi = btoa(editContract('string constant METADATA_URL = "https://punks.readyplayer.me/api/punks/";'))
+    const contractData = {
+      ...formData,
+      "chain": chain,
+      "public_mint_start_date": new Date(mintDate).toISOString().slice(0,-5),
+    }
 
-    await createCampaigns({ ...formData, abi }, contractTemplate.id)
-      .then(() => console.log('loaded'))
-      .catch((error) => console.log(error));
+    createContract(contractData).then(() => {
+      setIsCampaignCreated(true)
+    }).catch(error => console.log(error))
   }
 
-  useEffect(() => {
-    setFormSchema(concatFormFields(contractTemplate.template, defaultFormFields));
-  }, [contractTemplate]);
-
-  const handleChange = ({ formData }) => setData(formData);
+  const handleFormChange = ({ formData }) => setContract(formData);
 
   return (
-    <Box>
-      <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={2}>
-        <Typography variant={'h6'}>Select your contract template</Typography>
-        <Stack direction='row' alignItems='center' spacing={1}>
-          <FormControl sx={{ width: 200 }}>
-            <InputLabel id='demo-simple-select-label'>Select Template</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={contractTemplate.id}
-              label='Select Template'
-              onChange={handleSelectChange}
-            >
-              {templates.map((item) => (
-                <MenuItem key={item.id} sx={{ width: '100%' }} value={item.id}>
-                  {item.slug}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <Typography variant={'caption'}>OR</Typography>
-          <Button variant={'contained'} onClick={() => setIsModalOpen(true)}>
-            Create new Template
-          </Button>
-        </Stack>
-      </Stack>
-      <Container maxWidth='sm'>
-        {/*<MuiForm schema={formsSchema} formData={data} onChange={handleChange} onSubmit={handleSubmit} />*/}
-      </Container>
-      <TemplateModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </Box>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Box>
+        <Container maxWidth='lg'>
+          <Grid container spacing={8}>
+            <Grid item xs={12} lg={4}>
+              <Stack direction={'column'} spacing={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Chain</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={chain}
+                    label="Chain"
+                    sx={{ padding: '4px 12px' }}
+                    onChange={(e) => setChain(e.target.value as ChainT)}
+                  >
+                    <MenuItem value={'rinkeby'} sx={{ width: '100%' }}>Rinkeby</MenuItem>
+                    <MenuItem value={'polygon'} sx={{ width: '100%' }}>Polygon</MenuItem>
+                    <MenuItem value={'ethereum'} sx={{ width: '100%' }}>Ethereum</MenuItem>
+                  </Select>
+                </FormControl>
+                <DesktopDatePicker
+                  label="Public minting start date *"
+                  inputFormat="MM/dd/yyyy"
+                  value={mintDate}
+                  onChange={(date) => setMintDate(date)}
+                  renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
+                />
+                <DesktopDatePicker
+                  label="Whitelisted/presale minting start date"
+                  inputFormat="MM/dd/yyyy"
+                  value={presaleDate}
+                  onChange={(date) => setPresaleDate(date)}
+                  renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
+                />
+              </Stack>
+            </Grid>
+            <Grid item xs={12} lg={8}>
+              <MuiForm schema={formSchema} formData={contract} onChange={handleFormChange} onSubmit={handleSubmit} />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </LocalizationProvider>
   );
 };
 
