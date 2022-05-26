@@ -24,6 +24,10 @@ export async function findOne(id: string) {
   return await cmsClient.items.find(id, {version: 'published'});
 }
 
+export async function destroy(id: string) {
+  return await cmsClient.items.destroy(id);
+}
+
 export async function find(id: keyof typeof modelsId): Promise<any> {
   return await cmsClient.items.list({filter: {type: modelsId[id]}});
 }
