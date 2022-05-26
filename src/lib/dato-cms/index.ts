@@ -13,10 +13,7 @@ export const modelsId = {
 };
 
 export async function create(data: Record<any, any>, id: keyof typeof modelsId): Promise<any> {
-  return await cmsClient.items.create({
-    item_type: { type: 'item_type', id },
-    ...data,
-  });
+  return await cmsClient.items.create({item_type: { type: 'item_type', id }, ...data});
 }
 
 export async function update(data: Record<any, any>, id: string): Promise<any> {
