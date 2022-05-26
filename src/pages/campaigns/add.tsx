@@ -8,6 +8,7 @@ import { JSONSchema7 } from 'json-schema';
 import {ChainT, createContract} from '../../lib/nft-port';
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
+import {toast} from "react-toastify";
 
 export const formSchema: JSONSchema7 = {
   "type": "object",
@@ -76,7 +77,6 @@ export const formSchema: JSONSchema7 = {
 
 const Add: FC = () => {
   const [contract, setContract] = useState()
-  const [isCampaignCreated, setIsCampaignCreated] = useState(false)
   const [chain, setChain] = useState<ChainT>('rinkeby')
   const [mintDate, setMintDate] = useState<Date>(new Date());
   const [presaleDate, setPresaleDate] = useState<Date>();
@@ -88,9 +88,9 @@ const Add: FC = () => {
       "public_mint_start_date": new Date(mintDate).toISOString().slice(0,-5),
     }
 
-    createContract(contractData).then(() => {
-      setIsCampaignCreated(true)
-    }).catch(error => console.log(error))
+    createContract(contractData)
+      .then(() => toast("Contract created!", { type: 'success' }))
+      .catch(() => toast("Ohh, something went wrong, please try again later...", { type: 'error' }))
   }
 
   const handleFormChange = ({ formData }) => setContract(formData);

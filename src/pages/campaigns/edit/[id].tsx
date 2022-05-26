@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
-import { JSONSchema7 } from 'json-schema';
-import { Box, Container } from '@mui/material';
+import {Box, Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField} from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { NextPageContext } from 'next';
-import {findOne, find, update} from '../../../lib/datocms';
-import { concatFormFields, defaultFormFields } from '../add';
-import {CampaignT} from "../../../components/pages/campaigns/Table";
+import {getAllContracts, ContractT, updateContract, ChainT} from '../../../lib/nft-port';
+import { formSchema } from '../add';
+import {toast} from "react-toastify";
+import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 
 type EditPageT = {
   params: {
@@ -14,51 +15,97 @@ type EditPageT = {
 } & NextPageContext;
 
 export async function getStaticPaths() {
-  const campaigns = await find('campaign')
+  const contracts = await getAllContracts('rinkeby')
 
   return {
-    paths: campaigns.map((it) => `/campaigns/edit/${it.id}`),
+    paths: contracts.map((it) => `/campaigns/edit/${it.address}`),
     fallback: true
   };
 }
 
 export async function getStaticProps({ params }: EditPageT) {
-  const campaign = await findOne(params.id)
-  const contractTemplate = await findOne(campaign.contractTemplate)
+  const contracts = await getAllContracts('rinkeby')
+  const contract = contracts.find((it) => it.address === params.id)
 
   return {
     props: {
-      campaign: campaign,
-      contractTemplate: contractTemplate,
+      contract,
     },
     revalidate: 1
   };
 }
 
-const Edit: FC<{ campaign: CampaignT, contractTemplate: any }> = ({ campaign, contractTemplate }) => {
-  const [formData, setFormData] = useState({
-    title: campaign.title,
-    address: campaign.address,
-    ownership: campaign.ownership,
-    parentContract: campaign.parentContract
-  });
+const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
+  const [formData, setFormData] = useState({ ...contract });
+  const [chain, setChain] = useState<ChainT>(contract.chain)
+  const [mintDate, setMintDate] = useState<Date>(new Date(contract.public_mint_start));
+  const [presaleDate, setPresaleDate] = useState<Date>(new Date(contract.presale_mint_start));
 
-  const [formSchema, setFormSchema] = useState<JSONSchema7>(
-    concatFormFields(JSON.parse(contractTemplate.template), defaultFormFields)
-  );
-
-  const handleChange = ({ formData }) => setFormData(formData);
+  const handleFormChange = ({ formData }) => setFormData(formData);
   const handleSubmit = ({ formData }) => {
-    console.log(formData);
-    update({...formData}, campaign.id);
+    const contractData = {
+      "chain": chain,
+      "contract_address": contract.address,
+      "public_mint_start_date": new Date(mintDate).toISOString().slice(0,-5),
+      "base_uri": formData.base_uri,
+      "freeze_metadata": false,
+      "prereveal_token_uri": formData.prereveal_token_uri,
+      "presale_mint_start_date": new Date(presaleDate).toISOString().slice(0,-5),
+      "presale_whitelisted_addresses": formData.presale_whitelisted_addresses.split(', '),
+      "royalties_share": formData.royalties_share,
+      "royalties_address": formData.royalties_address,
+    }
+
+    updateContract(contractData)
+      .then(() => toast("Contract updated!", { type: 'success' }))
+      .catch(() => toast("Ohh, something went wrong, please try again later...", { type: 'error' }))
   };
 
   return (
-    <Box>
-      <Container maxWidth='sm'>
-        <MuiForm schema={formSchema} formData={formData} onChange={handleChange} onSubmit={handleSubmit} />
-      </Container>
-    </Box>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Box>
+        <Container maxWidth='lg'>
+          <Grid container spacing={8}>
+            <Grid item xs={12} lg={4}>
+              <Stack direction={'column'} spacing={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Chain</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={chain}
+                    label="Chain"
+                    sx={{ padding: '4px 12px' }}
+                    onChange={(e) => setChain(e.target.value as ChainT)}
+                  >
+                    <MenuItem value={'rinkeby'} sx={{ width: '100%' }}>Rinkeby</MenuItem>
+                    <MenuItem value={'polygon'} sx={{ width: '100%' }}>Polygon</MenuItem>
+                    <MenuItem value={'ethereum'} sx={{ width: '100%' }}>Ethereum</MenuItem>
+                  </Select>
+                </FormControl>
+                <DesktopDatePicker
+                  label="Public minting start date *"
+                  inputFormat="MM/dd/yyyy"
+                  value={mintDate}
+                  onChange={(date) => setMintDate(date)}
+                  renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
+                />
+                <DesktopDatePicker
+                  label="Whitelisted/presale minting start date"
+                  inputFormat="MM/dd/yyyy"
+                  value={presaleDate}
+                  onChange={(date) => setPresaleDate(date)}
+                  renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
+                />
+              </Stack>
+            </Grid>
+            <Grid item xs={12} lg={8}>
+              <MuiForm schema={formSchema} formData={formData} onChange={handleFormChange} onSubmit={handleSubmit} />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </LocalizationProvider>
   );
 };
 
