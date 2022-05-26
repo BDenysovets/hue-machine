@@ -1,7 +1,6 @@
 import { FC, useState, Fragment } from 'react';
 import Link from 'next/link';
 import MUIDataTable from 'mui-datatables';
-import { NextPageContext } from 'next';
 import {
   Fab,
   DialogTitle,
@@ -15,6 +14,7 @@ import {
 } from '@mui/material';
 import { Add, Edit, Delete } from '@mui/icons-material';
 import { MessageBar } from '../../components/notification/messageBar';
+import {find, findOne} from "../../lib/dato-cms";
 
 interface Partner {
   partner: string;
@@ -26,6 +26,8 @@ interface PartnerProps {
 }
 
 const Partners: FC<PartnerProps> = (props) => {
+
+  console.log(props.partners)
   const [partners, setPartners] = useState(props.partners);
 
   const [response, setResponse] = useState({
@@ -77,8 +79,8 @@ const Partners: FC<PartnerProps> = (props) => {
 
   const columns = [
     {
-      label: 'Partner (subdomain)',
-      name: 'partner',
+      label: 'Partner (subdomain or name)',
+      name: 'name',
       options: {
         filter: true,
         sort: true
@@ -86,7 +88,7 @@ const Partners: FC<PartnerProps> = (props) => {
     },
     {
       label: 'Absynth Key',
-      name: 'key',
+      name: 'absynth_key',
       options: {
         filter: false,
         sort: false
@@ -94,7 +96,7 @@ const Partners: FC<PartnerProps> = (props) => {
     },
     {
       label: ' ',
-      name: 'partner',
+      name: 'id',
       options: {
         filter: false,
         sort: false,
@@ -174,19 +176,17 @@ const Partners: FC<PartnerProps> = (props) => {
       <Box my={4}>
         <MUIDataTable title={'Partners'} data={partners} columns={columns} options={options} />
       </Box>
-
-      <MessageBar type={response.type as 'success' | 'error'} message={response.message} />
+      {/*<MessageBar type={response.type as 'success' | 'error'} message={response.message} />*/}
     </Fragment>
   );
 };
 
 export { Partners as default };
 
-export async function getServerSideProps({ req }: NextPageContext) {
-  const res = await fetch(`http://${req.headers.host}/api/partners`);
-  const { data } = await res.json();
+export async function getServerSideProps() {
+  const partners = await find('partner')
 
   return {
-    props: { partners: data }
+    props: { partners }
   };
 }
