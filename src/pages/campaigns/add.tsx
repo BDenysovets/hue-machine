@@ -140,9 +140,7 @@ const Add: FC = () => {
           </Grid>
         </Container>
       </Box>
-      <Toast open={!!message} onClose={() => setMessage(null)} severity={message?.type}>
-        <Typography variant={'inherit'}>{message.text}</Typography>
-      </Toast>
+      <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
     </LocalizationProvider>
   );
 };

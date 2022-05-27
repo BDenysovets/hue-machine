@@ -18,7 +18,7 @@ import { formSchema } from './add';
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {AlertColor} from "@mui/material/Alert/Alert";
-import {Toast} from "../../components/toast";
+import {MessageT, Toast} from "../../components/toast";
 
 type EditPageT = {
   params: {
@@ -52,7 +52,7 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
   const [chain, setChain] = useState<ChainT>(contract.chain)
   const [mintDate, setMintDate] = useState<Date>(new Date(contract.public_mint_start));
   const [presaleDate, setPresaleDate] = useState<Date>(new Date(contract.presale_mint_start));
-  const [message, setMessage] = useState<{ text: string, state: AlertColor | undefined } | null>(null)
+  const [message, setMessage] = useState<MessageT>(null)
 
   const handleFormChange = ({ formData }) => setFormData(formData);
   const handleSubmit = ({ formData }) => {
@@ -70,8 +70,8 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
     }
 
     updateContract(contractData)
-      .then(() => setMessage({ text: "Contract updated!", state: 'success' }))
-      .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", state: 'error' }))
+      .then(() => setMessage({ text: "Contract updated!", type: 'success' }))
+      .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", type: 'error' }))
   };
 
   return (
@@ -118,11 +118,7 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
           </Grid>
         </Container>
       </Box>
-      {!!message && (
-        <Toast open={!!message} onClose={() => setMessage(null)} severity={message.state}>
-          <Typography variant={'inherit'}>{message.text}</Typography>
-        </Toast>
-      )}
+      <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
     </LocalizationProvider>
   );
 };

@@ -18,7 +18,7 @@ import partnerConfig from './partner_config.json';
 import formSchemaJson from './form_schema.json';
 import { NextPageContext } from 'next';
 import { Partner } from '../../utils/interfaces';
-import {Toast} from "../../components/toast";
+import {MessageT, Toast} from "../../components/toast";
 import {AlertColor} from "@mui/material/Alert/Alert";
 
 type PartnerPageT = {
@@ -31,12 +31,7 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
     absynthKey: partnerProp ? partnerProp.absynthKey : '',
     customizations: partnerProp ? partnerProp.customizations : partnerConfig
   });
-
-  const [response, setResponse] = useState({
-    type: 'success',
-    message: ''
-  });
-
+  const [message, setMessage] = useState<MessageT>(null);
   const [importExportDialog, setImportExportDialog] = useState({
     content: '',
     open: false
@@ -61,9 +56,9 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
       setPartner(newContent);
       closemportExportDialog();
     } catch (e) {
-      setResponse({
+      setMessage({
         type: 'error',
-        message: "JSON can't be recognized"
+        text: "JSON can't be recognized"
       });
     }
   };
@@ -93,21 +88,21 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
       const json = await res.json();
 
       if (json.success) {
-        setResponse({
+        setMessage({
           type: 'success',
-          message: `Partner ${formData.name} was ${partnerProp ? 'updated' : 'added'} successfully.`
+          text: `Partner ${formData.name} was ${partnerProp ? 'updated' : 'added'} successfully.`
         });
       } else {
-        setResponse({
+        setMessage({
           type: 'error',
-          message: json.message
+          text: json.message
         });
       }
     } catch (e) {
       console.log('An error occurred', e);
-      setResponse({
+      setMessage({
         type: 'error',
-        message: 'An error occured while submitting the form'
+        text: 'An error occured while submitting the form'
       });
     }
   };
@@ -159,11 +154,7 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
           </Button>
         </DialogActions>
       </Dialog>
-
-      <Toast open={!!response} onClose={() => setResponse(null)} severity={response?.type as AlertColor}>
-        <Typography variant={'inherit'}>{response.message}</Typography>
-      </Toast>
-
+      <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
       <Box my={4}>
         <Typography variant='h4' component='h1' gutterBottom>
           {partnerProp ? partnerProp.name : 'New Partner'}
