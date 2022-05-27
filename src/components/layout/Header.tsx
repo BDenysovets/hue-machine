@@ -54,7 +54,7 @@ const Header: FC = () => {
             </Stack>
           </Box>
           <Box>
-            {session.user && (
+            {session?.user && (
               <Tooltip title='Open settings'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt={session.user.name} src={session.user.image} />
