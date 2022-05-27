@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Header } from './Header';
 import { Box, Container } from '@mui/material';
-import { useAuth } from '../../contexts/Auth';
 import Login from '../../pages/login';
+import { useSession } from "next-auth/react"
 
 const Content: FC = ({ children }) => (
   <Box>
@@ -14,9 +14,11 @@ const Content: FC = ({ children }) => (
 );
 
 const Layout: FC = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const { data: session } = useSession()
 
-  return isAuthenticated() ? <Content>{children}</Content> : <Login />;
+  return session
+    ? <Content>{children}</Content>
+    : <Login />;
 };
 
 export { Layout };

@@ -1,20 +1,9 @@
 import { FC } from 'react';
-import { GoogleLoginResponse, GoogleLogin } from 'react-google-login';
 import { Stack, Typography } from '@mui/material';
-import { useAuth } from '../../contexts/Auth';
+import {signIn, useSession, signOut} from "next-auth/react"
 
 const Login: FC = () => {
-  const {
-    setToken,
-    user: { setUser }
-  } = useAuth();
-
-  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-
-  const handleResponse = (response: GoogleLoginResponse) => {
-    setUser(response.profileObj);
-    setToken(response.tokenId);
-  };
+  const { data: session } = useSession()
 
   return (
     <Stack
@@ -25,16 +14,21 @@ const Login: FC = () => {
         height: 500
       }}
     >
-      <Typography variant={'h4'} align={'center'}>
-        Please login to proceed
-      </Typography>
-      <GoogleLogin
-        clientId={clientId}
-        buttonText='Login'
-        onSuccess={handleResponse}
-        onFailure={handleResponse}
-        cookiePolicy={'single_host_origin'}
-      />
+      {session ? (
+        <>
+          <Typography variant={'h4'} align={'center'}>
+            Click to Logout
+          </Typography>
+          <button onClick={() => signOut()}>Logout</button>
+        </>
+      ) : (
+        <>
+          <Typography variant={'h4'} align={'center'}>
+            Please login to proceed
+          </Typography>
+          <button onClick={() => signIn()}>Login</button>
+        </>
+      )}
     </Stack>
   );
 };

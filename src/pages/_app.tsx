@@ -5,8 +5,8 @@ import theme from '../theme';
 import { Backdrop, CircularProgress, CssBaseline, ThemeProvider, useTheme } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { UserProvider } from '../contexts/Auth';
 import { Layout } from '../components/layout';
+import { SessionProvider } from "next-auth/react"
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [open, setOpen] = useState(false);
@@ -29,8 +29,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <title>RPM-Admin</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
       </Head>
-      <ThemeProvider theme={theme}>
-        <UserProvider>
+      <SessionProvider session={session}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
           <Layout>
             <Component {...pageProps} />
@@ -39,8 +39,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
             <CircularProgress color='inherit' />
           </Backdrop>
           <ToastContainer position='top-center' />
-        </UserProvider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </SessionProvider>
     </Fragment>
   );
 }

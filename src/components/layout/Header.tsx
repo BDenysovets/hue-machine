@@ -13,9 +13,9 @@ import {
   Divider
 } from '@mui/material';
 import React, { FC, useState } from 'react';
-import { useAuth } from '../../contexts/Auth';
 import { Logo } from '../logo';
 import Link from 'next/link';
+import { useSession, signOut } from "next-auth/react"
 
 const menu = {
   '/campaigns': 'Campaigns',
@@ -24,7 +24,7 @@ const menu = {
 };
 
 const Header: FC = () => {
-  const { user, logout } = useAuth();
+  const { data: session } = useSession()
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -54,10 +54,10 @@ const Header: FC = () => {
             </Stack>
           </Box>
           <Box>
-            {user.data && (
+            {session.user && (
               <Tooltip title='Open settings'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={user.data.name ?? user.data.givenName} src={user.data.imageUrl} />
+                  <Avatar alt={session.user.name} src={session.user.image} />
                 </IconButton>
               </Tooltip>
             )}
@@ -82,7 +82,7 @@ const Header: FC = () => {
                   <Typography textAlign='center'>Profile</Typography>
                 </Link>
               </MenuItem>
-              <MenuItem onClick={logout}>
+              <MenuItem onClick={() => signOut()}>
                 <Typography textAlign='center'>Logout</Typography>
               </MenuItem>
             </Menu>
