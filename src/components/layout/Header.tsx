@@ -20,7 +20,6 @@ import { useSession, signOut } from "next-auth/react"
 const menu = {
   '/campaigns': 'Campaigns',
   '/partners': 'Partners',
-  '/assets': 'Assets'
 };
 
 const Header: FC = () => {
