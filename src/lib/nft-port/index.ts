@@ -24,7 +24,7 @@ export type ContractT = {
 } & Record<string, any>
 
 export async function getAllContracts(chain: ChainT = 'rinkeby'): Promise<Array<ContractT>> {
-  return await axios.get('https://api.nftport.xyz/v0/me/contracts/collections', {
+  return await axios.get(`${NFT_PORT_BASE_URL}/me/contracts/collections`, {
     headers,
     params: {
        chain
@@ -32,11 +32,11 @@ export async function getAllContracts(chain: ChainT = 'rinkeby'): Promise<Array<
   }).then(({ data }) => data.contracts)
 }
 
-export async function createContract(data): Promise<AxiosResponse<any>> {
-  return await axios.post('https://api.nftport.xyz/v0/contracts/collections', data, {headers})
+export async function createContract(data: Record<string, any>): Promise<AxiosResponse<any>> {
+  return await axios.post(`${NFT_PORT_BASE_URL}/contracts/collections`, data, {headers})
 }
 
-export async function updateContract(data): Promise<AxiosResponse<any>> {
-  return await axios.put('https://api.nftport.xyz/v0/contracts/collections', data, {headers})
+export async function updateContract(data: Record<string, any>): Promise<AxiosResponse<any>> {
+  return await axios.put(`${NFT_PORT_BASE_URL}/contracts/collections`, data, {headers})
 }
 
