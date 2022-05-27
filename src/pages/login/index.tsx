@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, Button } from '@mui/material';
+import {Logout as LogoutIcon, Login as LoginIcon} from '@mui/icons-material';
 import {signIn, useSession, signOut} from "next-auth/react"
 
 const Login: FC = () => {
@@ -19,14 +20,24 @@ const Login: FC = () => {
           <Typography variant={'h4'} align={'center'}>
             Click to Logout
           </Typography>
-          <button onClick={() => signOut()}>Logout</button>
+          <Button onClick={() => signOut()} variant={'contained'}>
+            <Stack direction="row" spacing={1}>
+              <span>Logout</span>
+              <LogoutIcon />
+            </Stack>
+          </Button>
         </>
       ) : (
         <>
           <Typography variant={'h4'} align={'center'}>
-            Please login to proceed
+            Please login with Google to proceed
           </Typography>
-          <button onClick={() => signIn()}>Login</button>
+          <Button onClick={() => signIn()} variant={'contained'}>
+            <Stack direction="row" spacing={1}>
+              <span>Login</span>
+              <LoginIcon />
+            </Stack>
+          </Button>
         </>
       )}
     </Stack>
