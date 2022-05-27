@@ -24,7 +24,7 @@ export async function findOne(id: string) {
   return await cmsClient.items.find(id, {version: 'published'});
 }
 
-export async function destroy(id: string) {
+export async function deleteOne(id: string) {
   return await cmsClient.items.destroy(id);
 }
 

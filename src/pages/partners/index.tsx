@@ -1,8 +1,7 @@
 import { FC, useState } from 'react';
 import Link from 'next/link';
-import MUIDataTable, {MUIDataTableOptions} from 'mui-datatables';
+import MUIDataTable, {MUIDataTableColumnDef, MUIDataTableOptions} from 'mui-datatables';
 import {
-  Fab,
   DialogTitle,
   DialogContentText,
   DialogContent,
@@ -10,75 +9,48 @@ import {
   Dialog,
   IconButton,
   Button,
-  Box
+  Box, Typography
 } from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
-import { MessageBar } from '../../components/notification/messageBar';
-import {find, findOne} from "../../lib/dato-cms";
+import {find, deleteOne} from "../../lib/dato-cms";
 import {PageWrapper} from "../../components/layout/Page";
+import {MessageT, Toast} from "../../components/toast";
 
-interface Partner {
+type Partner = {
   partner: string;
   key: string;
-}
+} & Record<string, any>
 
 interface PartnerProps {
   partners: Partner[];
 }
 
 const Partners: FC<PartnerProps> = (props) => {
-
-  console.log(props.partners)
   const [partners, setPartners] = useState(props.partners);
-
-  const [response, setResponse] = useState({
-    type: 'success',
-    message: ''
-  });
-
-  const [removePartner, setRemovePartner] = useState('');
-
-  const removePartnerOpen = (partner: string) => {
-    setRemovePartner(partner);
-  };
-
-  const removePartnerClose = () => {
-    setRemovePartner('');
-  };
+  const [message, setMessage] = useState<MessageT>(null);
+  const [removePartner, setRemovePartner] = useState<{ id: string, name: string } | null>(null);
 
   const removePartnerConfirm = async () => {
-    try {
-      const res = await fetch(`/api/partners/${removePartner}`, {
-        method: 'DELETE'
-      });
-
-      const json = await res.json();
-
-      if (json.success) {
-        setPartners(partners.filter((item) => item.partner !== removePartner));
-
-        setResponse({
+    await deleteOne(removePartner.id)
+      .then(() => {
+        setMessage({
           type: 'success',
-          message: `Partner ${removePartner} was removed successfully.`
+          text: `Partner ${removePartner.name} was removed successfully.`
         });
-      } else {
-        setResponse({
+        setPartners(partners.filter(item => item.id !== removePartner.id))
+      })
+      .catch(error => {
+        setMessage({
           type: 'error',
-          message: json.message
+          text: error
         });
-      }
-    } catch (e) {
-      console.log('An error occurred', e);
-      setResponse({
-        type: 'error',
-        message: 'An error occured while submitting the form'
-      });
-    }
-
-    setRemovePartner('');
+      })
+      .finally(() => {
+        setRemovePartner(null);
+      })
   };
 
-  const columns = [
+  const columns: MUIDataTableColumnDef[] = [
     {
       label: 'Partner (subdomain or name)',
       name: 'name',
@@ -96,35 +68,31 @@ const Partners: FC<PartnerProps> = (props) => {
       }
     },
     {
-      label: ' ',
+      label: 'Edit',
       name: 'id',
       options: {
         filter: false,
         sort: false,
-        customBodyRender: (value: string) => {
-          return (
-            <Link href={'/partners/[partner]'} as={`/partners/${value}`}>
-              <IconButton>
-                <Edit />
-              </IconButton>
-            </Link>
-          );
-        }
+        customBodyRender: (value: string) =>  (
+          <Link href={'/partners/[partner]'} as={`/partners/${value}`}>
+            <IconButton>
+              <Edit />
+            </IconButton>
+          </Link>
+        )
       }
     },
     {
-      label: ' ',
-      name: 'partner',
+      label: 'Delete',
+      name: 'id',
       options: {
         filter: false,
         sort: false,
-        customBodyRender: (value: string) => {
-          return (
-            <IconButton aria-label='delete' onClick={() => removePartnerOpen(value)}>
-              <Delete />
-            </IconButton>
-          );
-        }
+        customBodyRender: (id: string) => (
+          <IconButton aria-label='delete' onClick={() => setRemovePartner({ id, name: partners.find(item => item.id === id)?.name })}>
+            <Delete />
+          </IconButton>
+        )
       }
     }
   ];
@@ -147,21 +115,21 @@ const Partners: FC<PartnerProps> = (props) => {
     >
       <Dialog
         open={!!removePartner}
-        onClose={removePartnerClose}
+        onClose={() => setRemovePartner(null)}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
         <DialogTitle id='alert-dialog-title'>{'Are you sure?'}</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
-            You are about to remove the "{removePartner}" partner. Please confirm this action.
+            You are about to remove the "{removePartner?.name}" partner. Please confirm this action.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={removePartnerClose} color='primary'>
+          <Button onClick={() => setRemovePartner(null)} variant={'outlined'}>
             No
           </Button>
-          <Button onClick={removePartnerConfirm} color='primary' autoFocus>
+          <Button onClick={removePartnerConfirm} variant={'contained'} autoFocus>
             Yes
           </Button>
         </DialogActions>
@@ -169,7 +137,11 @@ const Partners: FC<PartnerProps> = (props) => {
       <Box my={4}>
         <MUIDataTable title={'Partners'} data={partners} columns={columns} options={options} />
       </Box>
-      {/*<MessageBar type={response.type as 'success' | 'error'} message={response.message} />*/}
+      {!!message && (
+        <Toast open={!!message} onClose={() => setMessage(null)} severity={message.type}>
+          <Typography variant={'inherit'}>{message.text}</Typography>
+        </Toast>
+      )}
     </PageWrapper>
   );
 };
