@@ -25,6 +25,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <Fragment>
       <Head>
         <title>RPM-Admin</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
       </Head>
       <SessionProvider session={session}>
