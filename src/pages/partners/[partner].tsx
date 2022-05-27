@@ -18,7 +18,8 @@ import partnerConfig from './partner_config.json';
 import formSchemaJson from './form_schema.json';
 import { NextPageContext } from 'next';
 import { Partner } from '../../utils/interfaces';
-import { MessageBar } from '../../components/notification/messageBar';
+import {Toast} from "../../components/toast";
+import {AlertColor} from "@mui/material/Alert/Alert";
 
 type PartnerPageT = {
   partnerProp?: Partner;
@@ -159,7 +160,9 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
         </DialogActions>
       </Dialog>
 
-      <MessageBar type={response.type as 'success' | 'error'} message={response.message} />
+      <Toast open={!!response} onClose={() => setResponse(null)} severity={response?.type as AlertColor}>
+        <Typography variant={'inherit'}>{response.message}</Typography>
+      </Toast>
 
       <Box my={4}>
         <Typography variant='h4' component='h1' gutterBottom>

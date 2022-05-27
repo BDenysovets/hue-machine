@@ -137,11 +137,9 @@ const Partners: FC<PartnerProps> = (props) => {
       <Box my={4}>
         <MUIDataTable title={'Partners'} data={partners} columns={columns} options={options} />
       </Box>
-      {!!message && (
-        <Toast open={!!message} onClose={() => setMessage(null)} severity={message.type}>
-          <Typography variant={'inherit'}>{message.text}</Typography>
-        </Toast>
-      )}
+      <Toast open={!!message} onClose={() => setMessage(null)} severity={message?.type}>
+        <Typography variant={'inherit'}>{message.text}</Typography>
+      </Toast>
     </PageWrapper>
   );
 };

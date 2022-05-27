@@ -65,7 +65,7 @@ const Table: FC<{ contracts: Array<ContractT> }> = ({ contracts }) => {
         sort: false,
         customBodyRender: (value: string) => {
           return (
-            <Link href={`/campaigns/edit/${value}`}>
+            <Link href={`/campaigns/${value}`}>
               <Tooltip title='Edit' arrow>
                 <EditIcon sx={{ cursor: 'pointer' }} />
               </Tooltip>

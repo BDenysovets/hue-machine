@@ -13,12 +13,12 @@ import {
 } from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { NextPageContext } from 'next';
-import {getAllContracts, ContractT, updateContract, ChainT} from '../../../lib/nft-port';
-import { formSchema } from '../add';
+import {getAllContracts, ContractT, updateContract, ChainT} from '../../lib/nft-port';
+import { formSchema } from './add';
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {AlertColor} from "@mui/material/Alert/Alert";
-import {Toast} from "../../../components/toast";
+import {Toast} from "../../components/toast";
 
 type EditPageT = {
   params: {
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
   const contracts = await getAllContracts('rinkeby')
 
   return {
-    paths: contracts.map((it) => `/campaigns/edit/${it.address}`),
+    paths: contracts.map((it) => `/campaigns/${it.address}`),
     fallback: true
   };
 }
