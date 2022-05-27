@@ -1,6 +1,6 @@
-import { FC, useState, Fragment } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
-import MUIDataTable from 'mui-datatables';
+import MUIDataTable, {MUIDataTableOptions} from 'mui-datatables';
 import {
   Fab,
   DialogTitle,
@@ -12,9 +12,10 @@ import {
   Button,
   Box
 } from '@mui/material';
-import { Add, Edit, Delete } from '@mui/icons-material';
+import { Edit, Delete } from '@mui/icons-material';
 import { MessageBar } from '../../components/notification/messageBar';
 import {find, findOne} from "../../lib/dato-cms";
+import {PageWrapper} from "../../components/layout/Page";
 
 interface Partner {
   partner: string;
@@ -128,7 +129,7 @@ const Partners: FC<PartnerProps> = (props) => {
     }
   ];
 
-  const options = {
+  const options: MUIDataTableOptions = {
     selectableRows: 'none',
     sortOrder: {
       name: 'partner',
@@ -137,21 +138,13 @@ const Partners: FC<PartnerProps> = (props) => {
   };
 
   return (
-    <Fragment>
-      <style jsx>{`
-        .floatPanel {
-          position: fixed;
-          bottom: 30px;
-          right: 30px;
-        }
-      `}</style>
-      <div className='floatPanel'>
-        <Link href={'/partners/[partner]'} as={`/partners/new`}>
-          <Fab color='primary' aria-label='add'>
-            <Add />
-          </Fab>
-        </Link>
-      </div>
+    <PageWrapper
+      title={'Partners list'}
+      link={{
+        text: 'Add New partner',
+        href: '/partners/new'
+      }}
+    >
       <Dialog
         open={!!removePartner}
         onClose={removePartnerClose}
@@ -177,7 +170,7 @@ const Partners: FC<PartnerProps> = (props) => {
         <MUIDataTable title={'Partners'} data={partners} columns={columns} options={options} />
       </Box>
       {/*<MessageBar type={response.type as 'success' | 'error'} message={response.message} />*/}
-    </Fragment>
+    </PageWrapper>
   );
 };
 

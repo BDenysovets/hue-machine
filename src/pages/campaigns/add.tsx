@@ -1,6 +1,6 @@
 import {
   Box,
-  Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField
+  Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography
 } from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { FC, useState } from 'react';
@@ -8,7 +8,8 @@ import { JSONSchema7 } from 'json-schema';
 import {ChainT, createContract} from '../../lib/nft-port';
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
-import {toast} from "react-toastify";
+import {Toast} from "../../components/toast";
+import {AlertColor} from "@mui/material/Alert/Alert";
 
 export const formSchema: JSONSchema7 = {
   "type": "object",
@@ -80,6 +81,7 @@ const Add: FC = () => {
   const [chain, setChain] = useState<ChainT>('rinkeby')
   const [mintDate, setMintDate] = useState<Date>(new Date());
   const [presaleDate, setPresaleDate] = useState<Date>();
+  const [message, setMessage] = useState<{ text: string, state: AlertColor | undefined } | null>(null)
 
   const handleSubmit = async ({ formData }) => {
     const contractData = {
@@ -89,8 +91,8 @@ const Add: FC = () => {
     }
 
     createContract(contractData)
-      .then(() => toast("Contract created!", { type: 'success' }))
-      .catch(() => toast("Ohh, something went wrong, please try again later...", { type: 'error' }))
+      .then(() => setMessage({ text: "Contract created!", state: 'success' }))
+      .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", state: 'error' }))
   }
 
   const handleFormChange = ({ formData }) => setContract(formData);
@@ -139,6 +141,11 @@ const Add: FC = () => {
           </Grid>
         </Container>
       </Box>
+      {!!message && (
+        <Toast open={!!message} onClose={() => setMessage(null)} severity={message.state}>
+          <Typography variant={'inherit'}>{message.text}</Typography>
+        </Toast>
+      )}
     </LocalizationProvider>
   );
 };

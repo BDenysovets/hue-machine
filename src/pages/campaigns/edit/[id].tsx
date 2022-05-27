@@ -1,12 +1,24 @@
 import { FC, useState } from 'react';
-import {Box, Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField} from '@mui/material';
+import {
+  Box,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { NextPageContext } from 'next';
 import {getAllContracts, ContractT, updateContract, ChainT} from '../../../lib/nft-port';
 import { formSchema } from '../add';
-import {toast} from "react-toastify";
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
+import {AlertColor} from "@mui/material/Alert/Alert";
+import {Toast} from "../../../components/toast";
 
 type EditPageT = {
   params: {
@@ -40,6 +52,7 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
   const [chain, setChain] = useState<ChainT>(contract.chain)
   const [mintDate, setMintDate] = useState<Date>(new Date(contract.public_mint_start));
   const [presaleDate, setPresaleDate] = useState<Date>(new Date(contract.presale_mint_start));
+  const [message, setMessage] = useState<{ text: string, state: AlertColor | undefined } | null>(null)
 
   const handleFormChange = ({ formData }) => setFormData(formData);
   const handleSubmit = ({ formData }) => {
@@ -57,8 +70,8 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
     }
 
     updateContract(contractData)
-      .then(() => toast("Contract updated!", { type: 'success' }))
-      .catch(() => toast("Ohh, something went wrong, please try again later...", { type: 'error' }))
+      .then(() => setMessage({ text: "Contract updated!", state: 'success' }))
+      .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", state: 'error' }))
   };
 
   return (
@@ -105,6 +118,11 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
           </Grid>
         </Container>
       </Box>
+      {!!message && (
+        <Toast open={!!message} onClose={() => setMessage(null)} severity={message.state}>
+          <Typography variant={'inherit'}>{message.text}</Typography>
+        </Toast>
+      )}
     </LocalizationProvider>
   );
 };

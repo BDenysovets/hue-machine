@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import { Button, Container, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
-import { toast } from 'react-toastify';
 
 const PartnerAddPage: FC = () => {
   const [subdomain, setSubdomain] = useState('');
@@ -37,9 +36,9 @@ const PartnerAddPage: FC = () => {
       }
 
       setSubdomain('');
-      return toast.success(`Partner "${json.partner.name}" was added successfully`);
+      // return toast.success(`Partner "${json.partner.name}" was added successfully`);
     } catch (error) {
-      toast.error(error.message);
+      // toast.error(error.message);
     } finally {
       setLoading(false);
     }

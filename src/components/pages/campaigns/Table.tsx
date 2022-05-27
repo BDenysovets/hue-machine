@@ -1,64 +1,100 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import {
-  Stack,
-  Button,
   Typography,
-  Table as MaterialTable,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableContainer,
-  TableRow,
-  Paper,
-  Box
+  Tooltip,
 } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
+import {Edit as EditIcon} from '@mui/icons-material';
 import Link from 'next/link';
-import { Row } from './Row';
 import {ContractT} from "../../../lib/nft-port";
+import MUIDataTable, {MUIDataTableColumnDef, MUIDataTableOptions} from 'mui-datatables';
+import {PageWrapper} from "../../layout/Page";
 
-const Table: FC<{ campaigns: Array<ContractT> }> = ({ campaigns }) => (
-  <Stack gap={2} sx={{ height: 500 }}>
-    <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={4}>
-      <Typography variant={'h5'}>Campaigns list</Typography>
-      <Link href={'/campaigns/add'}>
-        <Button variant='contained' size='large' startIcon={<AddIcon />}>
-          Add New
-        </Button>
-      </Link>
-    </Stack>
-    <Box>
-      <TableContainer component={Paper}>
-        <MaterialTable sx={{ minWidth: 650 }} aria-label='campaigns table table'>
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <b>Chain</b>
-              </TableCell>
-              <TableCell>
-                <b>Name</b>
-              </TableCell>
-              <TableCell>
-                <b>Symbol</b>
-              </TableCell>
-              <TableCell align='right'>
-                <b>Mint Price</b>
-              </TableCell>
-              <TableCell align='right'>
-                <b>Public Mint Date</b>
-              </TableCell>
-              <TableCell align='right'>
-                <b>Edit</b>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {campaigns.map((item, index) => <Row key={index} {...item} />)}
-          </TableBody>
-        </MaterialTable>
-      </TableContainer>
-    </Box>
-  </Stack>
-);
+const Table: FC<{ contracts: Array<ContractT> }> = ({ contracts }) => {
+  const columns: MUIDataTableColumnDef[] = [
+    {
+      label: 'Chain',
+      name: 'chain',
+      options: {
+        filter: true,
+        sort: true,
+      }
+    },
+    {
+      label: 'Name',
+      name: 'name',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      label: 'Symbol',
+      name: 'symbol',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      label: 'Mint Price',
+      name: 'mint_price',
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value) => <Typography variant={'inherit'}><b>ETH</b>{` ${value}`}</Typography>
+      }
+    },
+    {
+      label: 'Public Mint Date',
+      name: 'public_mint_start',
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value: string) => {
+          const mintStartDate = new Date(value).toISOString().slice(0,10);
+
+          return <Typography variant={'inherit'}>{mintStartDate}</Typography>;
+        }
+      }
+    },
+    {
+      label: 'Edit',
+      name: 'address',
+      options: {
+        filter: false,
+        sort: false,
+        customBodyRender: (value: string) => {
+          return (
+            <Link href={`/campaigns/edit/${value}`}>
+              <Tooltip title='Edit' arrow>
+                <EditIcon sx={{ cursor: 'pointer' }} />
+              </Tooltip>
+            </Link>
+          );
+        }
+      }
+    },
+  ];
+
+  const options: MUIDataTableOptions = {
+    selectableRows: 'none',
+    sortOrder: {
+      name: 'name',
+      direction: 'asc'
+    }
+  };
+
+  return (
+    <PageWrapper
+      title={'Campaigns list'}
+      link={{
+        text: 'Add New campaign',
+        href: '/campaigns/add'
+      }}
+    >
+      <MUIDataTable title={'Campaigns'} data={contracts} columns={columns} options={options} />
+    </PageWrapper>
+  );
+}
 
 export { Table };
