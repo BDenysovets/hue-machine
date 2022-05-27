@@ -15,31 +15,15 @@ const Login: FC = () => {
         height: 500
       }}
     >
-      {session ? (
-        <>
-          <Typography variant={'h4'} align={'center'}>
-            Click to Logout
-          </Typography>
-          <Button onClick={() => signOut()} variant={'contained'}>
-            <Stack direction="row" spacing={1}>
-              <span>Logout</span>
-              <LogoutIcon />
-            </Stack>
-          </Button>
-        </>
-      ) : (
-        <>
-          <Typography variant={'h4'} align={'center'}>
-            Please login with Google to proceed
-          </Typography>
-          <Button onClick={() => signIn()} variant={'contained'}>
-            <Stack direction="row" spacing={1}>
-              <span>Login</span>
-              <LoginIcon />
-            </Stack>
-          </Button>
-        </>
-      )}
+      <Typography variant={'h4'} align={'center'}>
+        {session ? 'Click to Logout' : 'Please login with Google to proceed'}
+      </Typography>
+      <Button onClick={() => session ? signOut() : signIn()} variant={'contained'}>
+        <Stack direction="row" spacing={1}>
+          <span>{session ? 'Logout' : 'Login'}</span>
+          {session ? <LogoutIcon /> : <LoginIcon />}
+        </Stack>
+      </Button>
     </Stack>
   );
 };
