@@ -76,6 +76,8 @@ export const formSchema: JSONSchema7 = {
   }
 }
 
+const chains: Array<ChainT> = ['rinkeby', 'polygon', 'ethereum']
+
 const Add: FC = () => {
   const [contract, setContract] = useState()
   const [chain, setChain] = useState<ChainT>('rinkeby')
@@ -114,9 +116,7 @@ const Add: FC = () => {
                     sx={{ padding: '4px 12px' }}
                     onChange={(e) => setChain(e.target.value as ChainT)}
                   >
-                    <MenuItem value={'rinkeby'} sx={{ width: '100%' }}>Rinkeby</MenuItem>
-                    <MenuItem value={'polygon'} sx={{ width: '100%' }}>Polygon</MenuItem>
-                    <MenuItem value={'ethereum'} sx={{ width: '100%' }}>Ethereum</MenuItem>
+                    {chains.map((item, index) => <MenuItem value={item} key={index} sx={{ width: '100%' }}>{item}</MenuItem>)}
                   </Select>
                 </FormControl>
                 <DesktopDatePicker
