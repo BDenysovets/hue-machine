@@ -9,7 +9,7 @@ import {
   Dialog,
   IconButton,
   Button,
-  Box, Typography
+  Box,
 } from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
 import {find, deleteOne} from "../../lib/dato-cms";
@@ -23,6 +23,14 @@ type Partner = {
 
 interface PartnerProps {
   partners: Partner[];
+}
+
+export async function getServerSideProps() {
+  const partners = await find('partner')
+
+  return {
+    props: { partners }
+  };
 }
 
 const Partners: FC<PartnerProps> = (props) => {
@@ -73,8 +81,8 @@ const Partners: FC<PartnerProps> = (props) => {
       options: {
         filter: false,
         sort: false,
-        customBodyRender: (value: string) =>  (
-          <Link href={'/partners/[partner]'} as={`/partners/${value}`}>
+        customBodyRender: (id: string) =>  (
+          <Link href={`/partners/${id}`}>
             <IconButton>
               <Edit />
             </IconButton>
@@ -110,7 +118,7 @@ const Partners: FC<PartnerProps> = (props) => {
       title={'Partners list'}
       link={{
         text: 'Add New partner',
-        href: '/partners/new'
+        href: '/partners/add'
       }}
     >
       <Dialog
@@ -143,11 +151,3 @@ const Partners: FC<PartnerProps> = (props) => {
 };
 
 export { Partners as default };
-
-export async function getServerSideProps() {
-  const partners = await find('partner')
-
-  return {
-    props: { partners }
-  };
-}

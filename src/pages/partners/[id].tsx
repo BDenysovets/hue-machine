@@ -13,23 +13,31 @@ import {
   Container
 } from '@mui/material';
 import { ImportExport } from '@mui/icons-material';
-import { JSONSchema7 } from 'json-schema';
 import partnerConfig from './partner_config.json';
 import formSchemaJson from './form_schema.json';
-import { NextPageContext } from 'next';
-import { Partner } from '../../utils/interfaces';
+import {PageT, Partner} from '../../utils/interfaces';
 import {MessageT, Toast} from "../../components/toast";
-import {AlertColor} from "@mui/material/Alert/Alert";
+import {findOne, update} from "../../lib/dato-cms";
 
 type PartnerPageT = {
-  partnerProp?: Partner;
+  partner?: Partner;
 };
 
-const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
-  const [partner, setPartner] = useState({
-    name: partnerProp ? partnerProp.name : '',
-    absynthKey: partnerProp ? partnerProp.absynthKey : '',
-    customizations: partnerProp ? partnerProp.customizations : partnerConfig
+export const getServerSideProps = async ({ params }: PageT) => {
+  const partner = await findOne(params.id)
+
+  return {
+    props: { partner }
+  };
+};
+
+const PartnerPage: FC<PartnerPageT> = ({ partner }) => {
+  console.log(partner)
+
+  const [partnerData, setPartnerData] = useState({
+    name: partner ? partner.name : '',
+    absynthKey: partner ? partner.absynthKey : '',
+    customizations: partner ? partner.customizations : partnerConfig
   });
   const [message, setMessage] = useState<MessageT>(null);
   const [importExportDialog, setImportExportDialog] = useState({
@@ -38,7 +46,7 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
   });
 
   const openImportExportDialog = () => {
-    setImportExportDialog({ content: JSON.stringify(partner), open: true });
+    setImportExportDialog({ content: JSON.stringify(partnerData), open: true });
   };
 
   const closemportExportDialog = () => {
@@ -53,7 +61,7 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
     let newContent: any;
     try {
       newContent = JSON.parse(importExportDialog.content);
-      setPartner(newContent);
+      setPartnerData(newContent);
       closemportExportDialog();
     } catch (e) {
       setMessage({
@@ -63,48 +71,20 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
     }
   };
 
-  const formSchema: JSONSchema7 = JSON.parse(JSON.stringify(formSchemaJson));
-
-  const handleChange = ({ formData }) => {
-    setPartner(formData);
-  };
-
   const handleSubmit = async ({ formData }) => {
-    try {
-      let url = '/api/partners',
-        method = 'POST';
-
-      if (partnerProp) {
-        url += `/${partnerProp.name}`;
-        method = 'PUT';
-      }
-
-      const res = await fetch(url, {
-        method,
-        body: JSON.stringify(formData),
-        headers: { 'Content-Type': 'application/json' }
-      });
-
-      const json = await res.json();
-
-      if (json.success) {
+    update({ ...formData }, partner.id)
+      .then(() => {
         setMessage({
           type: 'success',
-          text: `Partner ${formData.name} was ${partnerProp ? 'updated' : 'added'} successfully.`
+          text: `Partner ${formData.name} was ${partner ? 'updated' : 'added'} successfully.`
         });
-      } else {
+      })
+      .catch(() => {
         setMessage({
           type: 'error',
-          text: json.message
+          text: 'An error occured while submitting the form'
         });
-      }
-    } catch (e) {
-      console.log('An error occurred', e);
-      setMessage({
-        type: 'error',
-        text: 'An error occured while submitting the form'
-      });
-    }
+      })
   };
 
   return (
@@ -157,26 +137,17 @@ const PartnerPage: FC<PartnerPageT> = ({ partnerProp }) => {
       <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
       <Box my={4}>
         <Typography variant='h4' component='h1' gutterBottom>
-          {partnerProp ? partnerProp.name : 'New Partner'}
+          {partner ? partner.name : 'New Partner'}
         </Typography>
-        <Form schema={formSchema} formData={partner} onChange={handleChange} onSubmit={handleSubmit} />
+        <Form
+          schema={JSON.parse(JSON.stringify(formSchemaJson))}
+          formData={partnerData}
+          onChange={({ formData }) => setPartnerData(formData)}
+          onSubmit={handleSubmit}
+        />
       </Box>
     </Container>
   );
 };
 
 export { PartnerPage as default };
-
-export const getServerSideProps = async ({ req, query }: NextPageContext) => {
-  let partnerProp: any = null;
-
-  if (query.partner !== 'new') {
-    const res = await fetch(`http://${req.headers.host}/api/partners/${query.partner}`);
-    const resJson = await res.json();
-    partnerProp = resJson.data;
-  }
-
-  return {
-    props: { partnerProp }
-  };
-};

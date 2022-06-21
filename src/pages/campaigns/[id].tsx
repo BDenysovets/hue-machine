@@ -9,7 +9,6 @@ import {
   Select,
   Stack,
   TextField,
-  Typography
 } from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { NextPageContext } from 'next';
@@ -17,7 +16,6 @@ import {getAllContracts, ContractT, updateContract, ChainT} from '../../lib/nft-
 import { formSchema } from './add';
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
-import {AlertColor} from "@mui/material/Alert/Alert";
 import {MessageT, Toast} from "../../components/toast";
 
 type EditPageT = {
