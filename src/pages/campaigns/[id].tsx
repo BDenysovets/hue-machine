@@ -48,9 +48,9 @@ export async function getStaticProps({ params }: EditPageT) {
 
 const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
   const [formData, setFormData] = useState({ ...contract });
-  const [chain, setChain] = useState<ChainT>(contract.chain)
-  const [mintDate, setMintDate] = useState<Date>(new Date(contract.public_mint_start));
-  const [presaleDate, setPresaleDate] = useState<Date>(new Date(contract.presale_mint_start));
+  const [chain, setChain] = useState<ChainT>(contract?.chain ?? 'rinkeby')
+  const [mintDate, setMintDate] = useState<Date>(new Date(contract?.public_mint_start));
+  const [presaleDate, setPresaleDate] = useState<Date>(new Date(contract?.presale_mint_start));
   const [message, setMessage] = useState<MessageT>(null)
 
   const handleFormChange = ({ formData }) => setFormData(formData);
