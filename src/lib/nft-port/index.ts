@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios'
 
-export const NFT_PORT_AUTH_KEY = process.env.NEXT_PUBLIC_NFT_PORT_AUTH_KEY
+export const NFT_PORT_AUTH_KEY = process.env.NFT_PORT_AUTH_KEY
 export const NFT_PORT_BASE_URL = 'https://api.nftport.xyz/v0'
 
 const headers = {

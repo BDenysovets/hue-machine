@@ -1,6 +1,6 @@
 import {buildClient} from "@datocms/cma-client";
 
-export const apiToken = process.env.NEXT_PUBLIC_DATO_CMS_API_KEY;
+export const apiToken = process.env.DATO_CMS_API_KEY;
 export const cmsClient = buildClient({
   apiToken: apiToken,
   environment: 'campaign-manager-dev',
