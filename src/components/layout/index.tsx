@@ -14,11 +14,13 @@ const Content: FC = ({ children }) => (
 );
 
 const Layout: FC = ({ children }) => {
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
 
-  return session
-    ? <Content>{children}</Content>
-    : <Login />;
+  // return session
+  //   ? <Content>{children}</Content>
+  //   : <Login />;
+
+  return <Content>{children}</Content>
 };
 
 export { Layout };

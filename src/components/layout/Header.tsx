@@ -23,7 +23,7 @@ const menu = {
 };
 
 const Header: FC = () => {
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -53,13 +53,13 @@ const Header: FC = () => {
             </Stack>
           </Box>
           <Box>
-            {session?.user && (
-              <Tooltip title='Open settings'>
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={session.user.name} src={session.user.image} />
-                </IconButton>
-              </Tooltip>
-            )}
+            {/*{session?.user && (*/}
+            {/*  <Tooltip title='Open settings'>*/}
+            {/*    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>*/}
+            {/*      <Avatar alt={session.user.name} src={session.user.image} />*/}
+            {/*    </IconButton>*/}
+            {/*  </Tooltip>*/}
+            {/*)}*/}
             <Menu
               sx={{ mt: '45px' }}
               id='menu-appbar'
