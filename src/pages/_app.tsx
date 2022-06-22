@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   Router.events.on('routeChangeError', () => setOpen(false));
 
   useEffect(() => {
-    // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
