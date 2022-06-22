@@ -17,6 +17,7 @@ import { formSchema } from './add';
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {MessageT, Toast} from "../../components/toast";
+import {Layout} from "../../components/layout";
 
 type EditPageT = {
   params: {
@@ -73,51 +74,53 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Box>
-        <Container maxWidth='lg'>
-          <Grid container spacing={8}>
-            <Grid item xs={12} lg={4}>
-              <Stack direction={'column'} spacing={4}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Chain</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={chain}
-                    label="Chain"
-                    sx={{ padding: '4px 12px' }}
-                    onChange={(e) => setChain(e.target.value as ChainT)}
-                  >
-                    <MenuItem value={'rinkeby'} sx={{ width: '100%' }}>Rinkeby</MenuItem>
-                    <MenuItem value={'polygon'} sx={{ width: '100%' }}>Polygon</MenuItem>
-                    <MenuItem value={'ethereum'} sx={{ width: '100%' }}>Ethereum</MenuItem>
-                  </Select>
-                </FormControl>
-                <DesktopDatePicker
-                  label="Public minting start date *"
-                  inputFormat="MM/dd/yyyy"
-                  value={mintDate}
-                  onChange={(date) => setMintDate(date)}
-                  renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
-                />
-                <DesktopDatePicker
-                  label="Whitelisted/presale minting start date"
-                  inputFormat="MM/dd/yyyy"
-                  value={presaleDate}
-                  onChange={(date) => setPresaleDate(date)}
-                  renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
-                />
-              </Stack>
+    <Layout hasAuth={true}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <Box>
+          <Container maxWidth='lg'>
+            <Grid container spacing={8}>
+              <Grid item xs={12} lg={4}>
+                <Stack direction={'column'} spacing={4}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Chain</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={chain}
+                      label="Chain"
+                      sx={{ padding: '4px 12px' }}
+                      onChange={(e) => setChain(e.target.value as ChainT)}
+                    >
+                      <MenuItem value={'rinkeby'} sx={{ width: '100%' }}>Rinkeby</MenuItem>
+                      <MenuItem value={'polygon'} sx={{ width: '100%' }}>Polygon</MenuItem>
+                      <MenuItem value={'ethereum'} sx={{ width: '100%' }}>Ethereum</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <DesktopDatePicker
+                    label="Public minting start date *"
+                    inputFormat="MM/dd/yyyy"
+                    value={mintDate}
+                    onChange={(date) => setMintDate(date)}
+                    renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
+                  />
+                  <DesktopDatePicker
+                    label="Whitelisted/presale minting start date"
+                    inputFormat="MM/dd/yyyy"
+                    value={presaleDate}
+                    onChange={(date) => setPresaleDate(date)}
+                    renderInput={(params) => <TextField {...params} sx={{ padding: 4 }} />}
+                  />
+                </Stack>
+              </Grid>
+              <Grid item xs={12} lg={8}>
+                <MuiForm schema={formSchema} formData={formData} onChange={handleFormChange} onSubmit={handleSubmit} />
+              </Grid>
             </Grid>
-            <Grid item xs={12} lg={8}>
-              <MuiForm schema={formSchema} formData={formData} onChange={handleFormChange} onSubmit={handleSubmit} />
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-      <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
-    </LocalizationProvider>
+          </Container>
+        </Box>
+        <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
+      </LocalizationProvider>
+    </Layout>
   );
 };
 

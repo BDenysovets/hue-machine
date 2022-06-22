@@ -15,6 +15,7 @@ import { Edit, Delete } from '@mui/icons-material';
 import {find, deleteOne} from "../../lib/dato-cms";
 import {PageWrapper} from "../../components/layout/Page";
 import {MessageT, Toast} from "../../components/toast";
+import {Layout} from "../../components/layout";
 
 type Partner = {
   partner: string;
@@ -114,39 +115,41 @@ const Partners: FC<PartnerProps> = (props) => {
   };
 
   return (
-    <PageWrapper
-      title={'Partners list'}
-      link={{
-        text: 'Add New partner',
-        href: '/partners/add'
-      }}
-    >
-      <Dialog
-        open={!!removePartner}
-        onClose={() => setRemovePartner(null)}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
+    <Layout>
+      <PageWrapper
+        title={'Partners list'}
+        link={{
+          text: 'Add New partner',
+          href: '/partners/add'
+        }}
       >
-        <DialogTitle id='alert-dialog-title'>{'Are you sure?'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            You are about to remove the "{removePartner?.name}" partner. Please confirm this action.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setRemovePartner(null)} variant={'outlined'}>
-            No
-          </Button>
-          <Button onClick={removePartnerConfirm} variant={'contained'} autoFocus>
-            Yes
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Box my={4}>
-        <MUIDataTable title={'Partners'} data={partners} columns={columns} options={options} />
-      </Box>
-      <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
-    </PageWrapper>
+        <Dialog
+          open={!!removePartner}
+          onClose={() => setRemovePartner(null)}
+          aria-labelledby='alert-dialog-title'
+          aria-describedby='alert-dialog-description'
+        >
+          <DialogTitle id='alert-dialog-title'>{'Are you sure?'}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id='alert-dialog-description'>
+              You are about to remove the "{removePartner?.name}" partner. Please confirm this action.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setRemovePartner(null)} variant={'outlined'}>
+              No
+            </Button>
+            <Button onClick={removePartnerConfirm} variant={'contained'} autoFocus>
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Box my={4}>
+          <MUIDataTable title={'Partners'} data={partners} columns={columns} options={options} />
+        </Box>
+        <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
+      </PageWrapper>
+    </Layout>
   );
 };
 

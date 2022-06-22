@@ -18,6 +18,7 @@ import formSchemaJson from './form_schema.json';
 import {PageT, Partner} from '../../utils/interfaces';
 import {MessageT, Toast} from "../../components/toast";
 import {findOne, update} from "../../lib/dato-cms";
+import {Layout} from "../../components/layout";
 
 type PartnerPageT = {
   partner?: Partner;
@@ -88,65 +89,67 @@ const PartnerPage: FC<PartnerPageT> = ({ partner }) => {
   };
 
   return (
-    <Container maxWidth='sm'>
-      <style jsx>{`
+    <Layout>
+      <Container maxWidth='sm'>
+        <style jsx>{`
         .floatPanel {
           position: fixed;
           bottom: 30px;
           right: 30px;
         }
       `}</style>
-      <div className='floatPanel'>
-        <Fab variant='extended' onClick={openImportExportDialog}>
-          <ImportExport />
-          Import/Export
-        </Fab>
-      </div>
+        <div className='floatPanel'>
+          <Fab variant='extended' onClick={openImportExportDialog}>
+            <ImportExport />
+            Import/Export
+          </Fab>
+        </div>
 
-      <Dialog
-        open={importExportDialog.open}
-        maxWidth='xl'
-        fullWidth
-        onClose={closemportExportDialog}
-        aria-labelledby='form-dialog-title'
-      >
-        <DialogTitle id='form-dialog-title'>Import/Export</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin='dense'
-            id='content'
-            name='content'
-            label='JSON'
-            type='text'
-            value={importExportDialog.content}
-            onChange={handleImportExportDialogChange}
-            fullWidth
-            multiline
+        <Dialog
+          open={importExportDialog.open}
+          maxWidth='xl'
+          fullWidth
+          onClose={closemportExportDialog}
+          aria-labelledby='form-dialog-title'
+        >
+          <DialogTitle id='form-dialog-title'>Import/Export</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin='dense'
+              id='content'
+              name='content'
+              label='JSON'
+              type='text'
+              value={importExportDialog.content}
+              onChange={handleImportExportDialogChange}
+              fullWidth
+              multiline
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={closemportExportDialog} color='primary'>
+              Cancel
+            </Button>
+            <Button onClick={applyJSON} color='primary'>
+              Apply
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
+        <Box my={4}>
+          <Typography variant='h4' component='h1' gutterBottom>
+            {partner ? partner.name : 'New Partner'}
+          </Typography>
+          <Form
+            schema={JSON.parse(JSON.stringify(formSchemaJson))}
+            formData={partnerData}
+            onChange={({ formData }) => setPartnerData(formData)}
+            onSubmit={handleSubmit}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closemportExportDialog} color='primary'>
-            Cancel
-          </Button>
-          <Button onClick={applyJSON} color='primary'>
-            Apply
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Toast open={!!message} onClose={() => setMessage(null)} message={message} />
-      <Box my={4}>
-        <Typography variant='h4' component='h1' gutterBottom>
-          {partner ? partner.name : 'New Partner'}
-        </Typography>
-        <Form
-          schema={JSON.parse(JSON.stringify(formSchemaJson))}
-          formData={partnerData}
-          onChange={({ formData }) => setPartnerData(formData)}
-          onSubmit={handleSubmit}
-        />
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+    </Layout>
   );
 };
 

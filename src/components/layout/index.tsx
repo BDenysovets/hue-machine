@@ -13,12 +13,10 @@ const Content: FC = ({ children }) => (
   </Box>
 );
 
-const Layout: FC = ({ children }) => {
-  // const { data: session } = useSession()
+const Layout: FC<{ hasAuth?: boolean }> = ({ hasAuth= false, children }) => {
+  const { data: session } = useSession()
 
-  // return session
-  //   ? <Content>{children}</Content>
-  //   : <Login />;
+  // if (!session && hasAuth) return <Login />
 
   return <Content>{children}</Content>
 };
