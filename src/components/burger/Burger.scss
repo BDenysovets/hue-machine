@@ -1,0 +1,86 @@
+@import "../../styles/variables";
+
+.burger {
+  cursor: pointer;
+
+  .square {
+    position: relative;
+    width: 22px;
+    height: 22px;
+
+    @media (min-width: $media-sm) {
+      width: 26px;
+      height: 26px;
+    }
+
+    @media (min-width: $media-xl) {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .lines {
+    position: absolute;
+    display: grid;
+    gap: 4px;
+    top: 50%;
+    right: -11px;
+    transform: translateY(-50%);
+
+    @media (min-width: $media-sm) {
+      right: -12px;
+    }
+
+    @media (min-width: $media-xl) {
+      right: -13px;
+    }
+  }
+
+  .line {
+    width: 22px;
+    height: 3px;
+    display: flex;
+    border-style: solid;
+    transition: transform 0.3s;
+    transform-origin: center center;
+    border-width: 1px;
+
+    @media (min-width: $media-sm) {
+      width: 24px;
+    }
+
+    @media (min-width: $media-xl) {
+      width: 26px;
+    }
+
+    &:first-child.open {
+      transform: translateY(4px) rotateZ(45deg);
+    }
+
+    &:last-child.open {
+      transform: translateY(-3px) rotateZ(-45deg);
+    }
+  }
+}
+
+.light.burger {
+  .square {
+    background-color: $lighter-color;
+  }
+
+  .line {
+    background-color: $dark-color;
+    border-color: $lighter-color;
+  }
+}
+
+.dark.burger {
+  .square {
+    background-color: $dark-color;
+  }
+
+  .line {
+    background-color: $lighter-color;
+    border-color: $dark-color;
+  }
+}

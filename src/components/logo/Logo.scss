@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+.logo {
+  font-family: $secondary-font;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.2em;
+}
+
+.light.logo {
+  span:first-child {
+    color: rgba(243, 242, 232, 0.7);
+  }
+
+  span:last-child {
+    color: #F3F2E8;
+  }
+}
+
+.dark.logo {
+  span:first-child {
+    color: rgba(34, 35, 38, 0.6);
+  }
+
+  span:last-child {
+    color: #222326;
+  }
+}
