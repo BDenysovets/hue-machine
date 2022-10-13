@@ -1,5 +1,4 @@
 import {PropsWithChildren} from "react";
-import cx from "classnames";
 import './Content.scss'
 
 type Props = {
@@ -7,9 +6,11 @@ type Props = {
 };
 
 const Content = ({className, children}: PropsWithChildren<Props>) => (
-  <div className={cx('content', className)}>
-    <div className="wrapper">
-      {children}
+  <div className={className}>
+    <div className="content">
+      <div className="wrapper">
+        {children}
+      </div>
     </div>
   </div>
 )

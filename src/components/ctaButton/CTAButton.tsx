@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 type Props = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   link: string;
 }
 
@@ -15,7 +15,7 @@ const CTAButton = ({title, subtitle, link}: Props) => {
       <div className="line top"/>
       <div className="line bottom"/>
       <div className="title">{title}</div>
-      <div className="subtitle">{subtitle}</div>
+      {subtitle && <div className="subtitle">{subtitle}</div>}
     </div>
   );
 };

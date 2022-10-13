@@ -9,10 +9,15 @@ const NotFound: FC = () => {
   return (
     <DefaultLayout hasFooter={false} className="notFoundPage">
       <Content className="notFound">
-
-        <h1 className="title">404</h1>
-        <img className="image" src={balloon} alt="balloon"/>
-        <CTAButton title="Hop on" subtitle="It will take you back home" link="/" />
+        <div className="visual">
+          <h1 className="title">404</h1>
+          <img className="image" src={balloon} alt="balloon"/>
+        </div>
+        <div className="actions">
+          <div className="actionsWrapper">
+            <CTAButton title="Hop on" subtitle="It will take you back home" link="/" />
+          </div>
+        </div>
       </Content>
     </DefaultLayout>
   )
