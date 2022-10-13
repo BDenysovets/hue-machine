@@ -12,11 +12,12 @@ type Props = {
   hasFooter?: boolean
   hasBurger?: boolean
   theme?: AppTheme
+  className?: string;
 }
 
-const DefaultLayout = ({ children, theme = 'dark', hasHeader = true, hasFooter = true, hasBurger = true }: PropsWithChildren<Props>) => {
+const DefaultLayout = ({ children, theme = 'dark', hasHeader = true, hasFooter = true, hasBurger = true, className }: PropsWithChildren<Props>) => {
   return (
-    <div className={cx('app', theme)}>
+    <div className={cx('app', theme, className)}>
       {hasHeader && <Header hasBurger={hasBurger} theme={theme} />}
       <div>
         {children}
