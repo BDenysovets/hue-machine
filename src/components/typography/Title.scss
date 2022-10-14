@@ -1,0 +1,82 @@
+@import "../../styles/variables";
+
+.typography-title {
+  &.upperCase {
+    text-transform: uppercase;
+  }
+
+  &-1 {
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    @media (min-width: $media-md) {
+      font-size: 34px;
+      line-height: 41px;
+    }
+
+    @media (min-width: $media-lg) {
+      font-size: 40px;
+      line-height: 49px;
+    }
+  }
+
+  &-2 {
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 31px;
+    letter-spacing: 0.03em;
+
+    @media (min-width: $media-md) {
+      font-size: 22px;
+      line-height: 39px;
+      letter-spacing: 0.05em;
+    }
+
+    @media (min-width: $media-lg) {
+      font-size: 36px;
+      line-height: 52px;
+    }
+  }
+
+  &-3 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+
+    @media (min-width: $media-md) {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    @media (min-width: $media-lg) {
+      font-weight: 900;
+      font-size: 28px;
+      line-height: 46px;
+    }
+  }
+
+  &-4 {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+
+    @media (min-width: $media-md) {
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 18px;
+      letter-spacing: 0.1em;
+    }
+
+    @media (min-width: $media-lg) {
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+}
