@@ -3,6 +3,7 @@ import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import {Hero} from "./Hero";
 import {Offer} from "./Offer";
 import {GetInTouch} from "./GetInTouch";
+import {Achievements} from "./Achievements";
 
 const Home: FC = () => {
   return (
@@ -10,6 +11,7 @@ const Home: FC = () => {
       <Hero />
       <Offer />
       <GetInTouch />
+      <Achievements />
     </DefaultLayout>
   )
 }
