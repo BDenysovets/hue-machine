@@ -84,7 +84,123 @@
     }
 
     .homeOfferStatsContent {
+      max-width: 100%;
 
+      @media (min-width: $media-md) {
+        padding-top: 41px;
+      }
+
+      @media (min-width: $media-lg) {
+        padding-top: 50px;
+      }
+
+      .homeOfferStatsList {
+        position: relative;
+        padding-top: 37px;
+        display: grid;
+        gap: 47px;
+
+        @media (min-width: $media-md) {
+          padding-top: 41px;
+          margin-left: 70px;
+          grid-template-columns: 1fr 1fr;
+          gap: 95px;
+        }
+
+        @media (min-width: $media-lg) {
+          padding-top: 50px;
+          margin-left: 296px;
+          column-gap: 119px;
+          row-gap: 152px;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100vw;
+          height: 3px;
+          background-color: $dark-color;
+        }
+
+        .homeOfferStatItem {
+          .homeOfferStatItemIndex {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            text-transform: uppercase;
+            margin-bottom: 17px;
+
+            @media (min-width: $media-md) {
+              font-size: 18px;
+              line-height: 22px;
+              margin-bottom: 21px;
+            }
+
+            @media (min-width: $media-lg) {
+              font-size: 20px;
+              line-height: 24px;
+              margin-bottom: 23px;
+            }
+          }
+
+          .homeOfferStatItemTitle {
+            margin-bottom: 15px;
+
+            @media (min-width: $media-md) {
+              margin-bottom: 20px;
+            }
+
+            @media (min-width: $media-lg) {
+              margin-bottom: 22px;
+            }
+          }
+
+          .homeOfferStatItemDescription {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 20px;
+            letter-spacing: 0.05em;
+
+            @media (min-width: $media-md) {
+              font-size: 13px;
+              line-height: 24px;
+            }
+
+            @media (min-width: $media-lg) {
+              font-size: 16px;
+              line-height: 32px;
+            }
+          }
+
+          .homeOfferStatItemIndex,
+          .homeOfferStatItemTitle,
+          .homeOfferStatItemDescription {
+            color: $dark-color;
+            transition: opacity 0.3s;
+            transition-timing-function: ease-in-out;
+          }
+        }
+
+        &:hover {
+          .homeOfferStatItem {
+            .homeOfferStatItemIndex,
+            .homeOfferStatItemTitle,
+            .homeOfferStatItemDescription {
+              opacity: 0.4;
+            }
+
+            &:hover {
+              .homeOfferStatItemIndex,
+              .homeOfferStatItemTitle,
+              .homeOfferStatItemDescription {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
