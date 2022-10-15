@@ -33,9 +33,11 @@ const Achievements = () => (
           </span>
         </p>
       </div>
-      <ul className="homeAchievementsList">
-        {data.map(it => <li className="homeAchievementsListItem">{it}</li>)}
-      </ul>
+      <div className="homeAchievementsListWrapper">
+        <ul className="homeAchievementsList">
+          {data.map(it => <li className="homeAchievementsListItem"><a href="/" target="_blank">{it}</a></li>)}
+        </ul>
+      </div>
     </div>
   </Content>
 )
