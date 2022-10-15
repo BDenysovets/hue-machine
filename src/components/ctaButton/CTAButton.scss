@@ -90,7 +90,7 @@
   }
 }
 
-.light .ctaButton {
+.light.ctaButton {
   .title {
     color: $lighter-color;
   }
@@ -100,3 +100,16 @@
     color: $light-color;
   }
 }
+
+.dark.ctaButton {
+  .title {
+    color: $dark-color;
+  }
+
+  .line,
+  .subtitle {
+    background-color: $dark-color;
+    color: $dark-color;
+  }
+}
+

@@ -16,7 +16,7 @@ const NotFound: FC = () => {
         </div>
         <div className="actions">
           <div className="actionsWrapper">
-            <CTAButton title="Hop on" subtitle="It will take you back home" link="/" />
+            <CTAButton title="Hop on" theme="light" subtitle="It will take you back home" link="/" />
           </div>
         </div>
       </Content>

@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.homeCallToAction {
+  @include lightTheme;
+
+  .homeCallToActionWrapper {
+    display: grid;
+    gap: 40px;
+    padding: 70px 0 51px;
+
+    @media (min-width: $media-md) {
+      gap: 80px;
+      padding: 120px 0 100px;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 116px;
+      padding: 156px 0 135px 198px;
+    }
+  }
+}

@@ -12,7 +12,7 @@ const Hero = () => {
           We tailor communication. Communication for the purpose, solution
           & values through designing tailor-made products. Within tactic and strategy.
         </Title>
-        <CTAButton title="Get in touch" link="/" subtitle="*we don’t consider any gambling" />
+        <CTAButton title="Get in touch" theme="light" link="/" subtitle="*we don’t consider any gambling" />
       </div>
     </Content>
   )

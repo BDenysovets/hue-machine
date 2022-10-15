@@ -22,7 +22,7 @@ const Latest = () => (
       <p className="homeLatestTitle">Latest FROM Our clients</p>
       <ul className="homeLatestGrid">
         {data.map(it => (
-          <li className="homeLatestGridItem">
+          <li className="homeLatestGridItem" key={it.title}>
             <p className="homeLatestGridItemTitle">{it.title}</p>
             <p className="homeLatestGridItemSubtitle">{it.subtitle}</p>
           </li>
