@@ -4,7 +4,7 @@ import './GetInTouch.scss'
 
 const ListItem = () => (
   <Link to="/contact" className="homeGetInTouchCarouselItem">
-    <span>Get in touch</span>
+    <span>Get in touch </span>
     <span>We are here to help</span>
   </Link>
 )

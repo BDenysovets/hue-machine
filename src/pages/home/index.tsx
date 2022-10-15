@@ -4,6 +4,7 @@ import {Hero} from "./Hero";
 import {Offer} from "./Offer";
 import {GetInTouch} from "./GetInTouch";
 import {Achievements} from "./Achievements";
+import {Latest} from "./Latest";
 
 const Home: FC = () => {
   return (
@@ -12,6 +13,7 @@ const Home: FC = () => {
       <Offer />
       <GetInTouch />
       <Achievements />
+      <Latest />
     </DefaultLayout>
   )
 }

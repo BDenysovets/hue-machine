@@ -1,0 +1,35 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.homeLatest {
+  @include darkTheme;
+
+  .homeLatestWrapper {
+    display: grid;
+    padding: 50px;
+    gap: 35px;
+
+    @media (min-width: $media-md) {
+      padding: 50px;
+    }
+
+    @media (min-width: $media-lg) {
+      padding: 87px 0 84px;
+      gap: 48px;
+    }
+
+    .homeLatestTitle {
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(243, 242, 232, 0.5);
+
+      @media (min-width: $media-lg) {
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+  }
+}
