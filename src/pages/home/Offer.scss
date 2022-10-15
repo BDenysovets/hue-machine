@@ -1,0 +1,90 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.homeOffer {
+  @include lightTheme;
+
+  .homeOfferWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 79px;
+    padding: 100px 0 80px;
+
+    @media (min-width: $media-md) {
+      gap: 96px;
+      padding: 130px 0 80px;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 127px;
+      padding: 260px 0 220px;
+    }
+  }
+
+  .homeOfferTitling {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 80px;
+
+    @media (min-width: $media-md) {
+      max-width: 375px;
+      gap: 25px;
+      margin-bottom: 100px;
+    }
+
+    @media (min-width: $media-lg) {
+      max-width: 671px;
+      gap: 30px;
+      margin-bottom: 180px;
+    }
+
+    .homeOfferDescription {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.05em;
+
+      @media (min-width: $media-md) {
+        font-size: 14px;
+        line-height: 24px;
+      }
+
+      @media (min-width: $media-lg) {
+        font-size: 16px;
+        line-height: 32px;
+      }
+    }
+  }
+
+  .homeOfferStats {
+    display: grid;
+    gap: 45px;
+
+    @media (min-width: $media-md) {
+      gap: 63px;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 105px;
+    }
+
+    .homeOfferStatsTitle {
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+
+      @media (min-width: $media-lg) {
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+
+    .homeOfferStatsContent {
+
+    }
+  }
+}

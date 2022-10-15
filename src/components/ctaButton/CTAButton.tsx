@@ -4,10 +4,10 @@ import {useNavigate} from "react-router-dom";
 type Props = {
   title: string;
   subtitle?: string;
-  link: string;
+  link?: string;
 }
 
-const CTAButton = ({title, subtitle, link}: Props) => {
+const CTAButton = ({title, subtitle, link = "/"}: Props) => {
   const navigate = useNavigate();
 
   return (

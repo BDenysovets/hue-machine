@@ -1,10 +1,13 @@
 import {FC} from "react";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
+import {Hero} from "./Hero";
+import {Offer} from "./Offer";
 
 const Home: FC = () => {
   return (
     <DefaultLayout>
-      <h1>Home Page</h1>
+      <Hero />
+      <Offer />
     </DefaultLayout>
   )
 }

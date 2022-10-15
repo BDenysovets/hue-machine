@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react'
 import cx from 'classnames'
 
 import { AppTheme } from "../../types/types";
+import {Menu} from "../menu/Menu";
 import { Header } from './Header'
 import { Footer } from './Footer'
 
@@ -18,11 +19,14 @@ type Props = {
 const DefaultLayout = ({ children, theme = 'dark', hasHeader = true, hasFooter = true, hasBurger = true, className }: PropsWithChildren<Props>) => {
   return (
     <div className={cx('app', theme, className)}>
-      {hasHeader && <Header hasBurger={hasBurger} theme={theme} />}
-      <div>
-        {children}
+      <div className='appWrapper'>
+        {hasHeader && <Header hasBurger={hasBurger} theme={theme} />}
+        <div className="appPageContent">
+          {children}
+        </div>
+        {hasFooter && <Footer />}
       </div>
-      {hasFooter && <Footer />}
+      <Menu />
     </div>
   )
 }

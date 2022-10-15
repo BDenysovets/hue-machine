@@ -43,6 +43,7 @@
     border-style: solid;
     transition: transform 0.3s;
     transform-origin: center center;
+    transition-timing-function: ease-in-out;
     border-width: 1px;
 
     @media (min-width: $media-sm) {

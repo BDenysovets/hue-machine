@@ -1,0 +1,20 @@
+@import "../../styles/variables";
+
+.homeHero {
+  .homeHeroWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 79px;
+    padding: 90px 0 92px;
+
+    @media (min-width: $media-md) {
+      gap: 96px;
+      padding: 140px 0 69px;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 127px;
+      padding: 277px 0 81px;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.appWrapper {
+  position: relative;
+  z-index: 1;
+
+  padding-top: 62px;
+
+  @media (min-width: $media-md) {
+    padding-top: 90px;
+  }
+
+  .appPageContent {
+    position: relative;
+    z-index: 5;
+  }
+}

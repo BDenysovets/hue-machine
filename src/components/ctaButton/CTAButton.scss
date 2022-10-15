@@ -55,8 +55,10 @@
 
   .line {
     position: absolute;
-    transition: transform 0.3s, oapcity 0.3s, width 0.3s;
+    transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    transition-timing-function: ease-in-out;
     height: 2px;
+    pointer-events: none;
     background-color: $light-color;
 
     &.top {

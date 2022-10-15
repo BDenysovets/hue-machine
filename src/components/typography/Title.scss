@@ -63,6 +63,25 @@
   &-4 {
     font-weight: 700;
     font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.03em;
+
+    @media (min-width: $media-md) {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.1em;
+    }
+
+    @media (min-width: $media-lg) {
+      font-size: 24px;
+      line-height: 29px;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &-5 {
+    font-weight: 700;
+    font-size: 14px;
     line-height: 16px;
 
     @media (min-width: $media-md) {
