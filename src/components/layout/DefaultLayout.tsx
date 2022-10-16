@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import {PropsWithChildren, useEffect} from 'react'
 import cx from 'classnames'
 
 import { AppTheme } from "../../types/types";
@@ -17,6 +17,10 @@ type Props = {
 }
 
 const DefaultLayout = ({ children, theme = 'dark', hasHeader = true, hasFooter = true, hasBurger = true, className }: PropsWithChildren<Props>) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className={cx('app', theme, className)}>
       <div className='appWrapper'>
