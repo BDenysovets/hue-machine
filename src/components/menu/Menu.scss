@@ -39,6 +39,7 @@
   left: 0;
   height: 100vh;
   width: 100vw;
+  overflow: hidden scroll;
   background-color: $light-color;
   transform: translateX(-100%);
   opacity: 0;
@@ -77,10 +78,168 @@
   }
 
   .menuInner {
+    padding: 21px 0;
+
     @media (min-width: $media-md) {
       width: 100%;
       max-width: 60%;
+      padding: 35px 0;
     }
+
+    @media (min-width: $media-lg) {
+      padding: 35px 0 44px;
+    }
+  }
+
+  .menuListWrapper {
+    position: relative;
+    margin-top: 182px;
+
+    @media (min-width: $media-md) {
+      margin-top: 186px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin-top: 226px;
+    }
+
+    .menuList {
+      position: relative;
+      display: grid;
+      z-index: 5;
+      transition: opacity 0s;
+      transition-delay: 1.2s;
+      gap: 23px;
+      opacity: 0;
+      visibility: hidden;
+
+      &.menuListRunning {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      @media (min-width: $media-md) {
+        gap: 26px;
+      }
+
+      @media (min-width: $media-lg) {
+        gap: 18px;
+      }
+
+      .menuListItem {
+        cursor: pointer;
+        width: fit-content;
+        position: relative;
+        user-select: none;
+
+        &:hover {
+          .menuListItemTitle,
+          .menuListItemValue {
+            color: $dark-color;
+          }
+
+          &.active::before {
+            background-color: $dark-color;
+          }
+        }
+
+        &.active::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          transition: background-color 0.3s;
+          transform: translateY(-50%);
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #8A8B86;
+        }
+      }
+
+      .menuListItemTitle {
+        font-weight: 900;
+        font-size: 28px;
+        line-height: 34px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #8A8B86;
+        transition: color 0.3s;
+
+        @media (min-width: $media-md) {
+          font-size: 34px;
+          line-height: 41px;
+        }
+
+        @media (min-width: $media-lg) {
+          font-size: 40px;
+          line-height: 49px;
+        }
+      }
+
+      .menuListItemValue {
+        position: absolute;
+        left: calc(100% + 10px);
+        top: -5px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 16px;
+        letter-spacing: 0.1em;
+        color: #8A8B86;
+
+        @media (min-width: $media-md) {
+          font-size: 15px;
+          line-height: 18px;
+        }
+
+        @media (min-width: $media-lg) {
+          font-size: 20px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+
+  .menuListDecorator {
+    position: absolute;
+    z-index: 10;
+    width: 100vw;
+    left: 100vw;
+    height: 3px;
+    background-color: #8A8B86;
+
+    &.menuListDecoratorRunning {
+      animation: decoratorAppear 1.6s ease-in-out 0s forwards;
+    }
+  }
+}
+
+@keyframes decoratorAppear {
+  0% {
+    top: 200%;
+    left: 100vw;
+  }
+
+  15% {
+    left: 0;
+  }
+
+  25% {
+    top: 200%;
+    height: 3px;
+    left: 0;
+  }
+
+  65% {
+    height: 200%;
+    top: -29px;
+    left: 0;
+  }
+
+  100% {
+    height: 3px;
+    top: -29px;
+    left: 0;
   }
 }
 
