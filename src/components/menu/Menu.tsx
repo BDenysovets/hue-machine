@@ -46,7 +46,7 @@ const menuItems: Array<MenuItemType> = [
 ]
 
 const MenuContent = () => {
-  const { isMenuRunning, isOpen } = useMenuContext();
+  const { isMenuRunning, isOpen, closeMenu } = useMenuContext();
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
@@ -75,6 +75,7 @@ const MenuContent = () => {
                   <li
                     className={cx('menuListItem', pathname.includes(it.link) && 'active')}
                     onClick={() => {
+                      closeMenu && closeMenu();
                       navigate(it.link)
                     }}
                   >
