@@ -25,12 +25,12 @@ const DefaultLayout = ({ children, theme = 'dark', hasHeader = true, hasFooter =
     <div className={cx('app', theme, className)}>
       <div className='appWrapper'>
         {hasHeader && <Header hasBurger={hasBurger} theme={theme} />}
+        <Menu />
         <div className="appPageContent">
           {children}
         </div>
         {hasFooter && <Footer />}
       </div>
-      <Menu />
     </div>
   )
 }

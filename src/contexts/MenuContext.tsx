@@ -1,10 +1,12 @@
-import {createContext, ReactNode, useContext, useState} from 'react'
+import {createContext, ReactNode, useContext, useEffect, useState} from 'react'
 
 type DefaultValuesType = {
   isOpen?: boolean;
   openMenu?: () => void;
   closeMenu?: () => void;
   toggleMenu?: () => void;
+  isMenuRunning?: boolean;
+  setMenuRunning?: () => void;
 }
 
 const defaultValues: DefaultValuesType = {
@@ -12,6 +14,8 @@ const defaultValues: DefaultValuesType = {
   openMenu: () => undefined,
   closeMenu: () => undefined,
   toggleMenu: () => undefined,
+  isMenuRunning: false,
+  setMenuRunning: () => undefined,
 }
 
 const Context = createContext<DefaultValuesType>(defaultValues)
@@ -22,14 +26,30 @@ const useMenuContext: UseMenuContextType = () => useContext(Context)
 
 const MenuProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(defaultValues.isOpen)
+  const [isMenuRunning, setIsMenuRunning] = useState(defaultValues.isMenuRunning)
+
+  useEffect(() => {
+    isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1600)
+  }, [isMenuRunning])
 
   return (
     <Context.Provider
       value={{
         isOpen,
-        openMenu: () => setIsOpen(true),
-        closeMenu: () => setIsOpen(false),
-        toggleMenu: () => setIsOpen(prevState => !prevState)
+        isMenuRunning,
+        setMenuRunning: () => setIsMenuRunning(true),
+        openMenu: () => {
+          setIsMenuRunning(true)
+          setIsOpen(true)
+        },
+        closeMenu: () => {
+          setIsMenuRunning(true)
+          setIsOpen(false)
+        },
+        toggleMenu: () => {
+          setIsMenuRunning(true)
+          setIsOpen(prevState => !prevState)
+        }
       }}
     >
       {children}
