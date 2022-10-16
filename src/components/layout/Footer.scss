@@ -51,6 +51,15 @@
     }
 
     .footerAddressItem {
+      max-width: 150px;
+
+      @media (min-width: $media-md) {
+        max-width: 205px;
+      }
+
+      @media (min-width: $media-lg) {
+        max-width: 208px;
+      }
 
       .footerAddressTitle {
         font-weight: 700;
