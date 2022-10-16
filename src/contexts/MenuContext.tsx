@@ -40,15 +40,15 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
         setMenuRunning: () => setIsMenuRunning(true),
         openMenu: () => {
           setIsMenuRunning(true)
-          setIsOpen(true)
+          !isMenuRunning && setIsOpen(true)
         },
         closeMenu: () => {
           setIsMenuRunning(true)
-          setIsOpen(false)
+          !isMenuRunning && setIsOpen(false)
         },
         toggleMenu: () => {
           setIsMenuRunning(true)
-          setIsOpen(prevState => !prevState)
+          !isMenuRunning && setIsOpen(prevState => !prevState)
         }
       }}
     >
