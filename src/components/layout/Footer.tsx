@@ -52,7 +52,7 @@ const Footer = () => {
           <Logo theme="light" />
           <div className="footerAddresses">
             {addresses.map(address => (
-              <div className="footerAddressItem">
+              <div className="footerAddressItem" key={address.text}>
                 <p className="footerAddressTitle">{address.title}</p>
                 <a href={address.link}>{address.text}</a>
               </div>
@@ -61,7 +61,7 @@ const Footer = () => {
         </div>
         <ul className="footerSocials">
           {socials.map(social => (
-            <li className="footerSocialsItem">
+            <li className="footerSocialsItem" key={social.text}>
               <a href={social.link} target="_blank" rel="noreferrer">{social.text}</a>
             </li>
           ))}
