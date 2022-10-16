@@ -8,13 +8,14 @@ type Props = {
   subtitle?: string;
   link?: string;
   theme?: AppTheme
+  onClick?: () => void;
 }
 
-const CTAButton = ({title, subtitle, link = "/", theme = "dark"}: Props) => {
+const CTAButton = ({title, subtitle, link = "/", theme = "dark", onClick}: Props) => {
   const navigate = useNavigate();
 
   return (
-    <div className={cx('ctaButton', theme)} onClick={() => navigate(link)}>
+    <div className={cx('ctaButton', theme)} onClick={() => onClick ? onClick() : navigate(link)}>
       <div className="line top"/>
       <div className="line bottom"/>
       <div className="title">{title}</div>

@@ -1,0 +1,61 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.contactPage {
+  padding: 31px 0;
+
+  @media (min-width: $media-md) {
+    padding: 15px 0;
+  }
+
+  @media (min-width: $media-lg) {
+    padding: 48px 0;
+  }
+
+  .contactForm {
+    display: grid;
+    gap: 50px;
+  }
+
+  .contactPageTitle {
+    margin-bottom: 40px;
+
+    @media (min-width: $media-md) {
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin-bottom: 29px;
+    }
+  }
+
+  .contactPageForm {
+    display: flex;
+    justify-content: flex-end;
+
+    .contactPageFormWrapper {
+      width: 100%;
+
+      @media (min-width: $media-md) {
+        max-width: 355px;
+      }
+
+      @media (min-width: $media-lg) {
+        max-width: 349px;
+        margin-right: 320px;
+      }
+    }
+
+    .formSubmission {
+      margin-top: 58px;
+
+      @media (min-width: $media-md) {
+        margin-top: 65px;
+      }
+
+      @media (min-width: $media-lg) {
+        margin-top: 79px;
+      }
+    }
+  }
+}
