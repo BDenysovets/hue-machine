@@ -91,25 +91,83 @@
     }
   }
 
-  .menuListWrapper {
-    position: relative;
-    margin-top: 182px;
+  .menuSocialsList {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 23px;
+    transition: opacity 0s;
+    transition-delay: 1.2s;
+    opacity: 0;
+    visibility: hidden;
+
+    &.menuSocialsListRunning {
+      visibility: visible;
+      opacity: 1;
+    }
 
     @media (min-width: $media-md) {
-      margin-top: 186px;
+      gap: 33px;
     }
 
     @media (min-width: $media-lg) {
-      margin-top: 226px;
+      gap: 31px;
+    }
+
+    .menuSocialsListItem {
+      &:not(:last-child) a::after {
+        height: 100%;
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: $dark-color;
+        right: -12px;
+
+        @media (min-width: $media-md) {
+          right: -16px;
+        }
+
+        @media (min-width: $media-lg) {
+          right: -15px;
+        }
+      }
+
+      a {
+        position: relative;
+        font-weight: 600;
+        font-size: 9px;
+        line-height: 11px;
+        text-transform: uppercase;
+        color: $dark-color;
+
+        @media (min-width: $media-lg) {
+          font-size: 10px;
+          line-height: 12px;
+        }
+      }
+    }
+  }
+
+  .menuListWrapper {
+    position: relative;
+    margin: 182px 0 150px;
+
+    @media (min-width: $media-md) {
+      margin: 186px 0 120px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin: 226px 0 112px;
     }
 
     .menuList {
       position: relative;
       display: grid;
       z-index: 5;
+      gap: 23px;
       transition: opacity 0s;
       transition-delay: 1.2s;
-      gap: 23px;
       opacity: 0;
       visibility: hidden;
 
@@ -210,6 +268,11 @@
 
     &.menuListDecoratorRunning {
       animation: decoratorAppear 1.6s ease-in-out 0s forwards;
+    }
+
+    &.menuListDecoratorEnding {
+      animation: decoratorAppear 1.6s ease-in-out 0s forwards;
+      animation-direction: reverse;
     }
   }
 }

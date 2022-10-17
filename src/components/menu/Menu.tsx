@@ -4,6 +4,7 @@ import cx from "classnames";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Content} from "../layout/Content";
 import {Logo} from "../logo/Logo";
+import {socials} from "../layout/Footer";
 
 const Cover = () => {
   const { isMenuRunning } = useMenuContext();
@@ -73,7 +74,8 @@ const MenuContent = () => {
               >
                 {menuItems.map(it => (
                   <li
-                    className={cx('menuListItem', pathname.includes(it.link) && 'active')}
+                    key={it.title}
+                    className={cx('menuListItem', pathname === it.link && 'active')}
                     onClick={() => {
                       closeMenu && closeMenu();
                       navigate(it.link)
@@ -81,6 +83,20 @@ const MenuContent = () => {
                   >
                     <p className="menuListItemTitle">{it.title}</p>
                     {it.value && <p className="menuListItemValue">{it.value}</p>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="menuSocialsWrapper">
+              <ul className={cx('menuSocialsList',
+                {
+                  'menuSocialsListRunning': isOpen && !isMenuRunning,
+                  'menuSocialsListRunningRunningEnding': !isOpen && isMenuRunning
+                }
+              )}>
+                {socials.map(social => (
+                  <li className="menuSocialsListItem" key={social.text}>
+                    <a href={social.link} target="_blank" rel="noreferrer">{social.text}</a>
                   </li>
                 ))}
               </ul>
