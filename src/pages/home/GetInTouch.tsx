@@ -14,7 +14,7 @@ const GetInTouch = () => {
   return (
     <Content className="homeGetInTouch">
       <div className="homeGetInTouchCarousel">
-        {Array.from(Array(16).keys()).map(it => <ListItem key={it} />)}
+        {Array.from(Array(160).keys()).map(it => <ListItem key={it} />)}
       </div>
     </Content>
   )
