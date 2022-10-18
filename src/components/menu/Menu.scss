@@ -193,12 +193,16 @@
         &:hover {
           .menuListItemTitle,
           .menuListItemValue {
-            color: $dark-color;
+            color: #8A8B86;
           }
 
           &.active::before {
-            background-color: $dark-color;
+            background-color: #8A8B86;
           }
+        }
+
+        &.active .menuListItemTitle {
+          color: #8A8B86;
         }
 
         &.active::before {
@@ -221,7 +225,7 @@
         line-height: 34px;
         letter-spacing: 0.02em;
         text-transform: uppercase;
-        color: #8A8B86;
+        color: $dark-color;
         transition: color 0.3s;
 
         @media (min-width: $media-md) {

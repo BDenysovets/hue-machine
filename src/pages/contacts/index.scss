@@ -3,6 +3,7 @@
 
 .contactPage {
   padding: 31px 0;
+  min-height: 50vh;
 
   @media (min-width: $media-md) {
     padding: 15px 0;
@@ -26,6 +27,88 @@
 
     @media (min-width: $media-lg) {
       margin-bottom: 29px;
+    }
+  }
+
+  .formSuccessWrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 60px;
+    padding-top: 30px;
+
+    @media (min-width: $media-md) {
+      flex-direction: row;
+      gap: 130px;
+      padding-left: 40px;
+      padding-top: 50px;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 152px;
+      padding-left: 60px;
+      padding-top: 60px;
+    }
+  }
+
+  .formSuccessContent {
+    display: grid;
+    gap: 80px;
+
+    @media (min-width: $media-md) {
+      gap: 100px;
+      align-self: flex-end;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 113px;
+    }
+  }
+
+  .formSuccessContentTitling {
+    display: grid;
+    gap: 15px;
+
+    @media (min-width: $media-lg) {
+      gap: 19px;
+    }
+  }
+
+  .formSuccessContentDescription {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: 0.05em;
+    color: $light-color;
+
+    @media (min-width: $media-md) {
+      font-size: 15px;
+      line-height: 30px;
+    }
+
+    @media (min-width: $media-lg) {
+      font-size: 16px;
+      line-height: 32px;
+    }
+  }
+
+  .emailSentImage {
+    height: 300px;
+
+    @media (min-width: $media-md) {
+      height: 350px;
+      margin-bottom: 100px;
+    }
+
+    @media (min-width: $media-lg) {
+      height: 429px;
+      margin-bottom: 120px;
+    }
+
+    & img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
     }
   }
 
@@ -164,6 +247,13 @@ input {
   background-color: transparent;
   border: none;
 
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    color: $light-color;
+    background-color: transparent;
+  }
+
   &:active,
   &:focus {
     outline: none;
@@ -199,6 +289,13 @@ textarea {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 20px;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    color: $light-color;
+    background-color: transparent;
+  }
 
   &::-webkit-scrollbar {
     display: none;

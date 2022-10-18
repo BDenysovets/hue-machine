@@ -1,7 +1,7 @@
 import './Menu.scss'
 import {useMenuContext} from "../../contexts/MenuContext";
 import cx from "classnames";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {Content} from "../layout/Content";
 import {Logo} from "../logo/Logo";
 import {socials} from "../layout/Footer";
@@ -76,12 +76,12 @@ const MenuContent = () => {
                     key={it.title}
                     className={cx('menuListItem', pathname === it.link && 'active')}
                   >
-                    <a href={it.link} onClick={() => {
+                    <Link to={it.link} onClick={() => {
                       closeMenu && closeMenu();
                     }}>
                       <p className="menuListItemTitle">{it.title}</p>
                       {it.value && <p className="menuListItemValue">{it.value}</p>}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
