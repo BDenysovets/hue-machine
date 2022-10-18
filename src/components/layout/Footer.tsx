@@ -54,7 +54,7 @@ const Footer = () => {
             {addresses.map(address => (
               <div className="footerAddressItem" key={address.text}>
                 <p className="footerAddressTitle">{address.title}</p>
-                <a href={address.link}>{address.text}</a>
+                <a href={address.link} rel="noreferrer" target={address.link.startsWith('https') ? "_blank" : "_self"}>{address.text}</a>
               </div>
             ))}
           </div>

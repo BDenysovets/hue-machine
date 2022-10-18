@@ -126,15 +126,16 @@
 
       .footerSocialsItem {
         position: relative;
+        padding: 20px 0;
 
         &:after {
           content: '';
           position: absolute;
-          height: 100%;
+          height: 10px;
           width: 1px;
           background-color: $lighter-color;
-          top: 0;
-          bottom: 0;
+          top: 50%;
+          transform: translateY(-50%);
           right: -11px;
 
           @media (min-width: $media-md) {
