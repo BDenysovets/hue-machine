@@ -1,20 +1,36 @@
 @import "../../styles/variables";
 
 .homeHero {
+  height: calc(100vh - 62px);
+
+  @media (min-width: $media-md) {
+    height: calc(100vh - 90px);
+  }
+
   .homeHeroWrapper {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 79px;
-    padding: 90px 0 92px;
+    gap: 10vh;
+    padding: 25vh 0 10vh;
 
     @media (min-width: $media-md) {
-      gap: 96px;
-      padding: 140px 0 69px;
+      gap: 15vh;
+      padding: 25vh 0 5vh;
     }
 
     @media (min-width: $media-lg) {
-      gap: 127px;
-      padding: 277px 0 81px;
+      gap: 20vh;
+      padding: 25vh 0 5vh;
+    }
+
+    @media (min-width: $media-xl) {
+      gap: 20vh;
+      padding: 32vh 0 5vh;
+    }
+
+    @media (min-width: $media-xxl) {
+      gap: 20vh;
+      padding: 35vh 0 5vh;
     }
   }
 }

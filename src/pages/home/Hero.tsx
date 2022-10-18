@@ -1,8 +1,8 @@
 import {Content} from "../../components/layout/Content";
 import {Title} from "../../components/typography/Title";
+import {CTAButton} from "../../components/ctaButton/CTAButton";
 
 import './Hero.scss'
-import {CTAButton} from "../../components/ctaButton/CTAButton";
 
 const Hero = () => {
   return (
@@ -12,7 +12,7 @@ const Hero = () => {
           We tailor communication. Communication for the purpose, solution
           & values through designing tailor-made products. Within tactic and strategy.
         </Title>
-        <CTAButton title="Get in touch" theme="light" link="/" subtitle="*we don’t consider any gambling" />
+        <CTAButton title="Get in touch" theme="light" link="/contacts" subtitle="*we don’t consider any gambling" />
       </div>
     </Content>
   )
