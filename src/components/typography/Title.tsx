@@ -6,11 +6,10 @@ type Props = {
   level: 1 | 2 | 3 | 4 | 5 | 6;
   className?: string;
   upperCase?: boolean;
-
 }
 
 const Title = ({ children, level = 1, className, upperCase }: PropsWithChildren<Props>) => {
-  const setClassNames = (level: number) => cx(className, `typography-title-${level}`, upperCase && upperCase);
+  const setClassNames = (level: number) => cx(className, `typography-title typography-title-${level}`, upperCase && 'upperCase');
 
   switch (level) {
     case 1:

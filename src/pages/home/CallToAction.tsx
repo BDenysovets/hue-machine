@@ -6,7 +6,7 @@ import {CTAButton} from "../../components/ctaButton/CTAButton";
 const CallToAction = () => (
   <Content className="homeCallToAction">
     <div className="homeCallToActionWrapper">
-      <Title level={2}>
+      <Title level={2} upperCase>
         Let’s face all<br />
         challenges together
       </Title>
