@@ -32,7 +32,7 @@ const DefaultLayout = ({ children, theme = 'dark', hasHeader = true, hasFooter =
         <div className="appPageContent">
           {children}
         </div>
-        {hasFooter && <Footer />}
+        {hasFooter && <Footer theme={theme} />}
       </div>
     </div>
   )

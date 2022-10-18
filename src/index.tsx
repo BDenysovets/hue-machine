@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import {MenuProvider} from "./contexts/MenuContext";
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <MenuProvider>
-        <App/>
+        <HelmetProvider>
+          <App/>
+        </HelmetProvider>
       </MenuProvider>
     </BrowserRouter>
   </React.StrictMode>

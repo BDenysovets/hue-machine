@@ -1,6 +1,8 @@
 import {Content} from "./Content";
 import './Footer.scss'
 import {Logo} from "../logo/Logo";
+import {AppTheme} from "../../types/types";
+import cx from "classnames";
 
 const socials = [
   {
@@ -44,9 +46,13 @@ const addresses = [
   },
 ]
 
-const Footer = () => {
+type Props = {
+  theme?: AppTheme
+}
+
+const Footer = ({ theme }: Props) => {
   return (
-    <Content className="footer">
+    <Content className={cx('footer', theme)}>
       <div className="footerWrapper">
         <div className="footerContent">
           <Logo theme="light" />

@@ -1,4 +1,5 @@
 import {createContext, ReactNode, useContext, useEffect, useState} from 'react'
+import {useNavigate} from "react-router-dom";
 
 type DefaultValuesType = {
   isOpen?: boolean;
@@ -6,7 +7,10 @@ type DefaultValuesType = {
   closeMenu?: () => void;
   toggleMenu?: () => void;
   isMenuRunning?: boolean;
+  isCoverRunning?: boolean;
   setMenuRunning?: () => void;
+  setIsCoverRunning?: () => void;
+  goToPage?: (path: string) => void;
 }
 
 const defaultValues: DefaultValuesType = {
@@ -15,7 +19,9 @@ const defaultValues: DefaultValuesType = {
   closeMenu: () => undefined,
   toggleMenu: () => undefined,
   isMenuRunning: false,
+  isCoverRunning: false,
   setMenuRunning: () => undefined,
+  setIsCoverRunning: () => undefined,
 }
 
 const Context = createContext<DefaultValuesType>(defaultValues)
@@ -25,12 +31,18 @@ type UseMenuContextType = () => DefaultValuesType
 const useMenuContext: UseMenuContextType = () => useContext(Context)
 
 const MenuProvider = ({ children }: { children: ReactNode }) => {
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(defaultValues.isOpen)
   const [isMenuRunning, setIsMenuRunning] = useState(defaultValues.isMenuRunning)
+  const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isMenuRunning)
 
   useEffect(() => {
     isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1400)
   }, [isMenuRunning])
+
+  useEffect(() => {
+    isCoverRunning && setTimeout(() => setIsCoverRunning(false), 1400)
+  }, [isCoverRunning])
 
   return (
     <Context.Provider
@@ -49,6 +61,10 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
         toggleMenu: () => {
           setIsMenuRunning(true)
           !isMenuRunning && setIsOpen(prevState => !prevState)
+        },
+        goToPage: (path: string) => {
+          setIsCoverRunning(true)
+          !isCoverRunning && navigate(path)
         }
       }}
     >
