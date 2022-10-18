@@ -1,16 +1,16 @@
 import './Menu.scss'
 import {useMenuContext} from "../../contexts/MenuContext";
 import cx from "classnames";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import {Content} from "../layout/Content";
 import {Logo} from "../logo/Logo";
 import {socials} from "../layout/Footer";
 
 const Cover = () => {
-  const { isMenuRunning } = useMenuContext();
+  const {isMenuRunning} = useMenuContext();
 
   return (
-    <div className={cx('menuCover', isMenuRunning && 'running')} />
+    <div className={cx('menuCover', isMenuRunning && 'running')}/>
   )
 }
 
@@ -47,16 +47,15 @@ const menuItems: Array<MenuItemType> = [
 ]
 
 const MenuContent = () => {
-  const { isMenuRunning, isOpen, closeMenu } = useMenuContext();
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
+  const {isMenuRunning, isOpen, closeMenu} = useMenuContext();
+  const {pathname} = useLocation()
 
   return (
-    <div className={cx('menu', { 'open': isOpen, 'closing': !isOpen && isMenuRunning })}>
+    <div className={cx('menu', {'open': isOpen, 'closing': !isOpen && isMenuRunning})}>
       <Content className="menuContainer">
         <div className="menuWrapper">
           <div className="menuInner">
-            <Logo theme="dark" />
+            <Logo theme="dark"/>
             <div className="menuListWrapper">
               <div
                 className={cx('menuListDecorator',
@@ -76,13 +75,13 @@ const MenuContent = () => {
                   <li
                     key={it.title}
                     className={cx('menuListItem', pathname === it.link && 'active')}
-                    onClick={() => {
-                      closeMenu && closeMenu();
-                      navigate(it.link)
-                    }}
                   >
-                    <p className="menuListItemTitle">{it.title}</p>
-                    {it.value && <p className="menuListItemValue">{it.value}</p>}
+                    <a href={it.link} onClick={() => {
+                      closeMenu && closeMenu();
+                    }}>
+                      <p className="menuListItemTitle">{it.title}</p>
+                      {it.value && <p className="menuListItemValue">{it.value}</p>}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -110,9 +109,9 @@ const MenuContent = () => {
 
 const Menu = () => (
   <>
-    <Cover />
-    <MenuContent />
+    <Cover/>
+    <MenuContent/>
   </>
 )
 
-export { Menu }
+export {Menu}

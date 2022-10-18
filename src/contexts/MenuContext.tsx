@@ -29,7 +29,7 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
   const [isMenuRunning, setIsMenuRunning] = useState(defaultValues.isMenuRunning)
 
   useEffect(() => {
-    isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1600)
+    isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1400)
   }, [isMenuRunning])
 
   return (
