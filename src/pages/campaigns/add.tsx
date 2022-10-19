@@ -1,6 +1,6 @@
 import {
   Box,
-  Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography
+  Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField
 } from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { FC, useState } from 'react';
