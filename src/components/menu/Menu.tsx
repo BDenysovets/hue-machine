@@ -6,11 +6,16 @@ import {Content} from "../layout/Content";
 import {Logo} from "../logo/Logo";
 import {socials} from "../layout/Footer";
 
-const Cover = () => {
-  const {isMenuRunning} = useMenuContext();
+type CoverType = {
+  type: 'menu' | 'app'
+}
+
+export const Cover = ({ type }: CoverType) => {
+  const {isMenuRunning, isCoverRunning} = useMenuContext();
+  const trigger = type === 'app' ? isCoverRunning : isMenuRunning
 
   return (
-    <div className={cx('menuCover', isMenuRunning && 'running')}/>
+    <div className={cx('menuCover', { 'running': trigger })}/>
   )
 }
 
@@ -109,7 +114,7 @@ const MenuContent = () => {
 
 const Menu = () => (
   <>
-    <Cover/>
+    <Cover type="menu" />
     <MenuContent/>
   </>
 )

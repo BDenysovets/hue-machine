@@ -10,7 +10,8 @@ type DefaultValuesType = {
   isCoverRunning?: boolean;
   setMenuRunning?: () => void;
   setIsCoverRunning?: () => void;
-  goToPage?: (path: string) => void;
+  goToPage: (path: string) => void;
+  cover: 'stable' | 'running' | 'ended'
 }
 
 const defaultValues: DefaultValuesType = {
@@ -18,10 +19,12 @@ const defaultValues: DefaultValuesType = {
   openMenu: () => undefined,
   closeMenu: () => undefined,
   toggleMenu: () => undefined,
+  goToPage: () => undefined,
   isMenuRunning: false,
   isCoverRunning: false,
   setMenuRunning: () => undefined,
   setIsCoverRunning: () => undefined,
+  cover: 'stable'
 }
 
 const Context = createContext<DefaultValuesType>(defaultValues)
@@ -35,18 +38,23 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(defaultValues.isOpen)
   const [isMenuRunning, setIsMenuRunning] = useState(defaultValues.isMenuRunning)
   const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isMenuRunning)
+  const [cover, setCover] = useState(defaultValues.cover)
 
   useEffect(() => {
     isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1400)
   }, [isMenuRunning])
 
   useEffect(() => {
-    isCoverRunning && setTimeout(() => setIsCoverRunning(false), 1400)
+    isCoverRunning && setTimeout(() => {
+      setIsCoverRunning(false)
+      setCover('ended')
+    }, 1400)
   }, [isCoverRunning])
 
   return (
     <Context.Provider
       value={{
+        cover,
         isOpen,
         isMenuRunning,
         setMenuRunning: () => setIsMenuRunning(true),
@@ -64,6 +72,7 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
         },
         goToPage: (path: string) => {
           setIsCoverRunning(true)
+          setCover('running')
           !isCoverRunning && navigate(path)
         }
       }}

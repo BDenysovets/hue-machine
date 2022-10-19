@@ -184,6 +184,15 @@
         gap: 18px;
       }
 
+      &:hover {
+        .menuListItem {
+          .menuListItemTitle,
+          .menuListItemValue {
+            color: #8A8B86;
+          }
+        }
+      }
+
       .menuListItem {
         cursor: pointer;
         width: fit-content;
@@ -193,7 +202,7 @@
         &:hover {
           .menuListItemTitle,
           .menuListItemValue {
-            color: #8A8B86;
+            color: $dark-color;
           }
 
           &.active::before {
@@ -247,7 +256,8 @@
         font-size: 13px;
         line-height: 16px;
         letter-spacing: 0.1em;
-        color: #8A8B86;
+        color: $dark-color;
+        transition: color 0.3s ease-in-out;
 
         @media (min-width: $media-md) {
           font-size: 15px;

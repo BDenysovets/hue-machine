@@ -10,7 +10,7 @@ import './styles/main.scss'
 
 function App() {
   return (
-    <Routes>
+    <Routes >
       <Route index element={<Home />} />
       <Route path='/contacts' element={<Contacts />} />
       <Route path="/join" element={<Join />} />
