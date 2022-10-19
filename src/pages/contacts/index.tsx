@@ -40,7 +40,12 @@ const Success = ({ resetForm }: SuccessProps) => {
 const Contacts: FC = () => {
   const [formValues, setFormValues] = useState<FormValues>();
   const [isFormSent, setIsFormSent] = useState(false);
-  const isFormValid = useMemo(() => formValues?.name && formValues?.email && formValues.message && formValues.email.includes("@"), [formValues])
+  const isFormValid = useMemo(() => (
+    formValues?.name && formValues?.email
+    && formValues.message
+    && formValues.email.includes("@")
+    && formValues.email.includes(".")
+  ), [formValues])
 
   const onFieldChange = (target: Record<string, any>) => {
     setFormValues(prevState => ({ ...prevState, [target.name]: target.value }))
