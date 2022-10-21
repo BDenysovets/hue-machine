@@ -1,5 +1,24 @@
 @import "../../styles/variables";
 
-.aboutPage {
-  height: 100%;
+.workPage {
+  .work {
+    display: grid;
+    height: 100%;
+    gap: 40px;
+    padding: 65px 0 20px;
+
+    @media (min-width: $media-md) {
+      gap: 65px;
+      padding: 15px 0;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 132px;
+      padding: 48px 0 16px;
+    } 
+  }
+  
+  .worksListWrapper {
+    display: grid;
+  }
 }

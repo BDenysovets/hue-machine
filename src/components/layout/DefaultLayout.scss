@@ -3,6 +3,9 @@
 .appWrapper {
   position: relative;
   z-index: 1;
+  transition: opacity 0.4s ease-in-out;
+  opacity: 0;
+  animation: websiteAppear 0.4s ease-in-out forwards;
 
   padding-top: 62px;
 
@@ -13,5 +16,15 @@
   .appPageContent {
     position: relative;
     z-index: 5;
+  }
+}
+
+@keyframes websiteAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
