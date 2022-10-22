@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 
 .workPage {
-  .work {
+  .workWrapper {
     display: grid;
     height: 100%;
     gap: 40px;
@@ -20,5 +20,57 @@
   
   .worksListWrapper {
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 65px;
+
+    @media (min-width: $media-md) {
+      column-gap: 86px;
+      row-gap: 90px;
+    }
+
+    @media (min-width: $media-lg) {
+      column-gap: 178px;
+      row-gap: 119px;
+    }
+  }
+
+  .workPageGetInTouch {
+    position: relative;
+    margin: 80px 0 64px;
+    height: 70px;
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    @media (min-width: $media-md) {
+      margin: 110px 0 100px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin: 147px 0 115px;
+      height: 86px;
+    }
+
+    .workPageGetInTouchWrapper {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+    }
+  }
+
+  .react-parallax-bgimage {
+    height: 100% !important;
+    width: 150% !important;
+    object-fit: cover !important;
+  }
+
+  .react-parallax-background,
+  .react-parallax-background img,
+  .react-parallax-background-children {
+    height: 100% !important;
   }
 }

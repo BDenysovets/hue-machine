@@ -98,60 +98,6 @@
             font-size: 20px;
             line-height: 24px;
           }
-
-          a {
-            position: relative;
-
-            &::after {
-              content: '';
-              position: absolute;
-              width: calc(100% + 10px);
-              height: 1px;
-              background-color: $dark-color;
-              left: 0;
-              transform-origin: right center;
-              transform: scaleX(0);
-              transition: transform 0.3s ease-in-out;
-              bottom: -4px;
-
-              @media (min-width: $media-md) {
-                bottom: -6px;
-              }
-            }
-
-            &::before {
-              content: '';
-              position: absolute;
-              width: 6px;
-              height: 6px;
-              border: 1px solid $dark-color;
-              right: -10px;
-              transform: rotate(45deg) scale(0);
-              border-left: none;
-              transform-origin: center center;
-              border-bottom: none;
-              transition: transform 0.3s ease-in-out;
-              bottom: -7px;
-
-              @media (min-width: $media-md) {
-                bottom: -9px;
-              }
-            }
-          }
-
-          &:hover {
-             a {
-               &::after {
-                 transform-origin: left center;
-                 transform: scaleX(1);
-               }
-
-               &::before {
-                 transition-delay: 0.2s;
-                 transform: rotate(45deg) scale(1);
-               }
-             }
-          }
         }
       }
     }

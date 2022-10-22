@@ -31,7 +31,7 @@ const addresses = [
   },
   {
     title: 'HQ',
-    text: '1 Long Lane, London SE1 4PG',
+    text: '1 Long Lane, London SE1 4PG, United Kingdom',
     link: 'https://goo.gl/maps/raDyiwCPFbXiduhm7',
   },
   {

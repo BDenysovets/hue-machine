@@ -35,7 +35,7 @@ const Achievements = () => (
       </div>
       <div className="homeAchievementsListWrapper">
         <ul className="homeAchievementsList">
-          {data.map(it => <li className="homeAchievementsListItem" key={it}><a href="/" target="_blank">{it}</a></li>)}
+          {data.map(it => <li className="homeAchievementsListItem" key={it}><span>{it}</span></li>)}
         </ul>
       </div>
     </div>
