@@ -52,14 +52,16 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
           }}
         >
           <Parallax bgImage={image} strength={110} style={{ height: '115%' }} />
-          <MouseTooltip
-            visible={isPopoverVisible}
-            offsetX={-60}
-            offsetY={20}
-          >
-            <span className="cardTooltip">Coming soon</span>
-          </MouseTooltip>
         </div>
+      )}
+      {!link && (
+        <MouseTooltip
+          visible={isPopoverVisible}
+          offsetX={-60}
+          offsetY={20}
+        >
+          <span className="cardTooltip">Coming soon</span>
+        </MouseTooltip>
       )}
     </div>
   )
