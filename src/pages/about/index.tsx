@@ -4,6 +4,7 @@ import './index.scss'
 import {Content} from "../../components/layout/Content";
 import {Title} from "../../components/typography/Title";
 import {CTAButton} from "../../components/ctaButton/CTAButton";
+import {CallToAction} from "./CallToAction";
 
 const aboutInfos = [
   {
@@ -72,6 +73,7 @@ const About: FC = () => {
         </div>
         <CTAButton title="Hire Us" link='/contacts' theme="dark" />
       </Content>
+      <CallToAction />
     </DefaultLayout>
   )
 }

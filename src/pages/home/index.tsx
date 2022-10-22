@@ -6,6 +6,7 @@ import {GetInTouch} from "./GetInTouch";
 import {Achievements} from "./Achievements";
 import {Latest} from "./Latest";
 import {CallToAction} from "./CallToAction";
+import {Cases} from "./Cases";
 
 const Home: FC = () => {
   return (
@@ -14,6 +15,7 @@ const Home: FC = () => {
       <Offer />
       <GetInTouch />
       <Achievements />
+      <Cases />
       <Latest />
       <CallToAction />
     </DefaultLayout>

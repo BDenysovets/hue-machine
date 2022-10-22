@@ -19,7 +19,7 @@ const data = [
 const Latest = () => (
   <Content className="homeLatest">
     <div className="homeLatestWrapper">
-      <p className="homeLatestTitle">Latest FROM Our clients</p>
+      <p className="homeLatestTitle">Latest from Our clients</p>
       <ul className="homeLatestGrid">
         {data.map(it => (
           <li className="homeLatestGridItem" key={it.title}>
