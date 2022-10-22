@@ -1,5 +1,5 @@
 import './CTAButton.scss'
-import {useNavigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {AppTheme} from "../../types/types";
 import cx from "classnames";
 
@@ -12,10 +12,10 @@ type Props = {
 }
 
 const CTAButton = ({title, subtitle, link = "/", theme = "dark", onClick}: Props) => {
-  const navigate = useNavigate();
+  const navigate = useHistory();
 
   return (
-    <div className={cx('ctaButton', theme)} onClick={() => onClick ? onClick() : navigate(link)}>
+    <div className={cx('ctaButton', theme)} onClick={() => onClick ? onClick() : navigate.push(link)}>
       <div className="line top"/>
       <div className="line bottom"/>
       <div className="title">{title}</div>

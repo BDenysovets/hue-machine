@@ -1,5 +1,5 @@
 import {createContext, ReactNode, useContext, useEffect, useState} from 'react'
-import {useNavigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 type DefaultValuesType = {
   isOpen?: boolean;
@@ -34,7 +34,7 @@ type UseMenuContextType = () => DefaultValuesType
 const useMenuContext: UseMenuContextType = () => useContext(Context)
 
 const MenuProvider = ({ children }: { children: ReactNode }) => {
-  const navigate = useNavigate()
+  const navigate = useHistory();
   const [isOpen, setIsOpen] = useState(defaultValues.isOpen)
   const [isMenuRunning, setIsMenuRunning] = useState(defaultValues.isMenuRunning)
   const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isMenuRunning)
@@ -73,7 +73,7 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
         goToPage: (path: string) => {
           setIsCoverRunning(true)
           setCover('running')
-          !isCoverRunning && navigate(path)
+          !isCoverRunning && navigate.push(path)
         }
       }}
     >
