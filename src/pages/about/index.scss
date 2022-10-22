@@ -1,5 +1,284 @@
 @import "../../styles/variables";
 
 .aboutPage {
-  height: 100%;
+  .aboutPageWrapper {
+    padding: 31px 0 0;
+
+    @media (min-width: $media-md) {
+      padding: 15px 0 0;
+    }
+
+    @media (min-width: $media-lg) {
+      padding: 48px 0 0;
+    }
+  }
+
+  .aboutPageTitle {
+    margin-bottom: 40px;
+
+    @media (min-width: $media-md) {
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin-bottom: 29px;
+    }
+  }
+
+  .aboutPageSubtitle {
+    margin-bottom: 50px;
+
+    @media (min-width: $media-md) {
+      margin-bottom: 85px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin-bottom: 150px;
+    }
+  }
+
+  .aboutPageStatsListWrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+
+    @media (min-width: $media-md) {
+      margin-bottom: 80px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin-bottom: 181px;
+    }
+  }
+
+  .aboutPageStatsListInner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    @media (min-width: $media-md) {
+      gap: 0;
+    }
+
+    @media (min-width: $media-lg) {
+      max-width: 869px;
+    }
+  }
+
+  .aboutPageStatsListItem {
+    position: relative;
+    width: 100%;
+
+    @media (min-width: $media-md) {
+      width: 280px;
+
+      &:nth-child(1) {
+        align-self: flex-start;
+      }
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        align-self: flex-end;
+        margin-bottom: 80px;
+      }
+
+      &:nth-child(4) {
+        align-self: flex-start;
+        margin-left: 75px;
+      }
+    }
+
+    @media (min-width: $media-lg) {
+      width: 375px;
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        margin-bottom: 115px;
+      }
+
+      &:nth-child(4) {
+        margin-left: 198px;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      background-color: $dark-color;
+      right: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 1;
+      transition: height 0.4s ease-in-out, width 0.4s ease-in-out;
+    }
+
+    .aboutPageStatsListItemValue,
+    .aboutPageStatsListItemTitle,
+    .aboutPageStatsListItemDescription {
+      position: relative;
+      z-index: 2;
+      transition: color 0.4s ease-in-out;
+    }
+
+    &:hover {
+      .aboutPageStatsListItemValue,
+      .aboutPageStatsListItemTitle,
+      .aboutPageStatsListItemDescription {
+        color: $light-color;
+      }
+
+      &::before {
+        width: calc(100% + 16px);
+        height: calc(100% + 15px);
+      }
+    }
+  }
+
+  .aboutPageStatsListItemValue {
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 61px;
+    letter-spacing: 0.1em;
+    margin: 15px 0 35px;
+
+    @media (min-width: $media-md) {
+      width: 280px;
+      font-size: 60px;
+      line-height: 73px;
+    }
+
+    @media (min-width: $media-lg) {
+      width: 375px;
+      margin: 15px 0 42px;
+      font-size: 80px;
+      line-height: 98px;
+    }
+  }
+
+  .aboutPageStatsListItemTitle {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    margin-bottom: 25px;
+
+    @media (min-width: $media-md) {
+      margin-bottom: 25px;
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    @media (min-width: $media-lg) {
+      margin-bottom: 22px;
+      font-size: 24px;
+      line-height: 29px;
+    }
+  }
+
+  .aboutPageStatsListItemDescription {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+
+    @media (min-width: $media-md) {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    @media (min-width: $media-lg) {
+      font-size: 16px;
+      line-height: 32px;
+      height: 168px;
+    }
+  }
+
+  .aboutPageListWrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    .aboutPageListInner {
+      display: grid;
+      width: 100%;
+      gap: 45px;
+      margin-bottom: 60px;
+
+      @media (min-width: $media-md) {
+        max-width: 355px;
+        gap: 65px;
+        margin-bottom: 80px;
+      }
+
+      @media (min-width: $media-lg) {
+        max-width: 672px;
+        gap: 75px;
+        margin-bottom: 235px;
+      }
+    }
+  }
+
+  .aboutPageItemTitle {
+    position: relative;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(38, 34, 34, 0.5);
+    padding-bottom: 8px;
+
+    @media (min-width: $media-md) {
+      padding-bottom: 12px;
+    }
+
+    @media (min-width: $media-lg) {
+      font-size: 12px;
+      line-height: 15px;
+      padding-bottom: 13px;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100vw;
+      left: 0;
+      top: 100%;
+      height: 2px;
+      background-color: rgba(38, 34, 34, 0.5);
+    }
+  }
+
+  .domainItem {
+    display: grid;
+    width: 100%;
+    gap: 25px;
+
+    @media (min-width: $media-md) {
+      gap: 30px;
+    }
+
+    @media (min-width: $media-lg) {
+      gap: 45px;
+    }
+  }
+
+  .aboutPageItemDescription {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    color: $dark-color;
+
+    @media (min-width: $media-md) {
+      font-size: 13px;
+      line-height: 24px;
+    }
+
+    @media (min-width: $media-lg) {
+      font-size: 16px;
+      line-height: 32px;
+    }
+  }
 }
