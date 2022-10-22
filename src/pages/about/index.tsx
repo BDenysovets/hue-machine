@@ -6,7 +6,7 @@ import {Title} from "../../components/typography/Title";
 
 const About: FC = () => {
   return (
-    <DefaultLayout theme="light" className="aboutPage">
+    <DefaultLayout theme="light" className="aboutPage" title="About Us">
       <Content className="about">
         <Title className="title" level={1}>ABOUT PAGE</Title>
       </Content>

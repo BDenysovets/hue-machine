@@ -35,7 +35,7 @@ const jobs = {
 
 const Join: FC = () => {
   return (
-    <DefaultLayout theme="dark">
+    <DefaultLayout theme="dark" title="Join">
       <Content className="joinPage">
         <Title level={2} className="joinPageTitle">Join</Title>
         <div className="joinListWrapper">

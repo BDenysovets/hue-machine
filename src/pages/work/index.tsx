@@ -67,7 +67,7 @@ const data: Array<WorkCardProps> = [
 
 const Work: FC = () => {
   return (
-    <DefaultLayout className="workPage">
+    <DefaultLayout className="workPage" title="Selected Work">
       <Content className="work">
         <Title className="title" level={1}>Selected Work</Title>
         <div className="worksListWrapper">

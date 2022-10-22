@@ -22,7 +22,7 @@ const NotFound: FC = () => {
   }, [isGoingToNextPage, goToPage])
 
   return (
-    <DefaultLayout hasFooter={false} className="notFoundPage">
+    <DefaultLayout hasFooter={false} className="notFoundPage" title="404">
       <Content className="notFound">
         <div className="visual">
           <Title className="title" level={1}>404</Title>

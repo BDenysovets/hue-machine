@@ -58,7 +58,7 @@ const Contacts: FC = () => {
   }
 
   return (
-    <DefaultLayout theme="dark">
+    <DefaultLayout theme="dark" title="Contact">
       <Content className="contactPage">
         {isFormSent
           ? (
