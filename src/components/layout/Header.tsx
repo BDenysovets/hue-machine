@@ -4,7 +4,7 @@ import {Burger} from "../burger/Burger";
 import './Header.scss'
 import {AppTheme} from "../../types/types";
 import {Link, useLocation} from "react-router-dom";
-import {useEffect, useMemo, useState} from "react";
+import {FC, useEffect, useMemo, useState} from "react";
 import cx from "classnames";
 import {useMenuContext} from "../../contexts/MenuContext";
 
@@ -13,7 +13,7 @@ type Props = {
   theme?: AppTheme
 }
 
-const Header = ({ hasBurger, theme }: Props) => {
+const Header: FC<Props> = ({ hasBurger, theme }) => {
   const elementsTheme = theme === 'light' ? 'dark' : 'light'
   const { isOpen, isMenuRunning } = useMenuContext();
   const { pathname } = useLocation();

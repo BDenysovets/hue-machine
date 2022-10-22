@@ -8,12 +8,12 @@ import {Cover} from "./components/menu/Menu";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <MenuProvider>
-        <Cover type="app" />
+    <MenuProvider>
+      <Cover type="app" />
+      <BrowserRouter>
         <App/>
-      </MenuProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </MenuProvider>
   </React.StrictMode>,
   document.getElementById('root') as HTMLElement
 );

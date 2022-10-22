@@ -6,20 +6,20 @@ import './index.scss'
 import {Content} from "../../components/layout/Content";
 import {Title} from "../../components/typography/Title";
 import cx from "classnames";
-import {useMenuContext} from "../../contexts/MenuContext";
+import {useHistory} from "react-router-dom";
 
 const NotFound: FC = () => {
   const [isGoingToNextPage, setIsGoingToNextPage] = useState(false);
-  const { goToPage } = useMenuContext()
+  const navigate = useHistory();
 
   useEffect(() => {
     if (isGoingToNextPage) {
       setTimeout(() => {
-        goToPage('/')
+        navigate.push('/')
         setIsGoingToNextPage(false)
       }, 1400)
     }
-  }, [isGoingToNextPage, goToPage])
+  }, [isGoingToNextPage, navigate])
 
   return (
     <DefaultLayout hasFooter={false} className="notFoundPage" title="404">

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-
-import './Logo.scss'
-import {AppTheme} from "../../types/types";
 import cx from "classnames";
+
+import {AppTheme} from "../../types/types";
+import './Logo.scss'
 
 type Props = {
   theme?: AppTheme

@@ -10,7 +10,6 @@ import { Footer } from './Footer'
 import './DefaultLayout.scss'
 
 type Props = {
-  hasHeader?: boolean
   hasFooter?: boolean
   hasBurger?: boolean
   theme?: AppTheme
@@ -18,7 +17,7 @@ type Props = {
   title?: string;
 }
 
-const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasHeader = true, hasFooter = true, hasBurger = true, className }: PropsWithChildren<Props>) => {
+const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasFooter = true, hasBurger = true, className }: PropsWithChildren<Props>) => {
   useEffect(() => window.scrollTo(0, 0), [])
 
   return (
@@ -27,7 +26,7 @@ const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasHea
         <title>{title}</title>
       </Helmet>
       <div className='appWrapper'>
-        {hasHeader && <Header hasBurger={hasBurger} theme={theme} />}
+        <Header hasBurger={hasBurger} theme={theme} />
         <Menu />
         <div className="appPageContent">
           {children}

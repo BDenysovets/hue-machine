@@ -1,5 +1,4 @@
 import {createContext, ReactNode, useContext, useEffect, useState} from 'react'
-import {useHistory} from "react-router-dom";
 
 type DefaultValuesType = {
   isOpen?: boolean;
@@ -9,9 +8,7 @@ type DefaultValuesType = {
   isMenuRunning?: boolean;
   isCoverRunning?: boolean;
   setMenuRunning?: () => void;
-  setIsCoverRunning?: () => void;
-  goToPage: (path: string) => void;
-  cover: 'stable' | 'running' | 'ended'
+  setCoverRunning: () => void;
 }
 
 const defaultValues: DefaultValuesType = {
@@ -19,12 +16,10 @@ const defaultValues: DefaultValuesType = {
   openMenu: () => undefined,
   closeMenu: () => undefined,
   toggleMenu: () => undefined,
-  goToPage: () => undefined,
   isMenuRunning: false,
   isCoverRunning: false,
   setMenuRunning: () => undefined,
-  setIsCoverRunning: () => undefined,
-  cover: 'stable'
+  setCoverRunning: () => undefined,
 }
 
 const Context = createContext<DefaultValuesType>(defaultValues)
@@ -34,11 +29,9 @@ type UseMenuContextType = () => DefaultValuesType
 const useMenuContext: UseMenuContextType = () => useContext(Context)
 
 const MenuProvider = ({ children }: { children: ReactNode }) => {
-  const navigate = useHistory();
   const [isOpen, setIsOpen] = useState(defaultValues.isOpen)
   const [isMenuRunning, setIsMenuRunning] = useState(defaultValues.isMenuRunning)
-  const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isMenuRunning)
-  const [cover, setCover] = useState(defaultValues.cover)
+  const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isCoverRunning)
 
   useEffect(() => {
     isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1400)
@@ -47,17 +40,17 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     isCoverRunning && setTimeout(() => {
       setIsCoverRunning(false)
-      setCover('ended')
     }, 1400)
   }, [isCoverRunning])
 
   return (
     <Context.Provider
       value={{
-        cover,
         isOpen,
         isMenuRunning,
+        isCoverRunning,
         setMenuRunning: () => setIsMenuRunning(true),
+        setCoverRunning: () => setIsCoverRunning(true),
         openMenu: () => {
           setIsMenuRunning(true)
           !isMenuRunning && setIsOpen(true)
@@ -70,11 +63,6 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
           setIsMenuRunning(true)
           !isMenuRunning && setIsOpen(prevState => !prevState)
         },
-        goToPage: (path: string) => {
-          setIsCoverRunning(true)
-          setCover('running')
-          !isCoverRunning && navigate.push(path)
-        }
       }}
     >
       {children}
