@@ -25,7 +25,7 @@ const Achievements = () => (
   <Content className="homeAchievements">
     <div className="homeAchievementsWrapper">
       <div className="homeAchievementsTitling">
-        <Title level={2}>Achievements</Title>
+        <Title level={2}>Selected Clients</Title>
         <p className='homeAchievementsCta'>
           <span>Want to chat? </span>
           <span>

@@ -4,15 +4,15 @@ import './Latest.scss'
 const data = [
   {
     title: 'E.ventures is now Headline.',
-    subtitle: 'Headline brings our global investing teams into a single brand, which celebrates the businesses we support around the world.',
+    subtitle: '“Headline brings our global investing teams into a single brand, which celebrates the businesses we support around the world.”',
   },
   {
     title: 'Clair',
-    subtitle: 'Today we’re happy to announce that we’ve raised a $15M Series A round, led by Kareem Zaki at Thrive Capital, to continue working towards our mission.',
+    subtitle: '“Today we’re happy to announce that we’ve raised a $15M Series A round, led by Kareem Zaki at Thrive Capital, to continue working towards our mission.”',
   },
   {
     title: 'Mero',
-    subtitle: 'Mero named Best in Class for the Commercial category of the Canadian Proptech Innovation Award, in partnership with Propel by MIPIM.',
+    subtitle: '“Mero named Best in Class for the Commercial category of the Canadian Proptech Innovation Award, in partnership with Propel by MIPIM.”',
   },
 ]
 

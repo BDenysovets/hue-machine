@@ -7,32 +7,32 @@ const stats = [
   {
     index: '.01',
     title: 'Digital Experience',
-    description: 'We craft practical and intuitive products that deliver unique experiences for your customers.',
+    description: 'We craft actionable and intuitive products that deliver unique experiences for your customers.',
   },
   {
     index: '.02',
-    title: 'Enterprise Platforms',
-    description: 'We are building systems that help your team to be on track of the business goals efficiently.',
+    title: 'Visual Identity',
+    description: 'We work with aesthetics & bold vision to architect communications with users.',
   },
   {
     index: '.03',
-    title: 'Visual Identity',
-    description: 'Products should evolve, moreover easy to scale, we create components & guidelines design systems according to this call',
+    title: 'Enterprise Platforms',
+    description: 'We build systems that help your team to be on track of business goals efficiently.',
   },
   {
     index: '.04',
     title: 'Mobile Applications',
-    description: 'We craft user-friendly mobile experiences & journeys that are intuitive & involving. Both IOS & Android',
+    description: 'We craft user-friendly mobile experiences & journeys that are intuitive & engaging for both IOS & Android.',
   },
   {
     index: '.05',
     title: 'Tailor-made Websites',
-    description: 'Whether the goal is to oustand or to be plain, we tailor websites that hook and explain the needed story',
+    description: 'Whether the goal is to create something extraordinary or to fix the basics; we build websites that hook the audience & communicate core narratives.',
   },
   {
     index: '.06',
     title: 'Guidelines & Systems',
-    description: 'Products should grow & evolve, so we create components & guidelines design systems according to this call',
+    description: 'We create step-by-step guidelines & design systems for the purpose of digital product evolution and transformation.',
   },
 ]
 
@@ -43,17 +43,18 @@ const Offer = () => {
         <div className="homeOfferTitling">
           <Title level={2} className="homeOfferTitle">
             We design experiences that solve problems by digging
-            into the core of the business
+            into the core of business
           </Title>
           <p className="homeOfferDescription">
-            We help companies to grow their relationships with their customers,
-            solve problems, embrace exciting opportunities in different domains,
-            such as financial, healthcare, proptech, etc.
+            We focus on robust, practical solutions to help companies gain a unique competitive
+            advantage in building consumer base relationships, solving business challenges,
+            and embracing exciting growth opportunities in various domains, be that finance,
+            healthcare, proptech, etc.
           </p>
         </div>
         <div className="homeOfferStats">
           <div className="homeOfferStatsTitle">
-            Our OFFER
+            Our offer
           </div>
           <div className="homeOfferStatsContent">
             <ul className="homeOfferStatsList">

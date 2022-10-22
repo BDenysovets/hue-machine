@@ -9,8 +9,8 @@ const Hero = () => {
     <Content className="homeHero">
       <div className="homeHeroWrapper">
         <Title level={2}>
-          We tailor communication. Communication for the purpose, solution
-          & values through designing tailor-made products. Within tactic and strategy.
+          We tailor communication to help your business evolve in an interconnected,
+          unpredictable & fast-paced digital environment
         </Title>
         <CTAButton title="Get in touch" theme="light" link="/contacts" subtitle="*we don’t consider any gambling" />
       </div>
