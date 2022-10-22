@@ -29,6 +29,7 @@ html {
 body {
   width: 100vw;
   overflow-x: hidden;
+  cursor: url("../assets/CursorDefault.svg") 4 12, auto;
 }
 
 .app.dark {
@@ -36,7 +37,22 @@ body {
   color: $light-color;
 }
 
+a {
+  cursor: url("../assets/CursorLink.svg") 4 12, auto;
+
+  &:focus,
+  &:active {
+    cursor: url("../assets/CursorLink.svg") 8 24, auto;
+  }
+}
+
 .app.light {
   background-color: $light-color;
   color: $dark-color;
+}
+
+.c-cursor {
+  opacity: 1 !important;
+  position: absolute;
+  z-index: 9999;
 }
