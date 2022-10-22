@@ -2,7 +2,9 @@ import cx from "classnames";
 // @ts-ignore
 import { Parallax } from "react-parallax";
 import './WorkCard.scss'
-// import {useState} from "react";
+import {useState} from "react";
+// @ts-ignore
+import MouseTooltip from 'react-sticky-mouse-tooltip';
 
 export type WorkCardProps = {
   size?: 'large' | 'small'
@@ -17,7 +19,7 @@ export type WorkCardProps = {
 }
 
 const WorkCard = ({ size = 'large', domain, image, description, title, link, className, onMouseEnter, onMouseLeave }: WorkCardProps) => {
-  // const [isPopoverVisible, setIsPopoverVisible] = useState(false)
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false)
 
   return (
     <div className={cx('workCard', size, className)}>
@@ -42,14 +44,21 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
           className="workCardImageWrapper"
           onMouseEnter={() => {
             onMouseEnter()
-            // setIsPopoverVisible(true)
+            setIsPopoverVisible(true)
           }}
           onMouseLeave={() => {
             onMouseLeave()
-            // setIsPopoverVisible(false)
+            setIsPopoverVisible(false)
           }}
         >
           <Parallax bgImage={image} strength={110} style={{ height: '115%' }} />
+          <MouseTooltip
+            visible={isPopoverVisible}
+            offsetX={-60}
+            offsetY={20}
+          >
+            <span className="cardTooltip">Coming soon</span>
+          </MouseTooltip>
         </div>
       )}
     </div>

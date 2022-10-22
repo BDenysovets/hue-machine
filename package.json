@@ -21,7 +21,8 @@
     "@emailjs/browser": "^3.7.0",
     "react-transition-group": "^4.4.5",
     "react-parallax": "^2.2.4",
-    "@types/react-transition-group": "^4.4.5"
+    "@types/react-transition-group": "^4.4.5",
+    "react-sticky-mouse-tooltip": "^0.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
