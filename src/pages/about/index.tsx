@@ -8,7 +8,7 @@ const About: FC = () => {
   return (
     <DefaultLayout theme="light" className="aboutPage" title="About Us">
       <Content className="about">
-        <Title className="title" level={1}>ABOUT PAGE</Title>
+        <Title className="title" level={2}>ABOUT Us</Title>
       </Content>
     </DefaultLayout>
   )

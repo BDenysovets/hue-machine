@@ -96,7 +96,7 @@
     flex-wrap: nowrap;
     gap: 23px;
     transition: opacity 0s;
-    transition-delay: 1.2s;
+    transition-delay: 0.45s;
     opacity: 0;
     visibility: hidden;
 
@@ -167,7 +167,7 @@
       z-index: 5;
       gap: 23px;
       transition: opacity 0s;
-      transition-delay: 0.7s;
+      transition-delay: 0.6s;
       opacity: 0;
       visibility: hidden;
 
@@ -278,14 +278,15 @@
     width: 100vw;
     left: 100vw;
     height: 3px;
-    background-color: #8A8B86;
+    border-bottom: 3px solid #8A8B86;
+    background-color: $lighter-color;
 
     &.menuListDecoratorRunning {
-      animation: decoratorAppear 1.2s ease-in-out 0s forwards;
+      animation: decoratorAppear 1s ease-in-out 0s forwards;
     }
 
     &.menuListDecoratorEnding {
-      animation: decoratorAppear 1.2s ease-in-out 0s forwards;
+      animation: decoratorAppear 1s ease-in-out 0s forwards;
       animation-direction: reverse;
     }
   }
