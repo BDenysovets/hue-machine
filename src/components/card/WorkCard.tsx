@@ -1,10 +1,10 @@
 import cx from "classnames";
 // @ts-ignore
 import { Parallax } from "react-parallax";
-import './WorkCard.scss'
-import {useState} from "react";
 // @ts-ignore
 import MouseTooltip from 'react-sticky-mouse-tooltip';
+import './WorkCard.scss'
+import {useState} from "react";
 
 export type WorkCardProps = {
   size?: 'large' | 'small'
@@ -37,7 +37,7 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <Parallax bgImage={image} strength={size === 'large' ? 110 : 105} style={{ height: '115%' }} />
+          <Parallax bgImage={image} strength={size === 'large' ? 100 : 100} style={{ height: '100%' }} />
         </a>
       ) : (
         <div
@@ -51,7 +51,7 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
             setIsPopoverVisible(false)
           }}
         >
-          <Parallax bgImage={image} strength={size === 'large' ? 110 : 105} style={{ height: '115%' }} />
+          <Parallax bgImage={image} strength={size === 'large' ? 100 : 100} style={{ height: '100%' }} />
         </div>
       )}
       {!link && (
