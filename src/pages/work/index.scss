@@ -62,15 +62,33 @@
     }
   }
 
-  .react-parallax-bgimage {
-    height: 100% !important;
-    width: 150% !important;
-    object-fit: cover !important;
+  .workCard.large {
+    .react-parallax-bgimage {
+      height: auto !important;
+      width: 100% !important;
+      object-fit: cover !important;
+    }
+
+    .react-parallax-background,
+    .react-parallax-background img,
+    .react-parallax-background-children {
+      height: auto !important;
+      width: 100% !important;
+    }
   }
 
-  .react-parallax-background,
-  .react-parallax-background img,
-  .react-parallax-background-children {
-    height: 100% !important;
+  .workCard.small {
+    .react-parallax-bgimage {
+      height: auto !important;
+      width: 155% !important;
+      object-fit: cover !important;
+    }
+
+    .react-parallax-background,
+    .react-parallax-background img,
+    .react-parallax-background-children {
+      height: auto !important;
+      width: 155% !important;
+    }
   }
 }
