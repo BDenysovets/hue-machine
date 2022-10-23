@@ -73,6 +73,10 @@
       }
 
       @media (min-width: $media-lg) {
+        width: 130% !important;
+      }
+
+      @media (min-width: $media-xl) {
         width: 100% !important;
       }
     }
@@ -88,6 +92,10 @@
       }
 
       @media (min-width: $media-lg) {
+        width: 130% !important;
+      }
+
+      @media (min-width: $media-xl) {
         width: 100% !important;
       }
     }
@@ -104,6 +112,10 @@
       }
 
       @media (min-width: $media-lg) {
+        width: 170% !important;
+      }
+
+      @media (min-width: $media-xl) {
         width: 155% !important;
       }
     }
@@ -119,6 +131,10 @@
       }
 
       @media (min-width: $media-lg) {
+        width: 170% !important;
+      }
+
+      @media (min-width: $media-xl) {
         width: 155% !important;
       }
     }
