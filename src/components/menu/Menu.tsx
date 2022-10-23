@@ -81,7 +81,7 @@ const MenuContent = () => {
                 {menuItems.map(it => (
                   <li
                     key={it.title}
-                    className={cx('menuListItem', pathname === it.link && 'active')}
+                    className={cx('menuListItem cursorLink', pathname === it.link && 'active')}
                   >
                     <Link to={it.link} onClick={() => {
                       closeMenu && closeMenu();
@@ -101,7 +101,7 @@ const MenuContent = () => {
                 }
               )}>
                 {socials.map(social => (
-                  <li className="menuSocialsListItem" key={social.text}>
+                  <li className="menuSocialsListItem cursorLink" key={social.text}>
                     <a href={social.link} target="_blank" rel="noreferrer">{social.text}</a>
                   </li>
                 ))}

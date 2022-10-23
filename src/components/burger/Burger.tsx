@@ -11,7 +11,7 @@ const Burger = ({ theme }: Props) => {
   const { isOpen, toggleMenu } = useMenuContext()
 
   return (
-    <div className={cx('burger', theme)} onClick={toggleMenu}>
+    <div className={cx('burger cursorLink', theme)} onClick={toggleMenu}>
       <div className="square">
         <div className="lines">
           <div className={cx("line", isOpen && 'open')} />

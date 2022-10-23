@@ -37,7 +37,7 @@ const Header: FC<Props> = ({ hasBurger, theme }) => {
           <Logo theme={elementsTheme} />
         </div>
         <div className="headerActions">
-          {hasHeaderLink && !isOpen && !isMenuRunning && <Link to="/contacts" className={cx(elementsTheme, isGetInTouchVisible && 'visible')}>Get in touch</Link>}
+          {hasHeaderLink && !isOpen && !isMenuRunning && <Link to="/contacts" className={cx('cursorLink', elementsTheme, isGetInTouchVisible && 'visible')}>Get in touch</Link>}
           {hasBurger ? <Burger theme={elementsTheme} /> : <div />}
         </div>
       </div>

@@ -58,7 +58,7 @@ const Footer = ({ theme }: Props) => {
           <Logo theme="light" />
           <div className="footerAddresses">
             {addresses.map(address => (
-              <div className="footerAddressItem" key={address.text}>
+              <div className="footerAddressItem cursorLink" key={address.text}>
                 <p className="footerAddressTitle">{address.title}</p>
                 <a href={address.link} rel="noreferrer" target={address.link.startsWith('https') ? "_blank" : "_self"}>{address.text}</a>
               </div>
@@ -67,7 +67,7 @@ const Footer = ({ theme }: Props) => {
         </div>
         <ul className="footerSocials">
           {socials.map(social => (
-            <li className="footerSocialsItem" key={social.text}>
+            <li className="footerSocialsItem cursorLink" key={social.text}>
               <a href={social.link} target="_blank" rel="noreferrer">{social.text}</a>
             </li>
           ))}

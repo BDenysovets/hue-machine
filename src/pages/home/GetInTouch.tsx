@@ -6,7 +6,7 @@ import {FC} from "react";
 import cx from "classnames";
 
 const ListItem = () => (
-  <Link to="/contacts" className="homeGetInTouchCarouselItem">
+  <Link to="/contacts" className="homeGetInTouchCarouselItem cursorLink">
     <span>Get in touch </span>
     <span>We are here to help</span>
   </Link>

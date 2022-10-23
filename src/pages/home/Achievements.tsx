@@ -29,7 +29,7 @@ const Achievements = () => (
         <p className='homeAchievementsCta'>
           <span>Want to chat? </span>
           <span>
-            <Link to="/contacts">Get in touch</Link>
+            <Link to="/contacts" className="cursorLink">Get in touch</Link>
           </span>
         </p>
       </div>
