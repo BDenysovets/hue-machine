@@ -3,7 +3,7 @@ import {
   TransitionGroup,
   CSSTransition
 } from "react-transition-group";
-// import { Cursor } from 'react-creative-cursor'
+// import CursorDefaultImg from './assets/CursorDefault.svg'
 
 import NotFound from "./pages/not-found";
 import Home from "./pages/home";
@@ -14,6 +14,7 @@ import About from "./pages/about";
 
 import './styles/main.scss'
 import {useMenuContext} from "./contexts/MenuContext";
+import Cursor from "./components/cursor/Cursor";
 
 function App() {
   const { pathname } = useLocation();
@@ -21,24 +22,30 @@ function App() {
 
   return (
     <>
-      <TransitionGroup>
-        <CSSTransition
-          key={pathname}
-          classNames="page"
-          timeout={1400}
-          onEnter={() => setCoverRunning()}
-        >
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path='/contacts' exact component={Contacts} />
-            <Route path="/join" exact component={Join} />
-            <Route path="/work" exact component={Work} />
-            <Route path="/about" exact component={About} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </CSSTransition>
-      </TransitionGroup>
-      {/*<Cursor isGelly={true} cursorSize={20} cursorBackgrounColor="#fff" exclusionBackgroundColor="#eee" />*/}
+      <Cursor
+        turnOffOnPhone={true}
+        hoverClasses={[
+          { classNameOfTargetElement: 'cursorLink', classNameOfStyle: 'cursorHoveredLink' }
+        ]}
+      >
+        <TransitionGroup>
+          <CSSTransition
+            key={pathname}
+            classNames="page"
+            timeout={1400}
+            onEnter={() => setCoverRunning()}
+          >
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path='/contacts' exact component={Contacts} />
+              <Route path="/join" exact component={Join} />
+              <Route path="/work" exact component={Work} />
+              <Route path="/about" exact component={About} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      </Cursor>
     </>
   );
 }

@@ -1,0 +1,41 @@
+.cursor-none {
+  cursor: none;
+  & * {
+    cursor: none;
+  }
+}
+
+.initial-body {
+  cursor: initial;
+  & * {
+    cursor: initial;
+  }
+}
+
+.cursor-border {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 35px;
+  height: 35px;
+  mix-blend-mode: exclusion;
+  filter: invert(1);
+  transition: width 0.2s linear, height 0.2s linear;
+  cursor: none;
+  background: url('../../assets/CursorDefault.svg') 50% 50% no-repeat;
+}
+
+.cursor-dot {
+  display: none;
+  cursor: none;
+}
+
+.smaller-cursor-border {
+  width: 25px;
+  height: 25px;
+}
+
+.transition-none {
+  transition: none;
+}
