@@ -37,7 +37,7 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <Parallax bgImage={image} strength={size === 'large' ? 100 : 100} style={{ height: '100%' }} />
+          <Parallax bgImage={image} strength={size === 'large' ? 110 : 80} style={{ height: '100%' }} />
         </a>
       ) : (
         <div
@@ -51,7 +51,7 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
             setIsPopoverVisible(false)
           }}
         >
-          <Parallax bgImage={image} strength={size === 'large' ? 100 : 100} style={{ height: '100%' }} />
+          <Parallax bgImage={image} strength={size === 'large' ? 110 : 80} style={{ height: '100%' }} />
         </div>
       )}
       {!link && (
