@@ -5,6 +5,7 @@ import { Parallax } from "react-parallax";
 import MouseTooltip from 'react-sticky-mouse-tooltip';
 import './WorkCard.scss'
 import {useState} from "react";
+import {useWindowSize} from "react-use";
 
 export type WorkCardProps = {
   size?: 'large' | 'small'
@@ -12,14 +13,16 @@ export type WorkCardProps = {
   title: string;
   description: string;
   image?: string;
+  imageMobile?: string;
   link?: string;
   className?: string
   onMouseEnter: () => void
   onMouseLeave: () => void
 }
 
-const WorkCard = ({ size = 'large', domain, image, description, title, link, className, onMouseEnter, onMouseLeave }: WorkCardProps) => {
+const WorkCard = ({ size = 'large', domain, image, imageMobile, description, title, link, className, onMouseEnter, onMouseLeave }: WorkCardProps) => {
   const [isPopoverVisible, setIsPopoverVisible] = useState(false)
+  const { width } = useWindowSize()
 
   return (
     <div className={cx('workCard', size, className)}>
@@ -37,7 +40,11 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <Parallax bgImage={image} strength={size === 'large' ? 110 : 80} style={{ height: '100%' }} />
+          <Parallax
+            bgImage={width > 768 ? imageMobile : image}
+            strength={size === 'large' ? 110 : 80}
+            style={{ height: '100%' }}
+          />
         </a>
       ) : (
         <div
@@ -51,7 +58,11 @@ const WorkCard = ({ size = 'large', domain, image, description, title, link, cla
             setIsPopoverVisible(false)
           }}
         >
-          <Parallax bgImage={image} strength={size === 'large' ? 110 : 80} style={{ height: '100%' }} />
+          <Parallax
+            bgImage={width > 768 ? imageMobile : image}
+            strength={size === 'large' ? 110 : 80}
+            style={{ height: '100%' }}
+          />
         </div>
       )}
       {!link && (
