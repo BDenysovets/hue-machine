@@ -65,13 +65,15 @@ const Footer = ({ theme }: Props) => {
             ))}
           </div>
         </div>
-        <ul className="footerSocials">
-          {socials.map(social => (
-            <li className="footerSocialsItem cursorLink" key={social.text}>
-              <a href={social.link} target="_blank" rel="noreferrer">{social.text}</a>
-            </li>
-          ))}
-        </ul>
+        <div className="footerSocialsWrapper">
+          <ul className="footerSocials">
+            {socials.map(social => (
+              <li className="footerSocialsItem cursorLink" key={social.text}>
+                <a href={social.link} target="_blank" rel="noreferrer">{social.text}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </Content>
   )
