@@ -23,11 +23,11 @@
   filter: invert(1);
   transition: width 0.2s linear, height 0.2s linear, background 0.3s ease-in-out;
   cursor: none;
-  background: url('../../assets/CursorDefault.svg') 50% 50% no-repeat;
+  background: url('../../components/cursor/assets/CursorDefault.svg') 50% 50% no-repeat;
 }
 
 .cursorHoveredLink .cursor-border  {
-  background: url('../../assets/CursorLink.svg') 50% 50% no-repeat;
+  background: url('../../components/cursor/assets/CursorLink.svg') 50% 50% no-repeat;
 }
 
 .cursor-dot {
