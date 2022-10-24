@@ -14,8 +14,6 @@ export const Cover = ({ type }: CoverType) => {
   const { isMenuRunning, isCoverRunning } = useMenuContext();
   const trigger = type === 'app' ? isCoverRunning : isMenuRunning;
 
-  console.log('isCoverRunning', isCoverRunning)
-
   return (
     <div className={cx('menuCover', { 'running': trigger })}/>
   )

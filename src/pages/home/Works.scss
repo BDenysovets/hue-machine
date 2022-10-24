@@ -37,6 +37,7 @@
 
   .parallaxCardImageWrapper {
     position: relative;
+    height: 100%;
     overflow: hidden;
     filter: saturate(25%) brightness(95%) sepia(25%);
     transition: filter 0.7s ease-out;

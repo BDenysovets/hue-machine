@@ -1,7 +1,8 @@
 import './CTAButton.scss'
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {AppTheme} from "../../types/types";
 import cx from "classnames";
+import {useMenuContext} from "../../contexts/MenuContext";
 
 type Props = {
   title: string;
@@ -12,24 +13,27 @@ type Props = {
 }
 
 const CTAButton = ({title, subtitle, link, theme = "dark", onClick = () => undefined}: Props) => {
+  const navigate = useHistory()
+  const { setCoverRunning } = useMenuContext()
+
   return (
-    <>
-      {link ? (
-        <Link to={link} className={cx('ctaButton cursorLink', theme)} onClick={() => onClick()}>
-          <div className="line top"/>
-          <div className="line bottom"/>
-          <div className="title">{title}</div>
-          {subtitle && <div className="subtitle">{subtitle}</div>}
-        </Link>
-      ) : (
-        <div className={cx('ctaButton cursorLink', theme)} onClick={() => onClick()}>
-          <div className="line top"/>
-          <div className="line bottom"/>
-          <div className="title">{title}</div>
-          {subtitle && <div className="subtitle">{subtitle}</div>}
-        </div>
-      )}
-    </>
+    <div className={cx('ctaButton cursorLink', theme)} onClick={() => {
+      if (link) {
+        setCoverRunning()
+
+        setTimeout(() => {
+          onClick()
+          navigate.push(link)
+        }, 500)
+      } else {
+        onClick()
+      }
+    }}>
+      <div className="line top"/>
+      <div className="line bottom"/>
+      <div className="title">{title}</div>
+      {subtitle && <div className="subtitle">{subtitle}</div>}
+    </div>
   );
 };
 

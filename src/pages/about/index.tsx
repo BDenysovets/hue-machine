@@ -3,51 +3,76 @@ import {DefaultLayout} from "../../components/layout/DefaultLayout";
 import './index.scss'
 import {Content} from "../../components/layout/Content";
 import {Title} from "../../components/typography/Title";
-import {CTAButton} from "../../components/ctaButton/CTAButton";
 import {CallToAction} from "./CallToAction";
+import {GetInTouch} from "../home/GetInTouch";
 
 const aboutInfos = [
   {
     title: 'Who we are',
-    description: 'Hue&Machine is an independent full service, platform agnostic, design, branding and strategy group of people in London and Kyiv. Our present & past clients are brands like Microsoft, Snap Inc, and Headline since 2018. We do care deeply about what we do and have become experts in beautifully-designed software.',
+    description: 'Hue&Machine is an independent & multidimensional full service, platform-agnostic, design & branding studio based in London and Kyiv. We do care deeply about what we do and have become experts in designing rich, simple & intuitive products. We are not focused on award-winning applications, we build experiences that create value & reach goals. Our present & past clients are brands like Microsoft, Snap Inc., and Headline.',
   },
   {
     title: 'Areas',
-    description: 'We help companies to grow their relationships with their customers, solve problems, embrace exciting opportunities in different domains, such as financial, healthcare, proptech, etc.',
+    description: 'We tailor communication to advance the purpose of your business, solution & values by designing tailor-made products in different domains, such as financial, healthcare, proptech, retail, energy & automotive, etc.',
   },
   {
     title: 'Dream PROJECTS',
-    description: 'We have a strong experience working on variaty of projects, but it will be a huge bonus if yours include: Enterprise Platforms, Mobile Applications, Tailor-made Websites, Design Systems or even Investor Pitch Assistance',
+    description: 'We have a strong experience working on a variaty of projects and are super passionate to work on Enterprise Platforms, SaaS products, Mobile Applications, Branding, Design Systems & Investor Pitch Assistance.',
   },
 ]
 
 const stats = [
   {
-    value: '137+',
-    title: 'Projects',
-    description: 'New technology. Autonomous driving. Huge opportunities for innovation in automotive clusters, HUDs, and HMIs.'
+    value: '150+',
+    title: 'digital products',
+    description: 'Delivered across different domains, from financial and retail to energy & automotive.'
   },
   {
-    value: '432M+',
+    value: '600M+',
     title: 'US dollars',
-    description: 'raised by startups and companies, using our tailor-made investor packages, interactive prototypes, and digital solutions.'
+    description: 'Raised & acquired by clients as the result of cooperation with our team.'
   },
   {
-    value: '83.4%',
-    title: 'Companies',
-    description: 'have returned to our team & decided to move forward with the long-term relationships.'
+    value: '7',
+    title: 'NATIONALITIES',
+    description: 'A diverse creative team to navigate through unpredictable & fast-paced digital environment'
   },
   {
-    value: '3.5',
-    title: 'Rounds',
-    description: 'of investments in average surpassed by our clients'
+    value: '10+',
+    title: 'Industry domains',
+    description: 'We work with clients from across the globe - VCs, startups and global brands within different industries.'
   },
 ]
+
+// const firstStats = stats.slice(0, 2);
+// const secondStats = stats.slice(2, 4);
+//
+// type SectionTitleProps = {
+//   text: string
+// }
+
+// const SectionTitle: FC<SectionTitleProps> = ({ text }) => (
+//   <p className="sectionTitle">{text}</p>
+// )
+
+type GridCardProps = {
+  value: string;
+  title: string;
+  description: string;
+}
+
+const GridCard: FC<GridCardProps> = ({ title, description, value }) => (
+  <div className="aboutPageStatsListItem">
+    <p className="aboutPageStatsListItemValue">{value}</p>
+    <p className="aboutPageStatsListItemTitle">{title}</p>
+    <p className="aboutPageStatsListItemDescription">{description}</p>
+  </div>
+)
 
 const About: FC = () => {
   return (
     <DefaultLayout theme="light" className="aboutPage" title="About Us">
-      <Content className="aboutPageWrapper">
+      <Content className="aboutPageHeroWrapper">
         <Title className="aboutPageTitle" level={2}>About Us</Title>
         <div className="aboutPageListWrapper">
           <div className="aboutPageListInner">
@@ -62,16 +87,18 @@ const About: FC = () => {
         <Title className="aboutPageSubtitle" level={3}>In Numbers</Title>
         <div className="aboutPageStatsListWrapper">
           <div className="aboutPageStatsListInner">
-            {stats.map((stat) => (
-              <div className="aboutPageStatsListItem" key={stat.title}>
-                <p className="aboutPageStatsListItemValue">{stat.value}</p>
-                <p className="aboutPageStatsListItemTitle">{stat.title}</p>
-                <p className="aboutPageStatsListItemDescription">{stat.description}</p>
-              </div>
-            ))}
+            {stats.map((stat) => <GridCard {...stat} key={stat.title} />)}
           </div>
         </div>
-        <CTAButton title="Hire Us" link='/contacts' theme="dark" />
+      </Content>
+      <GetInTouch theme="dark" />
+      <Content className="aboutPageContentWrapper">
+        <Title className="aboutPageSubtitle" level={3}>In Numbers</Title>
+        <div className="aboutPageStatsListWrapper">
+          <div className="aboutPageStatsListInner">
+            {stats.map((stat) => <GridCard {...stat} key={stat.title} />)}
+          </div>
+        </div>
       </Content>
       <CallToAction />
     </DefaultLayout>

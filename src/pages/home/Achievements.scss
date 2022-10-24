@@ -42,7 +42,8 @@
           line-height: 42px;
         }
 
-        & a {
+        & p {
+          display: inline;
           text-decoration: underline;
         }
       }

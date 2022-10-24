@@ -7,19 +7,23 @@ import {Content} from "../../components/layout/Content";
 import {Title} from "../../components/typography/Title";
 import cx from "classnames";
 import {useHistory} from "react-router-dom";
+import {useMenuContext} from "../../contexts/MenuContext";
 
 const NotFound: FC = () => {
   const [isGoingToNextPage, setIsGoingToNextPage] = useState(false);
   const navigate = useHistory();
+  const { setCoverRunning } = useMenuContext()
 
   useEffect(() => {
     if (isGoingToNextPage) {
+      setCoverRunning();
+
       setTimeout(() => {
         navigate.push('/')
         setIsGoingToNextPage(false)
-      }, 1400)
+      }, 500)
     }
-  }, [isGoingToNextPage, navigate])
+  }, [isGoingToNextPage, navigate, setCoverRunning])
 
   return (
     <DefaultLayout hasFooter={false} className="notFoundPage" title="404">

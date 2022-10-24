@@ -1,7 +1,8 @@
 import {Content} from "../../components/layout/Content";
 import './Achievements.scss'
 import {Title} from "../../components/typography/Title";
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import {useMenuContext} from "../../contexts/MenuContext";
 
 const data = [
   'Central Bank',
@@ -21,25 +22,41 @@ const data = [
   'Mero',
 ];
 
-const Achievements = () => (
-  <Content className="homeAchievements">
-    <div className="homeAchievementsWrapper">
-      <div className="homeAchievementsTitling">
-        <Title level={2}>Selected Clients</Title>
-        <p className='homeAchievementsCta'>
-          <span>Want to chat? </span>
-          <span>
-            <Link to="/contacts" className="cursorLink">Get in touch</Link>
+const Achievements = () => {
+  const navigate = useHistory()
+  const {setCoverRunning} = useMenuContext()
+
+  return (
+    <Content className="homeAchievements">
+      <div className="homeAchievementsWrapper">
+        <div className="homeAchievementsTitling">
+          <Title level={2}>Selected Clients</Title>
+          <p className='homeAchievementsCta'>
+            <span>Want to chat? </span>
+            <span>
+            <p
+              onClick={() => {
+                setCoverRunning()
+
+                setTimeout(() => {
+                  navigate.push('/contacts')
+                }, 500)
+              }}
+              className="cursorLink"
+            >
+              Get in touch
+            </p>
           </span>
-        </p>
+          </p>
+        </div>
+        <div className="homeAchievementsListWrapper">
+          <ul className="homeAchievementsList">
+            {data.map(it => <li className="homeAchievementsListItem" key={it}><span>{it}</span></li>)}
+          </ul>
+        </div>
       </div>
-      <div className="homeAchievementsListWrapper">
-        <ul className="homeAchievementsList">
-          {data.map(it => <li className="homeAchievementsListItem" key={it}><span>{it}</span></li>)}
-        </ul>
-      </div>
-    </div>
-  </Content>
-)
+    </Content>
+  )
+}
 
 export {Achievements}

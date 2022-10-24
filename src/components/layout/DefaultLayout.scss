@@ -6,7 +6,6 @@
   transition: opacity 0.4s ease-in-out;
   opacity: 0;
   animation: websiteAppear 0.4s ease-in-out forwards;
-
   padding-top: 62px;
 
   @media (min-width: $media-md) {
@@ -18,12 +17,6 @@
     z-index: 5;
   }
 }
-
-//.page-enter-done {
-//  .appWrapper {
-//
-//  }
-//}
 
 @keyframes websiteAppear {
   from {
