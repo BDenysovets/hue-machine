@@ -4,7 +4,7 @@ import { Parallax } from "react-parallax";
 // @ts-ignore
 import MouseTooltip from 'react-sticky-mouse-tooltip';
 import './WorkCard.scss'
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {useWindowSize} from "react-use";
 
 export type WorkCardProps = {
@@ -23,6 +23,7 @@ export type WorkCardProps = {
 const WorkCard = ({ size = 'large', domain, image, imageMobile, description, title, link, className, onMouseEnter, onMouseLeave }: WorkCardProps) => {
   const [isPopoverVisible, setIsPopoverVisible] = useState(false)
   const { width } = useWindowSize()
+  const isMobile = useMemo(() => width < 768, [width])
 
   return (
     <div className={cx('workCard', size, className)}>
@@ -41,8 +42,8 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
           onMouseLeave={onMouseLeave}
         >
           <Parallax
-            bgImage={width < 768 ? imageMobile : image}
-            strength={size === 'large' ? 110 : 80}
+            bgImage={isMobile ? imageMobile : image}
+            strength={isMobile ? 60 : size === 'large' ? 110 : 80}
             style={{ height: '100%' }}
           />
         </a>
@@ -59,8 +60,8 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
           }}
         >
           <Parallax
-            bgImage={width < 768 ? imageMobile : image}
-            strength={size === 'large' ? 110 : 80}
+            bgImage={isMobile ? imageMobile : image}
+            strength={isMobile ? 60 : size === 'large' ? 110 : 80}
             style={{ height: '100%' }}
           />
         </div>
