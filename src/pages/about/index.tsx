@@ -1,10 +1,17 @@
-import {FC} from "react";
+import {FC, useMemo} from "react";
 import {DefaultLayout} from "../../components/layout/DefaultLayout";
 import './index.scss'
 import {Content} from "../../components/layout/Content";
 import {Title} from "../../components/typography/Title";
 import {CallToAction} from "./CallToAction";
 import {GetInTouch} from "../home/GetInTouch";
+import {data} from "../work";
+import {useWindowSize} from "react-use";
+import {useHistory} from "react-router-dom";
+import {useMenuContext} from "../../contexts/MenuContext";
+import cx from "classnames";
+// @ts-ignore
+import { Parallax } from "react-parallax";
 
 const aboutInfos = [
   {
@@ -20,7 +27,6 @@ const aboutInfos = [
     description: 'We have a strong experience working on a variaty of projects and are super passionate to work on Enterprise Platforms, SaaS products, Mobile Applications, Branding, Design Systems & Investor Pitch Assistance.',
   },
 ]
-
 const stats = [
   {
     value: '150+',
@@ -43,17 +49,17 @@ const stats = [
     description: 'We work with clients from across the globe - VCs, startups and global brands within different industries.'
   },
 ]
+const firstStats = stats.slice(0, 2);
+const secondStats = stats.slice(2, 4);
+const workCases = data.filter(it => it.title === 'Talentree' || it.title === 'Bundls')
 
-// const firstStats = stats.slice(0, 2);
-// const secondStats = stats.slice(2, 4);
-//
-// type SectionTitleProps = {
-//   text: string
-// }
+type SectionTitleProps = {
+  text: string
+}
 
-// const SectionTitle: FC<SectionTitleProps> = ({ text }) => (
-//   <p className="sectionTitle">{text}</p>
-// )
+const SectionTitle: FC<SectionTitleProps> = ({ text }) => (
+  <p className="sectionTitle">{text}</p>
+)
 
 type GridCardProps = {
   value: string;
@@ -68,6 +74,43 @@ const GridCard: FC<GridCardProps> = ({ title, description, value }) => (
     <p className="aboutPageStatsListItemDescription">{description}</p>
   </div>
 )
+
+type WorkCardProps = {
+  imageMobile?: string;
+  image?: string;
+  title: string;
+  description: string;
+}
+
+const WorkCard: FC<WorkCardProps> = ({ image, imageMobile, description, title }) => {
+  const { width } = useWindowSize()
+  const isMobile = useMemo(() => width < 768, [width])
+  const navigate = useHistory()
+  const {setCoverRunning} = useMenuContext()
+
+  return (
+    <div className="aboutPageWorkCard">
+      <div
+        onClick={() => {
+          setCoverRunning()
+
+          setTimeout(() => {
+            navigate.push('/work')
+          }, 500)
+        }}
+        className={cx('parallaxCardImageWrapper')}
+      >
+        <Parallax
+          bgImage={isMobile ? imageMobile : image}
+          strength={isMobile ? 60 : 80}
+          style={{ height: '100%' }}
+        />
+      </div>
+      <p className="aboutPageWorkCardTitle">{title}</p>
+      <p className="aboutPageWorkCardDescription">{description}</p>
+    </div>
+  )
+}
 
 const About: FC = () => {
   return (
@@ -84,20 +127,31 @@ const About: FC = () => {
             ))}
           </div>
         </div>
-        <Title className="aboutPageSubtitle" level={3}>In Numbers</Title>
-        <div className="aboutPageStatsListWrapper">
+        <SectionTitle text="In Numbers" />
+        <div className="aboutPageStatsListWrapper aboutPageStatsListWrapperHero">
           <div className="aboutPageStatsListInner">
-            {stats.map((stat) => <GridCard {...stat} key={stat.title} />)}
+            {firstStats.map((stat) => <GridCard {...stat} key={stat.title} />)}
           </div>
         </div>
       </Content>
       <GetInTouch theme="dark" />
       <Content className="aboutPageContentWrapper">
-        <Title className="aboutPageSubtitle" level={3}>In Numbers</Title>
-        <div className="aboutPageStatsListWrapper">
+        <div className="aboutPageStatsListWrapper aboutPageStatsListWrapperContent">
           <div className="aboutPageStatsListInner">
-            {stats.map((stat) => <GridCard {...stat} key={stat.title} />)}
+            {secondStats.map((stat) => <GridCard {...stat} key={stat.title} />)}
           </div>
+        </div>
+        <SectionTitle text="Selected Work" />
+        <div className="aboutPageWorks">
+          {workCases.map(workCase => (
+            <WorkCard
+              description={workCase.description}
+              title={workCase.title}
+              key={workCase.title}
+              imageMobile={workCase.imageMobile}
+              image={workCase.image}
+            />
+          ))}
         </div>
       </Content>
       <CallToAction />

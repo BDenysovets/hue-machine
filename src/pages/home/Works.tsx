@@ -16,7 +16,7 @@ import {CTAButton} from "../../components/ctaButton/CTAButton";
 import cx from "classnames";
 import {useMenuContext} from "../../contexts/MenuContext";
 
-type ParallaxCardProps = {
+export type ParallaxCardProps = {
   link: string;
   imageMobile: string;
   image: string;

@@ -26,7 +26,7 @@ import meroImgMobile from './assets/mero-min.jpg'
 import {GetInTouch} from "../home/GetInTouch";
 import cx from "classnames";
 
-const data: Array<Omit<WorkCardProps, 'onMouseLeave' | 'onMouseEnter'>> = [
+export const data: Array<Omit<WorkCardProps, 'onMouseLeave' | 'onMouseEnter'>> = [
   {
     domain: "DCIM",
     title: 'Dice',
