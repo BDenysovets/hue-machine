@@ -89,7 +89,7 @@ const WorkCard: FC<WorkCardProps> = ({ image, imageMobile, description, title })
   const {setCoverRunning} = useMenuContext()
 
   return (
-    <div className="aboutPageWorkCard">
+    <div className="aboutPageWorkCard cursorLink">
       <div
         onClick={() => {
           setCoverRunning()
