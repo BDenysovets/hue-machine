@@ -65,26 +65,17 @@ const IsDevice = (() => {
 })();
 
 function useFollowCursor() {
-  const [mousePosition, setMousePosition] = useState<{
-    mouseX: number;
-    mouseY: number;
-  }>({ mouseX: -100, mouseY: -100 });
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number; }>({ x: -100, y: -100 });
 
   useEffect(() => {
     const mouseMove = (mouseEvent: any) => {
-      let mouseX = mouseEvent.clientX;
-      let mouseY = mouseEvent.clientY;
-
-      setMousePosition({
-        mouseX,
-        mouseY,
-      });
+      setMousePosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
     }
 
     window.addEventListener("mousemove", mouseMove);
 
     return () => {
-      window.removeEventListener("mousedown", mouseMove);
+      window.removeEventListener("mousemove", mouseMove);
     };
   }, []);
 
@@ -131,21 +122,8 @@ function Cursor({
     }
   }, [hoverClasses]);
 
-  const { mouseX, mouseY } = useFollowCursor();
-
-  const styles: IStyles = useMemo(
-    () => ({
-      cursorBorder: {
-        top: mouseY,
-        left: mouseX,
-      },
-      innerDot: {
-        top: mouseY,
-        left: mouseX,
-      },
-    }),
-    [mouseX, mouseY]
-  );
+  const { x, y } = useFollowCursor();
+  const styles: IStyles = useMemo(() => ({ cursorBorder: { top: y, left: x } }), [x, y]);
 
   const mouseDownHandler = useCallback(() => {
     if (cursorBorderElement.current && cursorBorderElement.current.classList)
@@ -223,7 +201,6 @@ function Cursor({
 Cursor.propTypes = {
   children: PropTypes.element.isRequired,
   borderClassName: PropTypes.string,
-  dotClassName: PropTypes.string,
   hoverClasses: PropTypes.arrayOf(
     PropTypes.shape({
       classNameOfTargetElement: PropTypes.string.isRequired,
