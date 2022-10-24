@@ -1,5 +1,5 @@
 import './CTAButton.scss'
-import {useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {AppTheme} from "../../types/types";
 import cx from "classnames";
 
@@ -11,17 +11,24 @@ type Props = {
   onClick?: () => void;
 }
 
-const CTAButton = ({title, subtitle, link = "/", theme = "dark", onClick}: Props) => {
-  const navigate = useHistory();
-
+const CTAButton = ({title, subtitle, link, theme = "dark", onClick = () => undefined}: Props) => {
   return (
     <div className="cursorLink">
-      <div className={cx('ctaButton', theme)} onClick={() => onClick ? onClick() : navigate.push(link)}>
-        <div className="line top"/>
-        <div className="line bottom"/>
-        <div className="title">{title}</div>
-        {subtitle && <div className="subtitle">{subtitle}</div>}
-      </div>
+      {link ? (
+        <Link to={link} className={cx('ctaButton', theme)} onClick={() => onClick()}>
+          <div className="line top"/>
+          <div className="line bottom"/>
+          <div className="title">{title}</div>
+          {subtitle && <div className="subtitle">{subtitle}</div>}
+        </Link>
+      ) : (
+        <div className={cx('ctaButton', theme)} onClick={() => onClick()}>
+          <div className="line top"/>
+          <div className="line bottom"/>
+          <div className="title">{title}</div>
+          {subtitle && <div className="subtitle">{subtitle}</div>}
+        </div>
+      )}
     </div>
   );
 };
