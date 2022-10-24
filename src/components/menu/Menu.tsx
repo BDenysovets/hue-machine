@@ -36,7 +36,6 @@ const menuItems: Array<MenuItemType> = [
   {
     link: '/work',
     title: 'Work',
-    value: '139'
   },
   {
     link: '/about',
