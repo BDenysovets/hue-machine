@@ -41,7 +41,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
           onMouseLeave={onMouseLeave}
         >
           <Parallax
-            bgImage={width > 768 ? imageMobile : image}
+            bgImage={width < 768 ? imageMobile : image}
             strength={size === 'large' ? 110 : 80}
             style={{ height: '100%' }}
           />
@@ -59,7 +59,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
           }}
         >
           <Parallax
-            bgImage={width > 768 ? imageMobile : image}
+            bgImage={width < 768 ? imageMobile : image}
             strength={size === 'large' ? 110 : 80}
             style={{ height: '100%' }}
           />
