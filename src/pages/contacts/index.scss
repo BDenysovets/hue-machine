@@ -250,8 +250,8 @@ input {
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
-    color: $light-color;
-    background-color: transparent;
+    color: $light-color !important;
+    background-color: transparent !important;
   }
 
   &:active,
@@ -293,8 +293,8 @@ textarea {
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
-    color: $light-color;
-    background-color: transparent;
+    color: $light-color !important;
+    background-color: transparent !important;
   }
 
   &::-webkit-scrollbar {

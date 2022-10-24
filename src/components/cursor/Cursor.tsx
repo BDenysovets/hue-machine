@@ -97,11 +97,7 @@ function Cursor({
   hoverClasses = [],
 }: Props) {
   useEffect(() => {
-    if (!IsDevice?.any()) {
-      document.body.classList.add("cursor-none");
-    } else {
-      document.body.classList.add("initial-body");
-    }
+    !IsDevice?.any() ? document.body.classList.add("cursor-none") : document.body.classList.add("initial-body");
   }, []);
 
   const [classes, setClasses] = useState<
@@ -133,7 +129,7 @@ function Cursor({
         });
       });
     }
-  }, [hoverClasses]);
+  }, []);
 
   const { mouseX, mouseY } = useFollowCursor();
 
