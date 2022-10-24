@@ -13,23 +13,23 @@ type Props = {
 
 const CTAButton = ({title, subtitle, link, theme = "dark", onClick = () => undefined}: Props) => {
   return (
-    <div className="cursorLink">
+    <>
       {link ? (
-        <Link to={link} className={cx('ctaButton', theme)} onClick={() => onClick()}>
+        <Link to={link} className={cx('ctaButton cursorLink', theme)} onClick={() => onClick()}>
           <div className="line top"/>
           <div className="line bottom"/>
           <div className="title">{title}</div>
           {subtitle && <div className="subtitle">{subtitle}</div>}
         </Link>
       ) : (
-        <div className={cx('ctaButton', theme)} onClick={() => onClick()}>
+        <div className={cx('ctaButton cursorLink', theme)} onClick={() => onClick()}>
           <div className="line top"/>
           <div className="line bottom"/>
           <div className="title">{title}</div>
           {subtitle && <div className="subtitle">{subtitle}</div>}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
