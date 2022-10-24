@@ -129,7 +129,7 @@ function Cursor({
         });
       });
     }
-  }, []);
+  }, [hoverClasses]);
 
   const { mouseX, mouseY } = useFollowCursor();
 
