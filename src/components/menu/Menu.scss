@@ -95,15 +95,6 @@
     display: flex;
     flex-wrap: nowrap;
     gap: 23px;
-    transition: opacity 0s;
-    transition-delay: 0.45s;
-    opacity: 0;
-    visibility: hidden;
-
-    &.menuSocialsListRunning {
-      visibility: visible;
-      opacity: 1;
-    }
 
     @media (min-width: $media-md) {
       gap: 33px;
@@ -113,7 +104,34 @@
       gap: 31px;
     }
 
+    &.menuSocialsListRunning {
+      .menuSocialsListItem {
+        opacity: 1;
+        transform: translateY(0);
+
+        &:nth-child(1) {
+          transition-delay: 0s;
+        }
+
+        &:nth-child(2) {
+          transition-delay: 0.05s;
+        }
+
+        &:nth-child(3) {
+          transition-delay: 0.1s;
+        }
+
+        &:nth-child(4) {
+          transition-delay: 0.15s;
+        }
+      }
+    }
+
     .menuSocialsListItem {
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.15s ease-out, transform 0.15s ease-in-out;
+
       &:not(:last-child) a::after {
         height: 100%;
         content: '';
@@ -166,15 +184,6 @@
       display: grid;
       z-index: 5;
       gap: 23px;
-      transition: opacity 0s;
-      transition-delay: 0.6s;
-      opacity: 0;
-      visibility: hidden;
-
-      &.menuListRunning {
-        visibility: visible;
-        opacity: 1;
-      }
 
       @media (min-width: $media-md) {
         gap: 26px;
@@ -193,11 +202,41 @@
         }
       }
 
+      &.menuListRunning {
+        .menuListItem {
+          opacity: 1;
+          transform: translateX(0);
+
+          &:nth-child(1) {
+            transition-delay: 0s;
+          }
+
+          &:nth-child(2) {
+            transition-delay: 0.05s;
+          }
+
+          &:nth-child(3) {
+            transition-delay: 0.1s;
+          }
+
+          &:nth-child(4) {
+            transition-delay: 0.15s;
+          }
+
+          &:nth-child(5) {
+            transition-delay: 0.2s;
+          }
+        }
+      }
+
       .menuListItem {
         cursor: pointer;
         width: fit-content;
         position: relative;
         user-select: none;
+        transform: translateX(50px);
+        opacity: 0;
+        transition: opacity 0.25s, transform 0.25s ease-in;
 
         &:hover {
           .menuListItemTitle,
@@ -276,17 +315,17 @@
     position: absolute;
     z-index: 10;
     width: 100vw;
-    left: 100vw;
+    left: 50vw;
     height: 3px;
-    border-bottom: 3px solid #8A8B86;
-    background-color: $lighter-color;
+    opacity: 0;
+    background-color: #8A8B86;
 
     &.menuListDecoratorRunning {
-      animation: decoratorAppear 1s ease-in-out 0s forwards;
+      animation: decoratorAppear 0.3s ease-in 0s forwards;
     }
 
     &.menuListDecoratorEnding {
-      animation: decoratorAppear 1s ease-in-out 0s forwards;
+      animation: decoratorAppear 0.3s ease-in 0s forwards;
       animation-direction: reverse;
     }
   }
@@ -294,30 +333,15 @@
 
 @keyframes decoratorAppear {
   0% {
-    top: 200%;
-    left: 100vw;
-  }
-
-  15% {
-    left: 0;
-  }
-
-  25% {
-    top: 200%;
-    height: 3px;
-    left: 0;
-  }
-
-  65% {
-    height: 200%;
     top: -29px;
-    left: 0;
+    left: 50vw;
+    opacity: 0;
   }
 
   100% {
-    height: 3px;
-    top: -29px;
     left: 0;
+    opacity: 1;
+    top: -29px;
   }
 }
 
