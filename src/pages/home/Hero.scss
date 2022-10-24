@@ -10,12 +10,12 @@
   .homeHeroWrapper {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10vh;
-    padding: 25vh 0 10vh;
+    gap: 15vh;
+    padding: 30vh 0 10vh;
 
     @media (min-width: $media-md) {
-      gap: 15vh;
-      padding: 25vh 0 5vh;
+      gap: 20vh;
+      padding: 30vh 0 5vh;
     }
 
     @media (min-width: $media-lg) {
