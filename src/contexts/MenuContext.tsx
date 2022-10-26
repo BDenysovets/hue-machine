@@ -34,13 +34,13 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
   const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isCoverRunning)
 
   useEffect(() => {
-    isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1000)
+    isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1400)
   }, [isMenuRunning])
 
   useEffect(() => {
     isCoverRunning && setTimeout(() => {
       setIsCoverRunning(false)
-    }, 1000)
+    }, 1400)
   }, [isCoverRunning])
 
   return (
