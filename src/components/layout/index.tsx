@@ -16,7 +16,7 @@ const Content: FC = ({ children }) => (
 const Layout: FC<{ hasAuth?: boolean }> = ({ hasAuth= false, children }) => {
   const { data: session } = useSession()
 
-  // if (!session && hasAuth) return <Login />
+  if (!session && hasAuth) return <Login />
 
   return <Content>{children}</Content>
 };

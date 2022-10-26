@@ -24,3 +24,12 @@ export type PageT = {
     id: string;
   };
 } & NextPageContext
+
+export type ConnectedContractT = {
+  name: string
+  opensea_link: string
+  network: string
+  contract_address: string
+  abi: string
+  id?: string
+}

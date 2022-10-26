@@ -5,5 +5,6 @@ module.exports = {
     GOOGLE_SECRET_KEY: process.env.GOOGLE_SECRET_KEY,
     DATO_CMS_API_KEY: process.env.DATO_CMS_API_KEY,
     NFT_PORT_AUTH_KEY: process.env.NFT_PORT_AUTH_KEY,
+    ABI_ENDPOINT: process.env.ABI_ENDPOINT
   }
 }

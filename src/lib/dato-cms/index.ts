@@ -10,10 +10,12 @@ export const modelsId = {
   partner: '180521',
   asset: '180527',
   campaign: '227995',
+  adminConnectedCampaign: '877357',
+  adminCampaign: '877339',
 };
 
 export async function create(data: Record<any, any>, id: keyof typeof modelsId): Promise<any> {
-  return await cmsClient.items.create({item_type: { type: 'item_type', id }, ...data});
+  return await cmsClient.items.create({ type: "item", item_type: { type: 'item_type', id: modelsId[id] }, ...data });
 }
 
 export async function update(data: Record<any, any>, id: string): Promise<any> {

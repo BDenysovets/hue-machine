@@ -1,71 +1,56 @@
 import {FC} from 'react';
 import {
-  Typography,
   Tooltip,
 } from '@mui/material';
 import {Edit as EditIcon} from '@mui/icons-material';
 import Link from 'next/link';
-import {ContractT} from "../../../lib/nft-port";
 import MUIDataTable, {MUIDataTableColumnDef, MUIDataTableOptions} from 'mui-datatables';
 import {PageWrapper} from "../../layout/Page";
+import {ConnectedContractT} from "../../../utils/interfaces";
 
-const Table: FC<{ contracts: Array<ContractT> }> = ({ contracts }) => {
+const Table: FC<{ campaigns: Array<ConnectedContractT> }> = ({ campaigns }) => {
   const columns: MUIDataTableColumnDef[] = [
-    {
-      label: 'Chain',
-      name: 'chain',
-      options: {
-        filter: true,
-        sort: true,
-      }
-    },
     {
       label: 'Name',
       name: 'name',
       options: {
         filter: true,
+        sort: true,
+      }
+    },
+    {
+      label: 'Opensea',
+      name: 'opensea_link',
+      options: {
+        filter: true,
         sort: true
       }
     },
     {
-      label: 'Symbol',
-      name: 'symbol',
+      label: 'Network',
+      name: 'network',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      label: 'Mint Price',
-      name: 'mint_price',
+      label: 'Contract Address',
+      name: 'contract_address',
       options: {
         filter: true,
         sort: true,
-        customBodyRender: (value) => <Typography variant={'inherit'}><b>ETH</b>{` ${value}`}</Typography>
-      }
-    },
-    {
-      label: 'Public Mint Date',
-      name: 'public_mint_start',
-      options: {
-        filter: true,
-        sort: true,
-        customBodyRender: (value: string) => {
-          const mintStartDate = new Date(value).toISOString().slice(0,10);
-
-          return <Typography variant={'inherit'}>{mintStartDate}</Typography>;
-        }
       }
     },
     {
       label: 'Edit',
-      name: 'address',
+      name: 'id',
       options: {
         filter: false,
         sort: false,
         customBodyRender: (id: string) => {
           return (
-            <Link href="/campaigns/[id]" as={`/campaigns/${id}`}>
+            <Link href="/connected-campaigns/[id]" as={`/connected-campaigns/${id}`}>
               <Tooltip title='Edit' arrow>
                 <EditIcon sx={{ cursor: 'pointer' }} />
               </Tooltip>
@@ -85,13 +70,13 @@ const Table: FC<{ contracts: Array<ContractT> }> = ({ contracts }) => {
 
   return (
     <PageWrapper
-      title={'Campaigns list'}
+      title={'Connected Campaigns list'}
       link={{
         text: 'Add New campaign',
-        href: '/campaigns/add'
+        href: '/connected-campaigns/add'
       }}
     >
-      <MUIDataTable title={'Campaigns'} data={contracts} columns={columns} options={options} />
+      <MUIDataTable title={'Connected Campaigns'} data={campaigns} columns={columns} options={options} />
     </PageWrapper>
   );
 }

@@ -39,9 +39,7 @@ export async function getStaticProps({ params }: EditPageT) {
   const contract = contracts.find((it) => it.address === params.id)
 
   return {
-    props: {
-      contract,
-    },
+    props: { contract },
     revalidate: 1
   };
 }
