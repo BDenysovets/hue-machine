@@ -144,6 +144,12 @@
     flex-wrap: nowrap;
     gap: 23px;
 
+    &:hover {
+      .menuSocialsListItem a {
+        color: #8A8B86;
+      }
+    }
+
     @media (min-width: $media-md) {
       gap: 33px;
     }
@@ -177,6 +183,7 @@
       }
 
       a {
+        transition: color 0.3s ease-in-out;;
         position: relative;
         font-weight: 600;
         font-size: 9px;
@@ -187,6 +194,10 @@
         @media (min-width: $media-lg) {
           font-size: 10px;
           line-height: 12px;
+        }
+
+        &:hover {
+          color: $dark-color;
         }
       }
     }
