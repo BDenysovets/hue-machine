@@ -17,10 +17,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10vh 0;
-
-    @media (min-width: $media-xl) {
-      padding: 15vh 0;
-    }
+    padding: 10vh 0 15vh;
   }
 }
