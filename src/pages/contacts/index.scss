@@ -257,7 +257,7 @@ input {
     background: rgba(0,0,0,0) !important;
     -webkit-box-shadow: none !important;
     -webkit-text-fill-color: $light-color !important;
-    transition: background-color 9999s ease-in-out 0s;
+    transition: background-color 9999s ease-in-out 0s, color 9999s ease-in-out 0s;
   }
 
   &:active,
@@ -305,7 +305,7 @@ textarea {
     background: rgba(0,0,0,0) !important;
     -webkit-box-shadow: none !important;
     -webkit-text-fill-color: $light-color !important;
-    transition: background-color 9999s ease-in-out 0s;
+    transition: background-color 9999s ease-in-out 0s, color 9999s ease-in-out 0s;
   }
 
   &::-webkit-scrollbar {
