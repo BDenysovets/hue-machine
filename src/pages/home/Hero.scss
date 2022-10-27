@@ -17,10 +17,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 7vh 0 15vh;
+    padding: 7vh 0 20vh;
 
     @media (max-width: $media-md) and (max-height: 550px) {
-      padding: 5vh 0 15vh;
+      padding: 5vh 0 20vh;
     }
 
     @media (min-height: $media-md) {
