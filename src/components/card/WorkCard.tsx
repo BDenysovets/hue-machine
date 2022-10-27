@@ -69,7 +69,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
       {!link && (
         <MouseTooltip
           visible={isPopoverVisible}
-          offsetX={-60}
+          offsetX={13}
           offsetY={20}
         >
           <span className="cardTooltip">Coming soon</span>
