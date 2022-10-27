@@ -228,6 +228,7 @@
       transition-delay: 0.2s;
       transform-origin: center center;
       transform: scaleX(1);
+      background-color: $light-color !important;
     }
   }
 }
