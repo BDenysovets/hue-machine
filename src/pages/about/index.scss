@@ -93,10 +93,10 @@
   }
 
   .aboutPageStatsListWrapperContent {
-    margin-bottom: 74px;
+    margin-bottom: 130px;
 
     @media (min-width: $media-md) {
-      margin-bottom: 100px;
+      margin-bottom: 140px;
     }
 
     @media (min-width: $media-lg) {
@@ -246,12 +246,12 @@
       display: grid;
       width: 100%;
       gap: 65px;
-      margin-bottom: 80px;
+      margin-bottom: 130px;
       max-width: 428px;
 
       @media (min-width: $media-md) {
         gap: 59px;
-        margin-bottom: 100px;
+        margin-bottom: 140px;
       }
 
       @media (min-width: $media-lg) {
