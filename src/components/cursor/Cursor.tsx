@@ -1,30 +1,18 @@
 import React, {
-  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
 import "./Cursor.scss";
-import PropTypes from "prop-types";
-import './Cursor.scss'
+import {useLocation} from "react-router-dom";
 
 export interface IStyles {
   [element: string]: React.CSSProperties;
 }
 
-export type CursorChildrenType = JSX.Element | string | undefined | number;
-
-export interface hoverStyle {
-  classNameOfTargetElement: string;
-  classNameOfStyle: string;
-  cursorChildren?: CursorChildrenType;
-}
-
 interface Props {
   children: JSX.Element;
-  borderClassName?: string;
-  hoverClasses?: hoverStyle[];
 }
 
 const IsDevice = (() => {
@@ -84,101 +72,40 @@ function useFollowCursor() {
 
 function Cursor({
   children,
-  borderClassName,
-  hoverClasses = [],
 }: Props) {
+  const { pathname } = useLocation()
+  const { x, y } = useFollowCursor();
+  const cursorWrapperElement = useRef<HTMLDivElement>(null);
+  const cursorBorderElement = useRef<HTMLDivElement>(null);
+  const styles: IStyles = useMemo(() => ({ cursorBorder: { top: y, left: x } }), [x, y]);
+
   useEffect(() => {
     !IsDevice?.any() ? document.body.classList.add("cursor-none") : document.body.classList.add("initial-body");
   }, []);
 
-  const [classes, setClasses] = useState<
-    {
-      elements: NodeListOf<Element>;
-      className: string;
-      cursorChildren: CursorChildrenType;
-    }[]
-    >([]);
-
-  const cursorWrapperElement = useRef<HTMLDivElement>(null);
-  const cursorDotElement = useRef<HTMLDivElement>(null);
-  const cursorBorderElement = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (hoverClasses.length) {
-      hoverClasses.forEach(hoverClass => {
-        const elements = document.querySelectorAll(
-          `.${hoverClass.classNameOfTargetElement}`
-        );
-        setClasses(current => {
-          const cl = {
-            elements,
-            className: hoverClass.classNameOfStyle,
-            cursorChildren: hoverClass.cursorChildren,
-          };
+    const hoverableElements = document.querySelectorAll('.cursorLink')
 
-          return [...current, cl];
+    cursorWrapperElement.current?.classList.remove('cursorHoveredLink');
+
+    const mouseMoveHandler = () => {
+      hoverableElements.forEach(el => {
+        el.addEventListener("mouseover", () => {
+          cursorWrapperElement.current?.classList.add('cursorHoveredLink');
         });
-      });
+
+        el.addEventListener("mouseout", () => {
+          cursorWrapperElement.current?.classList.remove('cursorHoveredLink');
+        });
+      })
     }
-  }, [hoverClasses]);
 
-  const { x, y } = useFollowCursor();
-  const styles: IStyles = useMemo(() => ({ cursorBorder: { top: y, left: x } }), [x, y]);
-
-  const mouseDownHandler = useCallback(() => {
-    if (cursorBorderElement.current && cursorBorderElement.current.classList)
-      cursorBorderElement.current.classList.add("smaller-cursor-border");
-  }, []);
-
-  const mouseUpHandler = useCallback(() => {
-    if (cursorBorderElement.current && cursorBorderElement.current.classList)
-      cursorBorderElement.current.classList.remove("smaller-cursor-border");
-  }, []);
-
-  const mouseOverHandler = useCallback(() => {
-    if (classes.length) {
-      classes.forEach(className => {
-        for (let i = 0; i < className.elements.length; i++) {
-          className.elements[i].addEventListener("mouseover", () => {
-            cursorWrapperElement.current?.classList.add(className.className);
-
-            if (className?.cursorChildren) {
-              cursorDotElement.current?.classList.add("transition-none");
-            }
-          });
-        }
-      });
-    }
-  }, [classes]);
-
-  const mouseOutHandler = useCallback(() => {
-    if (classes.length)
-      classes.forEach(className => {
-        for (let i = 0; i < className.elements.length; i++) {
-          className.elements[i].addEventListener("mouseout", () => {
-            cursorWrapperElement.current?.classList.remove(className.className);
-
-            if (className.cursorChildren) {
-              cursorDotElement.current?.classList.remove("transition-none");
-            }
-          });
-        }
-      });
-  }, [classes]);
-
-  useEffect(() => {
-    window.addEventListener("mousedown", mouseDownHandler);
-    window.addEventListener("mouseup", mouseUpHandler);
-    window.addEventListener("mouseover", mouseOverHandler);
-    window.addEventListener("mouseout", mouseOutHandler);
+    window.addEventListener("mousemove", mouseMoveHandler);
 
     return () => {
-      window.removeEventListener("mousedown", mouseDownHandler);
-      window.removeEventListener("mouseup", mouseUpHandler);
-      window.removeEventListener("mouseover", mouseOverHandler);
-      window.removeEventListener("mouseout", mouseOutHandler);
+      window.removeEventListener("mousemove", mouseMoveHandler);
     };
-  }, [mouseDownHandler, mouseOutHandler, mouseOverHandler, mouseUpHandler]);
+  }, [pathname]);
 
   if (IsDevice?.any())
     return <React.Fragment>{children}</React.Fragment>;
@@ -189,7 +116,7 @@ function Cursor({
       className="cursor-wrapper"
       data-testid="cursor">
       <div
-        className={`cursor-border ${borderClassName}`}
+        className="cursor-border"
         style={styles.cursorBorder}
         ref={cursorBorderElement}
       />
@@ -197,22 +124,5 @@ function Cursor({
     </div>
   );
 }
-
-Cursor.propTypes = {
-  children: PropTypes.element.isRequired,
-  borderClassName: PropTypes.string,
-  hoverClasses: PropTypes.arrayOf(
-    PropTypes.shape({
-      classNameOfTargetElement: PropTypes.string.isRequired,
-      classNameOfStyle: PropTypes.string.isRequired,
-      cursorChildren: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.element,
-      ]),
-    })
-  ),
-  turnOffOnPhone: PropTypes.bool,
-};
 
 export default Cursor;
