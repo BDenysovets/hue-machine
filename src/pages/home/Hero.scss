@@ -7,30 +7,20 @@
     height: calc(100vh - 90px);
   }
 
+  .content,
+  .content .wrapper {
+    height: 100%;
+  }
+
   .homeHeroWrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15vh;
-    padding: 30vh 0 10vh;
-
-    @media (min-width: $media-md) {
-      gap: 20vh;
-      padding: 30vh 0 5vh;
-    }
-
-    @media (min-width: $media-lg) {
-      gap: 20vh;
-      padding: 25vh 0 5vh;
-    }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10vh 0;
 
     @media (min-width: $media-xl) {
-      gap: 20vh;
-      padding: 32vh 0 5vh;
-    }
-
-    @media (min-width: $media-xxl) {
-      gap: 20vh;
-      padding: 35vh 0 5vh;
+      padding: 15vh 0;
     }
   }
 }

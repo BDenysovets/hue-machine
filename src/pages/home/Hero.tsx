@@ -8,6 +8,7 @@ const Hero = () => {
   return (
     <Content className="homeHero">
       <div className="homeHeroWrapper">
+        <div />
         <Title level={2}>
           We tailor communication to help your business evolve in an interconnected,
           unpredictable & fast-paced digital environment
