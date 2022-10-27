@@ -244,8 +244,8 @@ input {
   line-height: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: $light-color;
-  background-color: transparent;
+  color: $light-color !important;
+  background: transparent !important;
   border: none;
 
   &:-webkit-autofill,
@@ -254,9 +254,10 @@ input {
   &:-webkit-autofill:active,
   &[data-autocompleted] {
     color: $light-color !important;
-    background-color: transparent !important;
+    background: rgba(0,0,0,0) !important;
     -webkit-box-shadow: none !important;
     -webkit-text-fill-color: $light-color !important;
+    transition: background-color 9999s ease-in-out 0s;
   }
 
   &:active,
@@ -286,8 +287,8 @@ input {
 textarea {
   resize: none;
   border: 2px solid #F3F2E8;
-  background-color: transparent;
-  color: $light-color;
+  background: transparent !important;
+  color: $light-color !important;
   font-weight: 700;
   font-size: 9px;
   line-height: 20px;
@@ -301,9 +302,10 @@ textarea {
   &:-webkit-autofill:active,
   &[data-autocompleted] {
     color: $light-color !important;
-    background-color: transparent !important;
+    background: rgba(0,0,0,0) !important;
     -webkit-box-shadow: none !important;
     -webkit-text-fill-color: $light-color !important;
+    transition: background-color 9999s ease-in-out 0s;
   }
 
   &::-webkit-scrollbar {
