@@ -33,8 +33,7 @@ const Achievements = () => {
           <Title level={2}>Selected Clients</Title>
           <p className='homeAchievementsCta'>
             <span>Want to chat? </span>
-            <span>
-            <p
+            <span
               onClick={() => {
                 setCoverRunning()
 
@@ -45,8 +44,7 @@ const Achievements = () => {
               className="cursorLink"
             >
               Get in touch
-            </p>
-          </span>
+            </span>
           </p>
         </div>
         <div className="homeAchievementsListWrapper">

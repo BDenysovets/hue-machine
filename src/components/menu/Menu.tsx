@@ -25,7 +25,7 @@ type MenuItemType = {
   value?: string;
 }
 
-const menuItems: Array<MenuItemType> = [
+export const menuItems: Array<MenuItemType> = [
   {
     link: '/',
     title: 'Index',

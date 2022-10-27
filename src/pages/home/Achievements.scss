@@ -42,9 +42,12 @@
           line-height: 42px;
         }
 
-        & p {
+        & span {
           display: inline;
-          text-decoration: underline;
+
+          &:last-child {
+            text-decoration: underline;
+          }
         }
       }
     }

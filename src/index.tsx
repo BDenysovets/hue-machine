@@ -12,7 +12,7 @@ ReactDOM.render(
     <MenuProvider>
       <Cover type="app" />
       <BrowserRouter>
-        <Header hasBurger={true} theme={'dark'} />
+        <Header theme={'dark'} />
         <App/>
       </BrowserRouter>
     </MenuProvider>

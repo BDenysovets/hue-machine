@@ -12,7 +12,9 @@ import {useMenuContext} from "../../contexts/MenuContext";
 const NotFound: FC = () => {
   const [isGoingToNextPage, setIsGoingToNextPage] = useState(false);
   const navigate = useHistory();
-  const { setCoverRunning } = useMenuContext()
+  const { setCoverRunning, setHasBurger } = useMenuContext()
+
+  setHasBurger(false);
 
   useEffect(() => {
     if (isGoingToNextPage) {

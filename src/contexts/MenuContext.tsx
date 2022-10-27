@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useContext, useEffect, useState} from 'react'
+import {createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState} from 'react'
 
 type DefaultValuesType = {
   isOpen?: boolean;
@@ -9,6 +9,8 @@ type DefaultValuesType = {
   isCoverRunning?: boolean;
   setMenuRunning?: () => void;
   setCoverRunning: () => void;
+  hasBurger?: boolean;
+  setHasBurger: Dispatch<SetStateAction<boolean | undefined>>
 }
 
 const defaultValues: DefaultValuesType = {
@@ -19,6 +21,8 @@ const defaultValues: DefaultValuesType = {
   isMenuRunning: false,
   isCoverRunning: false,
   setMenuRunning: () => undefined,
+  hasBurger: true,
+  setHasBurger: () => undefined,
   setCoverRunning: () => undefined,
 }
 
@@ -30,6 +34,7 @@ const useMenuContext: UseMenuContextType = () => useContext(Context)
 
 const MenuProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(defaultValues.isOpen)
+  const [hasBurger, setHasBurger] = useState(defaultValues.hasBurger)
   const [isMenuRunning, setIsMenuRunning] = useState(defaultValues.isMenuRunning)
   const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isCoverRunning)
 
@@ -54,6 +59,8 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
     <Context.Provider
       value={{
         isOpen,
+        hasBurger,
+        setHasBurger,
         isMenuRunning,
         isCoverRunning,
         setMenuRunning: () => setIsMenuRunning(true),

@@ -9,13 +9,12 @@ import cx from "classnames";
 import {useMenuContext} from "../../contexts/MenuContext";
 
 type Props = {
-  hasBurger: boolean
   theme?: AppTheme
 }
 
-const Header: FC<Props> = ({ hasBurger, theme }) => {
+const Header: FC<Props> = ({ theme }) => {
   const elementsTheme = theme === 'light' ? 'dark' : 'light'
-  const { isOpen, isMenuRunning } = useMenuContext();
+  const { isOpen, isMenuRunning, hasBurger } = useMenuContext();
   const { pathname } = useLocation();
   const hasHeaderLink = useMemo(() => !pathname.includes('contacts'),[pathname])
   const [isGetInTouchVisible, setIsGetInTouchVisible] = useState(false);
