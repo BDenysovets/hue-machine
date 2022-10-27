@@ -250,9 +250,13 @@ input {
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active,
+  &[data-autocompleted] {
     color: $light-color !important;
     background-color: transparent !important;
+    -webkit-box-shadow: none !important;
+    -webkit-text-fill-color: $light-color !important;
   }
 
   &:active,
@@ -293,9 +297,13 @@ textarea {
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active,
+  &[data-autocompleted] {
     color: $light-color !important;
     background-color: transparent !important;
+    -webkit-box-shadow: none !important;
+    -webkit-text-fill-color: $light-color !important;
   }
 
   &::-webkit-scrollbar {
