@@ -72,7 +72,7 @@ const Table: FC<{ campaigns: Array<ConnectedContractT> }> = ({ campaigns }) => {
     <PageWrapper
       title={'Connected Campaigns list'}
       link={{
-        text: 'Add New campaign',
+        text: 'Connect a campaign',
         href: '/connected-campaigns/add'
       }}
     >
