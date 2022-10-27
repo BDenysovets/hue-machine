@@ -41,7 +41,7 @@ const addresses = [
   },
   {
     title: 'DC',
-    text: 'Velyka Vasylkivska St, 98 Kyiv, Ukraine',
+    text: 'Velyka Vasylkivska St, 98, Kyiv, Ukraine',
     link: 'https://goo.gl/maps/MLrfm1RGdPeVQodi6',
   },
 ]
