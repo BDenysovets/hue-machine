@@ -27,3 +27,9 @@
     opacity: 1;
   }
 }
+
+.app.menuOpen {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}

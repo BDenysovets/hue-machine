@@ -17,8 +17,8 @@ type Props = {
   title?: string;
 }
 
-const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasFooter = true, hasBurger = true, className }: PropsWithChildren<Props>) => {
-  const { isOpen } = useMenuContext()
+const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasFooter = true, className }: PropsWithChildren<Props>) => {
+  const { isOpen, isMenuRunning } = useMenuContext()
 
   useEffect(() => window.scrollTo(0, 0), [])
   useEffect(() => {
@@ -32,7 +32,7 @@ const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasFoo
   }, [theme, isOpen])
 
   return (
-    <div className={cx('app', theme, className)}>
+    <div className={cx('app', theme, className, { 'menuOpen': isOpen && !isMenuRunning })}>
       <Helmet>
         <title>{title}</title>
       </Helmet>
