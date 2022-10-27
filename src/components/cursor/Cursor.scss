@@ -19,7 +19,7 @@
   z-index: 9999;
   width: 25px;
   height: 25px;
-  mix-blend-mode: exclusion;
+  mix-blend-mode: difference;
   filter: invert(1);
   transition: width 0.2s linear, height 0.2s linear, background 0.3s ease-in-out;
   cursor: none;

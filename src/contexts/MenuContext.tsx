@@ -34,6 +34,13 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
   const [isCoverRunning, setIsCoverRunning] = useState(defaultValues.isCoverRunning)
 
   useEffect(() => {
+    if (isOpen) {
+      document?.querySelector('body')?.classList.remove('dark')
+      document?.querySelector('body')?.classList.add('light')
+    }
+  }, [isOpen])
+
+  useEffect(() => {
     isMenuRunning && setTimeout(() => setIsMenuRunning(false), 1400)
   }, [isMenuRunning])
 

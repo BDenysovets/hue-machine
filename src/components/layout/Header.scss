@@ -13,8 +13,6 @@
   justify-content: center;
   align-items: center;
   mix-blend-mode: difference;
-  transition: mix-blend-mode 0.3s ease-in-out;
-  will-change: mix-blend-mode;
   
   @media (min-width: $media-md) {
     height: 90px;
@@ -80,4 +78,8 @@
       transform: translateX(7px);
     }
   }
+}
+
+.menuOpen .header {
+  mix-blend-mode: unset;
 }

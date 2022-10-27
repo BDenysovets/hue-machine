@@ -3,8 +3,8 @@ import cx from 'classnames'
 import {Helmet} from "react-helmet";
 
 import { AppTheme } from "../../types/types";
+import {useMenuContext} from "../../contexts/MenuContext";
 import {Menu} from "../menu/Menu";
-import { Header } from './Header'
 import { Footer } from './Footer'
 
 import './DefaultLayout.scss'
@@ -18,7 +18,18 @@ type Props = {
 }
 
 const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasFooter = true, hasBurger = true, className }: PropsWithChildren<Props>) => {
+  const { isOpen } = useMenuContext()
+
   useEffect(() => window.scrollTo(0, 0), [])
+  useEffect(() => {
+    if (theme === 'dark') {
+      document?.querySelector('body')?.classList.add('dark')
+      document?.querySelector('body')?.classList.remove('light')
+    } else {
+      document?.querySelector('body')?.classList.remove('dark')
+      document?.querySelector('body')?.classList.add('light')
+    }
+  }, [theme, isOpen])
 
   return (
     <div className={cx('app', theme, className)}>
@@ -26,7 +37,6 @@ const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasFoo
         <title>{title}</title>
       </Helmet>
       <div className='appWrapper'>
-        <Header hasBurger={hasBurger} theme={theme} />
         <Menu />
         <div className="appPageContent">
           {children}
