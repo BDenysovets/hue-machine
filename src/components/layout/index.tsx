@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Header } from './Header';
 import { Box, Container } from '@mui/material';
-import Login from '../../pages/login';
-import { useSession } from "next-auth/react"
+// import Login from '../../pages/login';
+// import { useSession } from "next-auth/react"
 
 const Content: FC = ({ children }) => (
   <Box>
@@ -13,10 +13,13 @@ const Content: FC = ({ children }) => (
   </Box>
 );
 
-const Layout: FC<{ hasAuth?: boolean }> = ({ hasAuth= false, children }) => {
-  const { data: session } = useSession()
+const Layout: FC<{ hasAuth?: boolean }> = ({
+                                             // hasAuth= false,
+                                             children,
+                                           }) => {
+  // const { data: session } = useSession()
 
-  if (!session && hasAuth) return <Login />
+  // if (!session && hasAuth) return <Login />
 
   return <Content>{children}</Content>
 };
