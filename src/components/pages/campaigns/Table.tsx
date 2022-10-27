@@ -59,7 +59,7 @@ const Table: FC<{ contracts: Array<ContractT> }> = ({ contracts }) => {
     },
     {
       label: 'Edit',
-      name: 'address',
+      name: 'id',
       options: {
         filter: false,
         sort: false,

@@ -12,12 +12,13 @@ import {
 } from '@mui/material';
 import { MuiForm } from '@rjsf/material-ui';
 import { NextPageContext } from 'next';
-import {getAllContracts, ContractT, updateContract, ChainT} from '../../lib/nft-port';
+import {ContractT, updateContract, ChainT} from '../../lib/nft-port';
 import { formSchema } from './add';
 import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {MessageT, Toast} from "../../components/toast";
 import {Layout} from "../../components/layout";
+import {find, update} from "../../lib/dato-cms";
 
 type EditPageT = {
   params: {
@@ -26,17 +27,17 @@ type EditPageT = {
 } & NextPageContext;
 
 export async function getStaticPaths() {
-  const contracts = await getAllContracts('rinkeby')
+  const contracts = await find("adminCampaign")
 
   return {
-    paths: contracts.map((it) => `/campaigns/${it.address}`),
+    paths: contracts.map((contract) => `/campaigns/${contract.id}`),
     fallback: true
   };
 }
 
 export async function getStaticProps({ params }: EditPageT) {
-  const contracts = await getAllContracts('rinkeby')
-  const contract = contracts.find((it) => it.address === params.id)
+  const contracts = await find("adminCampaign")
+  const contract = contracts.find((contract) => contract.id === params.id)
 
   return {
     props: { contract },
@@ -44,7 +45,7 @@ export async function getStaticProps({ params }: EditPageT) {
   };
 }
 
-const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
+const Edit: FC<{ contract?: ContractT }> = ({ contract }) => {
   const [formData, setFormData] = useState({ ...contract });
   const [chain, setChain] = useState<ChainT>(contract?.chain ?? 'rinkeby')
   const [mintDate, setMintDate] = useState<Date>(new Date(contract?.public_mint_start));
@@ -67,7 +68,11 @@ const Edit: FC<{ contract: ContractT }> = ({ contract }) => {
     }
 
     updateContract(contractData)
-      .then(() => setMessage({ text: "Contract updated!", type: 'success' }))
+      .then(() => {
+        update(contractData, contract.id)
+          .then(() => setMessage({ text: "Contract updated!", type: 'success' }))
+          .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", type: 'error' }))
+      })
       .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", type: 'error' }))
   };
 

@@ -10,6 +10,7 @@ import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {MessageT, Toast} from "../../components/toast";
 import {Layout} from "../../components/layout";
+import {create} from "../../lib/dato-cms";
 
 export const formSchema: JSONSchema7 = {
   "type": "object",
@@ -93,7 +94,13 @@ const Add: FC = () => {
     }
 
     createContract(contractData)
-      .then(() => setMessage({ text: "Contract created!", type: 'success' }))
+      .then(() => {
+        create(contractData, "adminCampaign")
+          .then(() => {
+            setMessage({ text: "Contract created!", type: 'success' })
+          })
+          .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", type: 'error' }))
+      })
       .catch(() => setMessage({ text: "Ohh, something went wrong, please try again later...", type: 'error' }))
   }
 

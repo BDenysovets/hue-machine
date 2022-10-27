@@ -1,10 +1,11 @@
 import {FC} from 'react';
 import {Table} from '../../components/pages/campaigns/Table';
-import {ContractT, getAllContracts} from '../../lib/nft-port';
+import {ContractT} from '../../lib/nft-port';
 import {Layout} from "../../components/layout";
+import {find} from "../../lib/dato-cms";
 
 export async function getStaticProps() {
-  const contracts = await getAllContracts('rinkeby')
+  const contracts = await find("adminCampaign")
 
   return {
     props: { contracts },
