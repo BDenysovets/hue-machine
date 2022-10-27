@@ -14,18 +14,23 @@ const NotFound: FC = () => {
   const navigate = useHistory();
   const { setCoverRunning, setHasBurger } = useMenuContext()
 
-  setHasBurger(false);
-
   useEffect(() => {
+    setHasBurger(false);
+
     if (isGoingToNextPage) {
       setCoverRunning();
 
       setTimeout(() => {
         navigate.push('/')
+        setHasBurger(true);
         setIsGoingToNextPage(false)
       }, 500)
     }
-  }, [isGoingToNextPage, navigate, setCoverRunning])
+
+    return () => {
+      setHasBurger(true);
+    }
+  }, [isGoingToNextPage, navigate, setCoverRunning, setHasBurger])
 
   return (
     <DefaultLayout hasFooter={false} className="notFoundPage" title="404">
