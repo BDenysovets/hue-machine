@@ -84,27 +84,19 @@ function Cursor({
   }, []);
 
   useEffect(() => {
-    const hoverableElements = document.querySelectorAll('.cursorLink')
-
     cursorWrapperElement.current?.classList.remove('cursorHoveredLink');
 
-    const mouseMoveHandler = () => {
-      hoverableElements.forEach(el => {
-        el.addEventListener("mouseover", () => {
-          cursorWrapperElement.current?.classList.add('cursorHoveredLink');
-        });
+    const hoverableElements = document.querySelectorAll('.cursorLink')
 
-        el.addEventListener("mouseout", () => {
-          cursorWrapperElement.current?.classList.remove('cursorHoveredLink');
-        });
-      })
-    }
+    hoverableElements.forEach(el => {
+      el.addEventListener("mouseover", () => {
+        cursorWrapperElement.current?.classList.add('cursorHoveredLink');
+      });
 
-    window.addEventListener("mousemove", mouseMoveHandler);
-
-    return () => {
-      window.removeEventListener("mousemove", mouseMoveHandler);
-    };
+      el.addEventListener("mouseout", () => {
+        cursorWrapperElement.current?.classList.remove('cursorHoveredLink');
+      });
+    })
   }, [pathname]);
 
   if (IsDevice?.any())
