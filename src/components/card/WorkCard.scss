@@ -151,6 +151,16 @@
       background-color: rgba(252, 247, 211, 0.6);
     }
 
+    @media (max-width: 1023px) {
+      &.active {
+        filter: initial;
+
+        &:after {
+          opacity: 0;
+        }
+      }
+    }
+
     &:hover {
       filter: initial;
 
