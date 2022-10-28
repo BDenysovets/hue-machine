@@ -38,7 +38,7 @@ const ParallaxCard: FC<ParallaxCardProps> = ({ imageMobile, image, link, isLarge
           navigate.push(link)
         }, 500)
       }}
-      className={cx('parallaxCardImageWrapper', { 'large': isLarge, 'small': !isLarge })}
+      className={cx('parallaxCardImageWrapper scrollAnimationItem', { 'large': isLarge, 'small': !isLarge })}
     >
       <Parallax
         bgImage={isMobile ? imageMobile : image}

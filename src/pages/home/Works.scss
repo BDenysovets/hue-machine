@@ -57,11 +57,21 @@
       background-color: rgba(252, 247, 211, 0.6);
     }
 
-    &:hover {
+    &.active {
       filter: initial;
 
       &:after {
         opacity: 0;
+      }
+    }
+
+    @media (min-width: $media-md) {
+      &:hover {
+        filter: initial;
+
+        &:after {
+          opacity: 0;
+        }
       }
     }
   }
