@@ -169,6 +169,20 @@
       }
     }
 
+    @media (max-width: 767px) {
+      &.active {
+        .aboutPageStatsListItemValue,
+        .aboutPageStatsListItemTitle,
+        .aboutPageStatsListItemDescription {
+          color: $light-color;
+        }
+
+        &::before {
+          height: calc(100% + 15px);
+        }
+      }
+    }
+
     .aboutPageStatsListItemValue,
     .aboutPageStatsListItemTitle,
     .aboutPageStatsListItemDescription {
@@ -374,6 +388,17 @@
         transition: opacity 0.7s;
         background-color: rgba(252, 247, 211, 0.6);
       }
+
+      @media (max-width: 767px) {
+        &.active {
+          filter: initial;
+
+          &:after {
+            opacity: 0;
+          }
+        }
+      }
+
 
       &:hover {
         filter: initial;

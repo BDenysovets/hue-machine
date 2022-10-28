@@ -68,7 +68,7 @@ type GridCardProps = {
 }
 
 const GridCard: FC<GridCardProps> = ({ title, description, value }) => (
-  <div className="aboutPageStatsListItem">
+  <div className="aboutPageStatsListItem scrollAnimationItem">
     <p className="aboutPageStatsListItemValue">{value}</p>
     <p className="aboutPageStatsListItemTitle">{title}</p>
     <p className="aboutPageStatsListItemDescription">{description}</p>
@@ -98,7 +98,7 @@ const WorkCard: FC<WorkCardProps> = ({ image, imageMobile, description, title })
             navigate.push('/work')
           }, 500)
         }}
-        className={cx('parallaxCardImageWrapper')}
+        className={cx('parallaxCardImageWrapper scrollAnimationItem')}
       >
         <Parallax
           bgImage={isMobile ? imageMobile : image}
