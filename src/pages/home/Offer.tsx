@@ -59,7 +59,7 @@ const Offer = () => {
           <div className="homeOfferStatsContent">
             <ul className="homeOfferStatsList">
               {stats.map((it) => (
-                <li className="homeOfferStatItem" key={it.index}>
+                <li className="homeOfferStatItem scrollAnimationItem" key={it.index}>
                   <p className="homeOfferStatItemIndex">{it.index}</p>
                   <Title level={4} className="homeOfferStatItemTitle">{it.title}</Title>
                   <p className="homeOfferStatItemDescription">{it.description}</p>

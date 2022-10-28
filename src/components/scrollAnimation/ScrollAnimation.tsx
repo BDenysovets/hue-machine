@@ -20,7 +20,7 @@ const ScrollAnimation: FC = ({ children }) => {
         const endPoint = window.innerHeight * 0.3
         const middlePoint = (startPoint + endPoint) / 2
 
-        if (window.scrollY > offset - middlePoint * 1.4 && window.scrollY < offset - middlePoint * 0.6) {
+        if (window.scrollY > offset - middlePoint * 1.2 && window.scrollY < offset - middlePoint * 0.8) {
           item.classList.add('active')
           prevItem?.classList.remove('active')
         } else {
