@@ -183,7 +183,7 @@
           }
         }
 
-        &:hover {
+        @media (max-width: 767px) {
           .homeOfferStatItem {
             .homeOfferStatItemIndex,
             .homeOfferStatItemTitle,
@@ -191,11 +191,31 @@
               opacity: 0.4;
             }
 
-            &:hover {
+            &.active {
               .homeOfferStatItemIndex,
               .homeOfferStatItemTitle,
               .homeOfferStatItemDescription {
                 opacity: 1;
+              }
+            }
+          }
+        }
+
+        @media (min-width: $media-md) {
+          &:hover {
+            .homeOfferStatItem {
+              .homeOfferStatItemIndex,
+              .homeOfferStatItemTitle,
+              .homeOfferStatItemDescription {
+                opacity: 0.4;
+              }
+
+              &:hover {
+                .homeOfferStatItemIndex,
+                .homeOfferStatItemTitle,
+                .homeOfferStatItemDescription {
+                  opacity: 1;
+                }
               }
             }
           }
