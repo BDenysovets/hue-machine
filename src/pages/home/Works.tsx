@@ -26,6 +26,7 @@ export type ParallaxCardProps = {
 const ParallaxCard: FC<ParallaxCardProps> = ({ imageMobile, image, link, isLarge }) => {
   const { width } = useWindowSize()
   const isMobile = useMemo(() => width < 768, [width])
+  const isTablet = useMemo(() => width > 768 && width < 1200, [width])
   const navigate = useHistory()
   const {setCoverRunning} = useMenuContext()
 
@@ -42,7 +43,7 @@ const ParallaxCard: FC<ParallaxCardProps> = ({ imageMobile, image, link, isLarge
     >
       <Parallax
         bgImage={isMobile ? imageMobile : image}
-        strength={isMobile ? 60 : isLarge ? 110 : 80}
+        strength={isMobile ? 40 : isTablet ? 55 : isLarge ? 100 : 80}
         style={{ height: '100%' }}
       />
     </div>
