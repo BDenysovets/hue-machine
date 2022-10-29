@@ -62,72 +62,40 @@
     }
   }
 
+  .react-parallax-bgimage {
+    width: auto !important;
+    min-width: 100% !important;
+    object-fit: cover !important;
+  }
+
   .workCard.large {
     .react-parallax-bgimage {
-      height: auto !important;
-      width: 130% !important;
-      object-fit: cover !important;
+      height: 125% !important;
 
       @media (min-width: $media-md) {
-        width: 120% !important;
+        height: 120% !important;
       }
 
       @media (min-width: $media-lg) {
-        width: 130% !important;
-      }
-
-      @media (min-width: $media-xl) {
-        width: 100% !important;
-      }
-    }
-
-    .react-parallax-background,
-    .react-parallax-background img,
-    .react-parallax-background-children {
-      height: auto !important;
-      width: 130% !important;
-
-      @media (min-width: $media-md) {
-        width: 120% !important;
-      }
-
-      @media (min-width: $media-lg) {
-        width: 130% !important;
-      }
-
-      @media (min-width: $media-xl) {
-        width: 100% !important;
+        height: 115% !important;
       }
     }
   }
 
   .workCard.small {
     .react-parallax-bgimage {
-      height: auto !important;
-      width: 120% !important;
-      object-fit: cover !important;
+      height: 120% !important;
 
       @media (min-width: $media-md) {
-        width: 175% !important;
+        height: 125% !important;
+      }
+
+      @media (min-width: $media-lg) {
+        height: 110% !important;
       }
 
       @media (min-width: $media-xl) {
-        width: 155% !important;
-      }
-    }
-
-    .react-parallax-background,
-    .react-parallax-background img,
-    .react-parallax-background-children {
-      height: auto !important;
-      width: 120% !important;
-
-      @media (min-width: $media-md) {
-        width: 175% !important;
-      }
-
-      @media (min-width: $media-xl) {
-        width: 155% !important;
+        height: 115% !important;
       }
     }
   }

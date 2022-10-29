@@ -24,6 +24,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
   const [isPopoverVisible, setIsPopoverVisible] = useState(false)
   const { width } = useWindowSize()
   const isMobile = useMemo(() => width < 768, [width])
+  const isTablet = useMemo(() => width > 768 && width < 1200, [width])
 
   return (
     <div className={cx('workCard', size, className)}>
@@ -43,7 +44,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
         >
           <Parallax
             bgImage={isMobile ? imageMobile : image}
-            strength={isMobile ? 60 : size === 'large' ? 110 : 80}
+            strength={isMobile ? 40 : isTablet ? 55 : size === 'large' ? 100 : 80}
             style={{ height: '100%' }}
           />
         </a>
@@ -61,7 +62,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
         >
           <Parallax
             bgImage={isMobile ? imageMobile : image}
-            strength={isMobile ? 60 : size === 'large' ? 110 : 80}
+            strength={isMobile ? 40 : isTablet ? 55 : size === 'large' ? 100 : 80}
             style={{ height: '100%' }}
           />
         </div>
