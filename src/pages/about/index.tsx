@@ -85,6 +85,7 @@ type WorkCardProps = {
 const WorkCard: FC<WorkCardProps> = ({ image, imageMobile, description, title }) => {
   const { width } = useWindowSize()
   const isMobile = useMemo(() => width < 768, [width])
+  const isTablet = useMemo(() => width > 768 && width < 1200, [width])
   const navigate = useHistory()
   const {setCoverRunning} = useMenuContext()
 
@@ -102,7 +103,7 @@ const WorkCard: FC<WorkCardProps> = ({ image, imageMobile, description, title })
       >
         <Parallax
           bgImage={isMobile ? imageMobile : image}
-          strength={isMobile ? 60 : 80}
+          strength={isMobile ? 40 : isTablet ? 55 : 80}
           style={{ height: '100%' }}
         />
       </div>
