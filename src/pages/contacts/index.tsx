@@ -42,7 +42,6 @@ const Contacts: FC = () => {
   const [isFormSent, setIsFormSent] = useState(false);
   const isFormValid = useMemo(() => (
     formValues?.name && formValues?.email
-    && formValues.message
     && formValues.email.includes("@")
     && formValues.email.includes(".")
   ), [formValues])
@@ -90,7 +89,11 @@ const Contacts: FC = () => {
                     </div>
                     <div className="inputWrapper">
                       <input
-                        className={cx(Number(formValues?.email?.length) > 1 && formValues?.email?.includes("@") && 'valid')}
+                        className={cx(Number(formValues?.email?.length) > 1
+                          && formValues?.email?.includes("@")
+                          && formValues?.email?.includes(".")
+                          && 'valid'
+                        )}
                         id="email"
                         name="email"
                         type="email"
