@@ -99,7 +99,7 @@ const WorkCard: FC<WorkCardProps> = ({ image, imageMobile, description, title })
             navigate.push('/work')
           }, 500)
         }}
-        className={cx('parallaxCardImageWrapper scrollAnimationItem')}
+        className={cx('parallaxCardImageWrapper parallaxImageCard scrollAnimationItem')}
       >
         <Parallax
           bgImage={isMobile ? imageMobile : image}

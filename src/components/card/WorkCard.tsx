@@ -38,7 +38,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
           href={link}
           target="_blank"
           rel="noreferrer"
-          className="workCardImageWrapper scrollAnimationItem cursorLink"
+          className="workCardImageWrapper scrollAnimationItem parallaxImageCard cursorLink"
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
@@ -50,7 +50,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
         </a>
       ) : (
         <div
-          className="workCardImageWrapper scrollAnimationItem"
+          className="workCardImageWrapper parallaxImageCard scrollAnimationItem"
           onMouseEnter={() => {
             onMouseEnter()
             setIsPopoverVisible(true)

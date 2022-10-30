@@ -23,7 +23,8 @@
     "react-parallax": "^2.2.4",
     "@types/react-transition-group": "^4.4.5",
     "react-sticky-mouse-tooltip": "^0.0.1",
-    "react-use": "^17.4.0"
+    "react-use": "^17.4.0",
+    "react-lazy-load-image-component": "^1.5.5"
   },
   "scripts": {
     "start": "react-scripts start",
