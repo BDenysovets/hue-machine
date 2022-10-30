@@ -112,7 +112,7 @@ const Contacts: FC = () => {
                     />
                   </form>
                   <div className={cx('formSubmission', isFormValid && 'formValid')}>
-                    <CTAButton title="Send a bird" theme="light" onClick={() => onFormFinish()} />
+                    <CTAButton title="Send a bird" theme="light" onClick={() => isFormValid && onFormFinish()} />
                   </div>
                 </div>
               </div>

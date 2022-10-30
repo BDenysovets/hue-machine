@@ -68,6 +68,9 @@
   .formSuccessContentTitling {
     display: grid;
     gap: 15px;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    animation: successTextAppear 0.3s ease-in 0.1s forwards;
 
     @media (min-width: $media-lg) {
       gap: 19px;
@@ -80,6 +83,9 @@
     line-height: 28px;
     letter-spacing: 0.05em;
     color: $light-color;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    animation: successTextAppear 0.3s ease-in 0.2s forwards;
 
     @media (min-width: $media-md) {
       font-size: 15px;
@@ -94,6 +100,10 @@
 
   .emailSentImage {
     height: 300px;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    width: 100%;
+    animation: successTextAppear 0.3s ease-in 0.25s forwards;
 
     @media (min-width: $media-md) {
       height: 350px;
@@ -103,6 +113,7 @@
     @media (min-width: $media-lg) {
       height: 429px;
       margin-bottom: 120px;
+      max-width: 287px;
     }
 
     & img {
@@ -111,6 +122,15 @@
       object-fit: contain;
     }
   }
+
+  .formSuccessContent {
+    .ctaButton {
+      transition: opacity 0.3s ease-in-out;
+      opacity: 0;
+      animation: successTextAppear 0.3s ease-in 0.3s forwards;
+    }
+  }
+
 
   .contactPageForm {
     display: flex;
@@ -331,5 +351,15 @@ textarea {
     font-size: 12px;
     line-height: 20px;
     padding: 20px;
+  }
+}
+
+@keyframes successTextAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
