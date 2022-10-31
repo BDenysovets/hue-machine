@@ -245,7 +245,10 @@
   }
 
   .cardTooltip {
-    padding: 4px 8px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 8px 24px;
     background-color: $dark-color;
     color: $light-color;
   }

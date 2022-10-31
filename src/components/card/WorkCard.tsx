@@ -72,6 +72,7 @@ const WorkCard = ({ size = 'large', domain, image, imageMobile, description, tit
           visible={isPopoverVisible}
           offsetX={13}
           offsetY={20}
+          style={{ zIndex: 2 }}
         >
           <span className="cardTooltip">Coming soon</span>
         </MouseTooltip>

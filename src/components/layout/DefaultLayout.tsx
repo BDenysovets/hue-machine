@@ -1,5 +1,6 @@
 import {PropsWithChildren, useEffect} from 'react'
 import cx from 'classnames'
+import {useLocation} from "react-router-dom";
 import {Helmet} from "react-helmet";
 
 import { AppTheme } from "../../types/types";
@@ -8,7 +9,6 @@ import {Menu} from "../menu/Menu";
 import { Footer } from './Footer'
 
 import './DefaultLayout.scss'
-import {useLocation} from "react-router-dom";
 
 type Props = {
   hasFooter?: boolean
