@@ -55,7 +55,14 @@
       opacity: 1;
       z-index: 1;
       transition: opacity 0.75s ease-in-out;
-      background: url('../../assets/imagePlaceholder.png') 50% 50% no-repeat;
+      background-image: url("../../assets/imagePlaceholder.png");
+      background-repeat: no-repeat;
+      background-size: auto 170%;
+      background-position: 50% 50%;
+
+      @media (min-width: $media-md) {
+        background-size: auto 100%;
+      }
     }
   }
 
