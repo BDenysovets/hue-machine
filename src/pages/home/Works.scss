@@ -45,7 +45,7 @@
     height: 100%;
     overflow: hidden;
     filter: saturate(25%) brightness(95%) sepia(25%);
-    transition: filter 0.7s ease-out;
+    transition: filter 1s ease-out;
 
     &:after {
       position: absolute;
@@ -58,7 +58,7 @@
       content: '';
       z-index: 1;
       opacity: 1;
-      transition: opacity 0.7s;
+      transition: opacity 1s;
       background-color: rgba(252, 247, 211, 0.6);
     }
 

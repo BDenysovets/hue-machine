@@ -363,7 +363,7 @@
       position: relative;
       overflow: hidden;
       filter: saturate(25%) brightness(95%) sepia(5%);
-      transition: filter 0.7s ease-out;
+      transition: filter 1s ease-out;
       height: 336px;
 
       @media (min-width: $media-md) {
@@ -385,7 +385,7 @@
         content: '';
         z-index: 1;
         opacity: 1;
-        transition: opacity 0.7s;
+        transition: opacity 1s;
         background-color: rgba(252, 247, 211, 0.6);
       }
 
