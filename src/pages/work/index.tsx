@@ -25,6 +25,7 @@ import meroImg from './assets/mero.jpg'
 import meroImgMobile from './assets/mero-min.jpg'
 import {GetInTouch} from "../home/GetInTouch";
 import cx from "classnames";
+import {CallToAction} from "../home/CallToAction";
 
 export const data: Array<Omit<WorkCardProps, 'onMouseLeave' | 'onMouseEnter'>> = [
   {
@@ -139,6 +140,7 @@ const Work: FC = () => {
           </div>
         </div>
       </Content>
+      <CallToAction />
     </DefaultLayout>
   )
 }
