@@ -45,7 +45,7 @@ const DefaultLayout = ({ children, title = 'Hue&Machine', theme = 'dark', hasFoo
         }
       }
     })
-  }, [pathname])
+  }, [pathname, isOpen])
 
   return (
     <div className={cx('app', theme, className, { 'menuOpen': isOpen && !isMenuRunning })}>

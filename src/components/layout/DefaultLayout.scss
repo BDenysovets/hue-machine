@@ -78,6 +78,11 @@
       opacity: 1 !important;
     }
 
+    &:hover::after,
+    &.active::after {
+      opacity: 0 !important;
+    }
+
     .react-parallax {
       &:after {
         opacity: 0;

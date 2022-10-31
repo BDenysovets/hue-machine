@@ -1,6 +1,9 @@
 import {FC, useEffect} from "react";
+import {useLocation} from "react-router-dom";
 
 const ScrollAnimation: FC = ({ children }) => {
+  const { pathname } = useLocation()
+
   useEffect(() => {
     const animItems: NodeListOf<HTMLElement> = document.querySelectorAll('.scrollAnimationItem')
 
@@ -41,7 +44,7 @@ const ScrollAnimation: FC = ({ children }) => {
     return () => {
       window.removeEventListener('scroll', animOnScroll)
     }
-  }, [])
+  }, [pathname])
 
   return <>{children}</>
 }

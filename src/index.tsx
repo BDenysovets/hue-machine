@@ -12,17 +12,17 @@ import {ScrollAnimation} from "./components/scrollAnimation/ScrollAnimation";
 ReactDOM.render(
   <React.StrictMode>
     <MenuProvider>
-      <ScrollAnimation>
-        <Cover type="app" />
-        <BrowserRouter>
+      <Cover type="app" />
+      <BrowserRouter>
+        <ScrollAnimation>
           <Cursor>
             <>
               <Header theme={'dark'} />
               <App/>
             </>
           </Cursor>
-        </BrowserRouter>
-      </ScrollAnimation>
+        </ScrollAnimation>
+      </BrowserRouter>
     </MenuProvider>
   </React.StrictMode>,
   document.getElementById('root') as HTMLElement
