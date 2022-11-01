@@ -197,12 +197,17 @@
     order: -1;
     font-style: normal;
     font-weight: 700;
-    font-size: 9px;
-    line-height: 11px;
+    font-size: 11px;
+    line-height: 13px;
     text-transform: uppercase;
     transition: color 0.3s ease-in-out, text-transform 0.3s ease-in-out;
     letter-spacing: 0.05em;
     color: $light-color;
+
+    @media (min-width: $media-lg) {
+      font-size: 12px;
+      line-height: 15px;
+    }
 
     &::before,
     &::after {
@@ -227,16 +232,6 @@
 
     &::after {
       transform: scaleX(0);
-    }
-
-    @media (min-width: $media-md) {
-      font-size: 10px;
-      line-height: 12px;
-    }
-
-    @media (min-width: $media-lg) {
-      font-size: 12px;
-      line-height: 15px;
     }
   }
 
