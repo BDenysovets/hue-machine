@@ -4,8 +4,13 @@ import {Logout as LogoutIcon, Login as LoginIcon} from '@mui/icons-material';
 import {signIn, useSession, signOut} from "next-auth/react"
 import {Layout} from "../../components/layout";
 
-const Login: FC = () => {
-  const { data: session } = useSession()
+type Props = {
+  type?: 'login' | 'logout'
+}
+
+const Login: FC<Props> = ({ type = 'logout' }) => {
+  const { data: session } = useSession();
+  const hasSession = type ? type === 'logout' : session;
 
   return (
     <Layout>
@@ -18,12 +23,12 @@ const Login: FC = () => {
         }}
       >
         <Typography variant={'h4'} align={'center'}>
-          {session ? 'Click to Logout' : 'Please login with Google to proceed'}
+          {hasSession ? 'Click to Logout' : 'Please login with Google to proceed'}
         </Typography>
-        <Button onClick={() => session ? signOut() : signIn()} variant={'contained'}>
+        <Button onClick={() => hasSession ? signOut() : signIn()} variant={'contained'}>
           <Stack direction="row" spacing={1}>
-            <span>{session ? 'Logout' : 'Login'}</span>
-            {session ? <LogoutIcon /> : <LoginIcon />}
+            <span>{hasSession ? 'Logout' : 'Login'}</span>
+            {hasSession ? <LogoutIcon /> : <LoginIcon />}
           </Stack>
         </Button>
       </Stack>

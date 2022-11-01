@@ -1,12 +1,12 @@
 import {FC, useEffect, useState} from 'react';
 import { Box, Container } from '@mui/material';
-import {signOut, useSession} from "next-auth/react"
+import {useSession} from "next-auth/react"
 
 import Login from '../../pages/login';
+import {MessageT, Toast} from "../toast";
 import {find} from "../../lib/dato-cms";
 
 import { Header } from './Header';
-import {MessageT, Toast} from "../toast";
 
 const Content: FC = ({ children }) => (
   <Box>
@@ -39,22 +39,24 @@ const Layout: FC<{ hasAuth?: boolean }> = ({
       if (isValidUser) {
         setHasAccess(isValidUser)
       } else {
-        signOut().then(() => {
-          setMessage({ text: "Please make sure, you have admin access email", type: 'error'});
-        })
+        setMessage({ text: "Please make sure, you have admin access email or logout and try another email", type: 'warning'});
       }
     }
   }, [adminEmails, session])
 
-  if (hasAuth) {
-    if (!hasAccess) return <Login />
+  if (hasAuth && !session) {
+    return <Login type="login" />
+  }
 
-    return (
-      <Content>
-        {children}
-        <Toast open={!!message} onClose={() => setMessage(null)} message={message}/>
-      </Content>
+  if (hasAuth) {
+    if (!hasAccess) return (
+      <>
+        <Login type="login" />
+        <Toast open={!!message} autoHideDuration={10000} onClose={() => setMessage(null)} message={message}/>
+      </>
     )
+
+    return <Content>{children}</Content>
   }
 
   return <Content>{children}</Content>
