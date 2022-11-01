@@ -12,6 +12,7 @@ export const modelsId = {
   campaign: '227995',
   adminConnectedCampaign: '877357',
   adminCampaign: '877339',
+  rpmAdminUser: '877433',
 };
 
 export async function create(data: Record<any, any>, id: keyof typeof modelsId): Promise<any> {
