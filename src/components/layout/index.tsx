@@ -1,9 +1,12 @@
 import {FC, useEffect, useState} from 'react';
-import { Header } from './Header';
 import { Box, Container } from '@mui/material';
+import {signOut, useSession} from "next-auth/react"
+
 import Login from '../../pages/login';
-import { useSession } from "next-auth/react"
 import {find} from "../../lib/dato-cms";
+
+import { Header } from './Header';
+import {MessageT, Toast} from "../toast";
 
 const Content: FC = ({ children }) => (
   <Box>
@@ -21,6 +24,7 @@ const Layout: FC<{ hasAuth?: boolean }> = ({
   const { data: session } = useSession()
   const [adminEmails, setAdminEmails] = useState<Array<string> | undefined>();
   const [hasAccess, setHasAccess] = useState(false);
+  const [message, setMessage] = useState<MessageT>(null)
 
   useEffect(() => {
     find('rpmAdminUser')
@@ -30,14 +34,27 @@ const Layout: FC<{ hasAuth?: boolean }> = ({
 
   useEffect(() => {
     if (adminEmails) {
-      setHasAccess(adminEmails.some(adminEmail => adminEmail === session?.user?.email))
+      const isValidUser = adminEmails.some(adminEmail => adminEmail === session?.user?.email)
+
+      if (isValidUser) {
+        setHasAccess(isValidUser)
+      } else {
+        signOut().then(() => {
+          setMessage({ text: "Please make sure, you have admin access email", type: 'error'});
+        })
+      }
     }
   }, [adminEmails, session])
 
   if (hasAuth) {
     if (!hasAccess) return <Login />
 
-    return <Content>{children}</Content>
+    return (
+      <Content>
+        {children}
+        <Toast open={!!message} onClose={() => setMessage(null)} message={message}/>
+      </Content>
+    )
   }
 
   return <Content>{children}</Content>
