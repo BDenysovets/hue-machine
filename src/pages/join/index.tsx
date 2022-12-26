@@ -10,18 +10,14 @@ const jobs = {
       title: 'Product Designer Intern',
       description: 'We help companies to grow their relationships with their customers, solve problems, embrace exciting opportunities in different domains',
     },
-    {
-      title: 'Middle Product Designer',
-      description: 'We help companies to grow their relationships with their customers, solve problems, embrace exciting opportunities in different domains',
-    },
-    {
-      title: 'Middle Product Designer',
-      description: 'We help companies to grow their relationships with their customers, solve problems, embrace exciting opportunities in different domains',
-    },
   ],
   development: [
     {
       title: 'Senior Developer',
+      description: 'We help companies to grow their relationships with their customers, solve problems, embrace exciting opportunities in different domains',
+    },
+        {
+      title: 'Middle Product Designer',
       description: 'We help companies to grow their relationships with their customers, solve problems, embrace exciting opportunities in different domains',
     },
   ],
