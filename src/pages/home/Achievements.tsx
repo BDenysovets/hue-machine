@@ -10,7 +10,6 @@ const data = [
   'Clair',
   'Quantum Metric',
   'Doordash',
-  'Rentorr',
   'Fittrack',
   'Snap Inc.',
   'Headline',
